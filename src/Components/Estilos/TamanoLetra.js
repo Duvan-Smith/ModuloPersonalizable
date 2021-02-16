@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../CSS/App.css';
-import Card from '../Card/Card';
 import moment from 'moment';
 import { blue } from '@material-ui/core/colors';
 import Container from '@material-ui/core/Container';
