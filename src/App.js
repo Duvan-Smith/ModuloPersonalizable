@@ -2,6 +2,7 @@ import React from 'react';
 import './CSS/App.css';
 import Card from './Components/Ccard/Ccard';
 import ColorFondo from './Components/Estilos/Fondo';
+import Datos from './Components/Estilos/Datos';
 import Posicion from './Components/Estilos/Posicion';
 import TamañoLetra from "./Components/Estilos/TamanoLetra";
 import moment from 'moment';
@@ -68,31 +69,29 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <header >
-          {/* <ColorFondo seleccionarCFondo = { this.seleccionarCFondo }/>  */}
-          <Posicion />
-          {
-            /* {
-                        this.state.cFondoSeleccionada >= 31 ?
-                          this.state.tLetraSeleccionada >= 31 ?
-                            <>
-                              fin
-                          </>
-                            :
-                            <>
-                              <TamañoLetra
-                                seleccionarTLetra={this.seleccionarTLetra}
-                              />
-                            </>
-                          :
-                          <>
-                            <ColorFondo
-                              seleccionarCFondo={this.seleccionarCFondo}
-                            />
-                          </>
-                      } */
-          }
-        </header>
+        {/* <ColorFondo seleccionarCFondo = { this.seleccionarCFondo }/>  */}
+        {/* <Posicion /> */}
+        <Datos />
+
+        {
+          // this.state.cFondoSeleccionada >= 31 ?
+          //   this.state.tLetraSeleccionada >= 31 ?
+          //     <>
+          //       fin
+          //     </>
+          //     :
+          //     <>
+          //       <TamañoLetra
+          //         seleccionarTLetra={this.seleccionarTLetra}
+          //       />
+          //     </>
+          //   :
+          //   <>
+          //     <ColorFondo
+          //       seleccionarCFondo={this.seleccionarCFondo}
+          //     />
+          //   </>
+        }
       </div>
     );
   }

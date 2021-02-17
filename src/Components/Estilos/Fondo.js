@@ -3,8 +3,6 @@ import '../../CSS/App.css';
 import moment from 'moment';
 import { red, purple } from '@material-ui/core/colors';
 
-// import HUE from '@material-ui/core/colors/HUE';
-
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -235,19 +233,8 @@ class App extends React.Component {
     }
     render() {
         const { count, county, countz } = this.state
-        // const color = HUE[500];
         return (
             <div >
-                {/* {this.state.ccolor}
-                <br></br>
-                {count}
-                <br></br>
-                {county}
-                <br></br>
-                {countz}
-                <br></br>
-                {red[this.state.redC]}
-                {purple[this.state.redC]} */}
                 <header
                     style={{
                         background: this.state.thergb,
@@ -255,17 +242,6 @@ class App extends React.Component {
                     }}
                     className="App-header"
                 >
-                    {/* {this.state.ccolor}
-                    <br></br>
-                    {count}
-                    <br></br>
-                    {county}
-                    <br></br>
-                    {countz} */}
-                    <>
-
-                    </>
-
                 </header>
             </div>
         );

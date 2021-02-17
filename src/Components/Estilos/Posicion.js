@@ -11,6 +11,7 @@ class App extends React.Component {
             count: 0,
             posicion:["","center","left","right"],
             posicionT:["","center","flex-start","flex-end","space-between","space-around"],
+            contenido: this.props.contenido,
         }
     }
     componentDidMount() {
@@ -18,9 +19,6 @@ class App extends React.Component {
             this.setState({
                 count: this.state.count + 1,
             })
-            // if (this.state.count >= 22) {
-            //     this.props.seleccionarTLetra(this.state.count)
-            // }
         }, 1000);
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -50,14 +48,12 @@ class App extends React.Component {
                         color: 'black',
                         fontSize: 12,
                         justifyContent: this.state.thergb2,
-                        // justifyContent: "center",
-                        // alignItems: this.state.thergb,
                         textAlign:this.state.thergb,
                     }}
                 >
                     <h1>
                         <br />
-                        Tembló el día de hoy en Colombia y el susto despertó a muchos.
+                        {this.state.contenido}
                     </h1>
                     <p>
                         <br />
