@@ -6,6 +6,7 @@ import Datos from './Components/Estilos/Datos';
 import Posicion from './Components/Estilos/Posicion';
 import TamañoLetra from "./Components/Estilos/TamanoLetra";
 import moment from 'moment';
+import Ccard from './Components/Ccard/Ccard';
 
 class App extends React.Component {
   constructor(props) {
@@ -71,8 +72,8 @@ class App extends React.Component {
       <div>
         {/* <ColorFondo seleccionarCFondo = { this.seleccionarCFondo }/>  */}
         {/* <Posicion /> */}
-        <Datos />
-
+        {/* <Datos /> */}
+        <Ccard/>
         {
           // this.state.cFondoSeleccionada >= 31 ?
           //   this.state.tLetraSeleccionada >= 31 ?

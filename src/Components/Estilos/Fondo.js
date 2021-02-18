@@ -213,7 +213,7 @@ class App extends React.Component {
             this.setState({
                 count: this.state.count + this.state.rangocolor
             })
-            this.props.seleccionarCFondo(this.state.ccolor)
+            // this.props.seleccionarCFondo(this.state.ccolor)
         }, 1000);
     }
     componentDidUpdate(prevProps, prevState, snapshot) {

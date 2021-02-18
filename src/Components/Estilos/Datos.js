@@ -42,50 +42,35 @@ class App extends React.Component {
             ],
         }
     }
-    seleccionarCFondo = (cfondo) => {
-        this.setState({ cFondoSeleccionada: cfondo })
+    componentDidMount() {
+        this.myInterval = setInterval(() => {
+            this.props.seleccionarContenido(this.state.count)
+            this.setState({
+                count: this.state.count + 1,
+            })
+        }, 1000);
     }
-    seleccionarTLetra = (tletra) => {
-        this.setState({ tLetraSeleccionada: tletra })
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.state.count != prevState.count) {
+            this.change(this.state.count);
+        }
+    }
+    componentWillUnmount() {
+        clearInterval(this.myInterval)
+    }
+    change(count) {
+        var thergb = this.state.contenidos[count];
+        this.setState({
+            thergb
+        })
+
     }
     render() {
         return (
             <div>
-                <header >
-                    {/* <ColorFondo seleccionarCFondo = { this.seleccionarCFondo }/>  */}
-                    {/* {
-                        this.state.contenidos.map((obj)=>
-                            <>
-                                <Posicion 
-                                    contenido={obj}
-                                />
-                            </>
-                        )
-                    } */}
-                    <Posicion
-                        contenidos={this.state.contenidos}
-                    />
-
-                    {/* {
-                        this.state.cFondoSeleccionada >= 31 ?
-                            this.state.tLetraSeleccionada >= 31 ?
-                                <>
-                                    fin
-                                </>
-                                :
-                                <>
-                                    <TamañoLetra
-                                        seleccionarTLetra={this.seleccionarTLetra}
-                                    />
-                                </>
-                            :
-                            <>
-                                <ColorFondo
-                                    seleccionarCFondo={this.seleccionarCFondo}
-                                />
-                            </>
-                    } */}
-                </header>
+                    {/* <Posicion
+                        contenidos={this.state.thergb}
+                    /> */}
             </div>
         );
     }
