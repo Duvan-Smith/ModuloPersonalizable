@@ -38,4 +38,6 @@
 }
 .Margen{
   margin: 50px 50px 50px 50px;
+  width: auto;
+  height: auto;
 }
