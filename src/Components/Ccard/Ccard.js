@@ -14,7 +14,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Container from '@material-ui/core/Container';
-import Datos from '../Estilos/Datos';
 
 withStyles(({ transitions }) => ({
   root: {
@@ -43,87 +42,55 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      ccontenidos:0,
+      // ccontenidos: 0,
       expanded: false,
-      contenidos: [{
-        titulo: "En vivo - Unicauca tendrá matricula cero",
-        parrafo1: "PERIODICOVIRTUAL.COM 16 FEB. 2021 • 1 MIN READ",
-        subtitulo: "sub",
-        parrafo2: "Cumplimiento al compromiso adquirido el día de ayer con los estudiantes de @unicauca , junto al Rector Jose Luis Diago, #SecEducaciónCauca, @Mineducacion y representantes estudiantiles para dialogar sobre la propuesta de",
-        tamañosubtitulo: "subtitle1",
-        tamañotitulo: "h1",
-        tamañoparrafos: "body1",
-        imagen: "https://www.fundacion-affinity.org/sites/default/files/dia-de-los-animales.jpg",
-    },
-    {
-        titulo: "En vivo",
-        parrafo1: "PERIODICOVIRTUAL.COM 16 FEB. 2021 • 1 MIN READ",
-        subtitulo: "sub",
-        parrafo2: "Cumplimiento al compromiso adquirido el día de ayer con los estudiantes de @unicauca , junto al Rector Jose Luis Diago, #SecEducaciónCauca, @Mineducacion y representantes estudiantiles para dialogar sobre la propuesta de",
-        tamañosubtitulo: "subtitle1",
-        tamañotitulo: "h1",
-        tamañoparrafos: "body1",
-        imagen: "https://www.fundacion-affinity.org/sites/default/files/dia-de-los-animales.jpg",
-    },
-    {
-        titulo: "Unicauca tendrá matricula cero",
-        parrafo1: "PERIODICOVIRTUAL.COM 16 FEB. 2021 • 1 MIN READ",
-        subtitulo: "sub",
-        parrafo2: "Cumplimiento al compromiso adquirido el día de ayer con los estudiantes de @unicauca , junto al Rector Jose Luis Diago, #SecEducaciónCauca, @Mineducacion y representantes estudiantiles para dialogar sobre la propuesta de",
-        tamañosubtitulo: "subtitle1",
-        tamañotitulo: "h1",
-        tamañoparrafos: "body1",
-        imagen: "https://www.fundacion-affinity.org/sites/default/files/dia-de-los-animales.jpg",
-    },
-    ],
+      colores: this.props.colores,
+      posicion: this.props.posicion,
+      posicionT: this.props.posicionT,
+      contenidos: this.props.contenidos,
     }
   }
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
   };
-  seleccionarContenido = (contenido) => {
-    this.setState({ ccontenidos: contenido })
-  }
+  // seleccionarContenido = (contenido) => {
+  //   this.setState({ ccontenidos: contenido })
+  // }
   render() {
     const classes = withStyles();
     return (
-      <Container fixed >
-        <Datos
-          seleccionarContenido={this.seleccionarContenido}
-        />
-        {this.state.ccontenidos}
-        {this.state.contenidos[this.state.ccontenidos].titulo}
-        {/* {this.state.contenidos[this.props.count].colorfondo} */}
+      <Container fixed>
         <Card
-          // style={{
-          //   padding: 100,
-          //   textAlign: this.state.contenidos[this.props.count].posicion,
-          //   background: this.state.contenidos[this.props.count].colorfondo,
-          //   color: this.state.contenidos[this.props.count].colorletra,
-          //   variant: this.state.contenidos[this.props.count].tamañoparrafos,
-          // }}
+          style={{
+            background: this.state.colores[this.props.cColor],
+            textAlign: this.state.posicion[this.props.posicion],
+            justifyContent: this.state.posicionT[this.props.posicion2],
+          }}
+        // style={{
+        //   padding: 100,
+        //   textAlign: this.state.contenidos[this.props.count].posicion,
+        //   background: this.state.contenidos[this.props.count].colorfondo,
+        //   color: this.state.contenidos[this.props.count].colorletra,
+        //   variant: this.state.contenidos[this.props.count].tamañoparrafos,
+        // }}
         >
           <CardHeader
-            // style={{
-            //   variant: this.state.contenidos[this.props.count].tamañotitulo,
-            // }}
-            // title={this.state.contenidos[this.state.ccontenidos].titulo}
+          // style={{
+          //   variant: this.state.contenidos[this.props.count].tamañotitulo,
+          // }}
+          // title={this.state.contenidos[this.props.cContenido].titulo}
           />
           <img
             width="700"
             height="300"
-            // src={this.state.contenidos[this.props.count].imagen}
+          // src={this.state.contenidos[this.props.count].imagen}
           >
 
           </img>
-          <CardMedia
-            image="https://www.fundacion-affinity.org/sites/default/files/dia-de-los-animales.jpg"
-            title="Live from space album cover"
-          />
           <CardContent>
             <Typography component="p">
-              {/* {this.state.contenidos[this.props.count].parrafo1} */}
+              {/* {this.state.contenidos[this.props.cContenido].parrafo1} */}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
@@ -147,9 +114,9 @@ class App extends React.Component {
           <Collapse in={this.state.expanded} timeout="auto"  >
             <CardContent>
               <Typography paragraph
-                // style={{
-                //   variant: this.state.contenidos[this.props.count].tamañosubtitulo,
-                // }}
+              // style={{
+              //   variant: this.state.contenidos[this.props.count].tamañosubtitulo,
+              // }}
               >
                 {/* {this.state.contenidos[this.props.count].subtitulo} */}
               </Typography>

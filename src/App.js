@@ -69,30 +69,8 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
-        {/* <ColorFondo seleccionarCFondo = { this.seleccionarCFondo }/>  */}
-        {/* <Posicion /> */}
-        {/* <Datos /> */}
-        <Ccard/>
-        {
-          // this.state.cFondoSeleccionada >= 31 ?
-          //   this.state.tLetraSeleccionada >= 31 ?
-          //     <>
-          //       fin
-          //     </>
-          //     :
-          //     <>
-          //       <TamañoLetra
-          //         seleccionarTLetra={this.seleccionarTLetra}
-          //       />
-          //     </>
-          //   :
-          //   <>
-          //     <ColorFondo
-          //       seleccionarCFondo={this.seleccionarCFondo}
-          //     />
-          //   </>
-        }
+      <div className="Margen">
+        <Datos/>
       </div>
     );
   }
