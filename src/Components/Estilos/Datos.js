@@ -11,17 +11,28 @@ class App extends React.Component {
             cPosicion2: 0,
             cTamano: 0,
             cContenido: 0,
+            tamano: [
+                {
+                    titulo:"h3",
+                    subtitulo:"subtitle1",
+                    parrafos:"body1",
+                    imagen:"60%",
+                },
+                {
+                    titulo:"h5",
+                    subtitulo:"subtitle2",
+                    parrafos:"body2",
+                    imagen:"80%",
+                },
+            ],
             posicion: ["center", "left", "right"],
             posicionT: ["center", "flex-start", "flex-end", "space-between", "space-around"],
             contenidos: [{
-                titulo: "En vivo - Unicauca tendrá matricula cero",
-                parrafo1: "PERIODICOVIRTUAL.COM 16 FEB. 2021 • 1 MIN READ",
-                subtitulo: "sub",
-                parrafo2: "Cumplimiento al compromiso adquirido el día de ayer con los estudiantes de @unicauca , junto al Rector Jose Luis Diago, #SecEducaciónCauca, @Mineducacion y representantes estudiantiles para dialogar sobre la propuesta de",
-                tamañosubtitulo: "subtitle1",
-                tamañotitulo: "h1",
-                tamañoparrafos: "body1",
-                imagen: "https://www.fundacion-affinity.org/sites/default/files/dia-de-los-animales.jpg",
+                titulo: "Ganamos premio de Cooperación Internacional de la Universidad Politécnica de Madrid",
+                parrafo1: "En pasados días, obtuvimos el premio de Cooperación Internacional en Investigación para el Desarrollo, por parte de la Universidad Politécnica de Madrid, gracias al trabajo académico y de investigación desarrollado con el Parque Tecnológico de Innovación del Café – Tecnicafé. […]",
+                subtitulo: "premio, reconocimiento, Universidad Politecnica de Madrid, upm",
+                parrafo2: "En pasados días, obtuvimos el premio de Cooperación Internacional en Investigación para el Desarrollo, por parte de la Universidad Politécnica de Madrid, gracias al trabajo académico y de investigación desarrollado con el Parque Tecnológico de Innovación del Café – Tecnicafé. <br/>La ceremonia de entrega de estos reconocimientos, denominados los Premios anuales de Investigación e Innovación 2020, la hace esta universidad española donde destaca sus alianzas estratégicas y proyectos desarrollados en conjunto con otras instituciones locales e internacionales. Además, tiene por objetivo premiar a aquellos aliados, seleccionados mediante concurrencia competitiva, que han contribuido significativamente a fomentar la investigación, innovación y la transferencia de conocimientos de la UPM.",
+                imagen: "https://www.unicomfacauca.edu.co/wp-content/uploads/Premio-UPM.jpg",
             },
             {
                 titulo: "En vivo",
@@ -247,7 +258,7 @@ class App extends React.Component {
                     cColor: this.state.cColor + 1,
                 })
             }
-        }, 1000);
+        }, 10000);
         setInterval(() => {
             if (this.state.cPosicion == 2) {
                 this.setState({
@@ -258,7 +269,7 @@ class App extends React.Component {
                     cPosicion: this.state.cPosicion + 1,
                 })
             }
-        }, 1000);
+        }, 10000);
         setInterval(() => {
             if (this.state.cPosicion2 == 4) {
                 this.setState({
@@ -269,9 +280,9 @@ class App extends React.Component {
                     cPosicion2: this.state.cPosicion2 + 1,
                 })
             }
-        }, 1000);
+        }, 10000);
         setInterval(() => {
-            if (this.state.cTamano == 2) {
+            if (this.state.cTamano == 1) {
                 this.setState({
                     cTamano: 0,
                 })
@@ -280,7 +291,7 @@ class App extends React.Component {
                     cTamano: this.state.cTamano + 1,
                 })
             }
-        }, 1000);
+        }, 5000);
         setInterval(() => {
             if (this.state.cContenido == 2) {
                 this.setState({
@@ -291,21 +302,14 @@ class App extends React.Component {
                     cContenido: this.state.cContenido + 1,
                 })
             }
-        }, 1000);
+        }, 30000);
 
     }
     render() {
-        const { cColor, cPosicion, cPosicion2, cTamano, cContenido } = this.state
+        const { cColor, cPosicion, cPosicion2, cTamano, cContenido,tamanoT,tamanoP } = this.state
 
         return (
             <div>
-                {cColor}
-                <br />
-                {cPosicion}
-                <br />
-                {cPosicion2}
-                <br />
-                {this.state.posicion[cPosicion]}
                 <Ccard
                     cColor={cColor}
                     cPosicion={cPosicion}
@@ -316,6 +320,7 @@ class App extends React.Component {
                     colores={this.state.colores}
                     posicion={this.state.posicion}
                     posicionT={this.state.posicionT}
+                    tamano={this.state.tamano}
                     contenidos={this.state.contenidos}
 
                 />

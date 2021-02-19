@@ -38,6 +38,7 @@ class App extends React.Component {
       posicion: this.props.posicion,
       posicionT: this.props.posicionT,
       contenidos: this.props.contenidos,
+      tamano: this.props.tamano,
     }
   }
 
@@ -51,28 +52,30 @@ class App extends React.Component {
     const classes = withStyles();
     return (
       <Container fixed>
+        
         <Card
           style={{
             background: this.state.colores[this.props.cColor],
             textAlign: this.state.posicion[this.props.cPosicion],
             justifyContent: this.state.posicionT[this.props.cPosicion2],
+            fontSize: this.state.tamanoT,
           }}
         >
-          <CardHeader
-          // style={{
-          //   variant: this.state.contenidos[this.props.count].tamañotitulo,
-          // }}
-          title={this.state.contenidos[this.props.cContenido].titulo}
-          />
-          <img
-            width="700"
-            height="300"
-          // src={this.state.contenidos[this.props.count].imagen}
+          {/* <CardHeader variant="h1"
+            title={this.state.contenidos[this.props.cContenido].titulo}
+          /> */}
+          <Typography gutterBottom variant={this.state.tamano[this.props.cTamano].titulo}
           >
-
+            {this.state.contenidos[this.props.cContenido].titulo}
+          </Typography>
+          <img
+            width={this.state.tamano[this.props.cTamano].imagen}
+            height= "auto"
+            src={this.state.contenidos[this.props.cContenido].imagen}
+          >
           </img>
           <CardContent>
-            <Typography component="p">
+            <Typography variant={this.state.tamano[this.props.cTamano].parrafos}>
               {this.state.contenidos[this.props.cContenido].parrafo1}
             </Typography>
           </CardContent>
@@ -96,15 +99,15 @@ class App extends React.Component {
           </CardActions>
           <Collapse in={this.state.expanded} timeout="auto"  >
             <CardContent>
-              <Typography paragraph
-              // style={{
-              //   variant: this.state.contenidos[this.props.count].tamañosubtitulo,
-              // }}
+              <Typography //paragraph
+                variant={this.state.tamano[this.props.cTamano].subtitulo}
               >
-                {/* {this.state.contenidos[this.props.count].subtitulo} */}
+                {this.state.contenidos[this.props.cContenido].subtitulo}
               </Typography>
-              <Typography paragraph>
-                {/* {this.state.contenidos[this.props.count].parrafo2} */}
+              <Typography //paragraph
+                variant={this.state.tamano[this.props.cTamano].parrafos}
+              >
+                {this.state.contenidos[this.props.cContenido].parrafo2}
               </Typography>
             </CardContent>
           </Collapse>
