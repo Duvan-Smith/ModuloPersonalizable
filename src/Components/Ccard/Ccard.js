@@ -16,13 +16,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Container from '@material-ui/core/Container';
 
 withStyles(({ transitions }) => ({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
   expand: {
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
@@ -33,9 +26,6 @@ withStyles(({ transitions }) => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
   },
 }));
 class App extends React.Component {
@@ -64,22 +54,15 @@ class App extends React.Component {
         <Card
           style={{
             background: this.state.colores[this.props.cColor],
-            textAlign: this.state.posicion[this.props.posicion],
-            justifyContent: this.state.posicionT[this.props.posicion2],
+            textAlign: this.state.posicion[this.props.cPosicion],
+            justifyContent: this.state.posicionT[this.props.cPosicion2],
           }}
-        // style={{
-        //   padding: 100,
-        //   textAlign: this.state.contenidos[this.props.count].posicion,
-        //   background: this.state.contenidos[this.props.count].colorfondo,
-        //   color: this.state.contenidos[this.props.count].colorletra,
-        //   variant: this.state.contenidos[this.props.count].tamañoparrafos,
-        // }}
         >
           <CardHeader
           // style={{
           //   variant: this.state.contenidos[this.props.count].tamañotitulo,
           // }}
-          // title={this.state.contenidos[this.props.cContenido].titulo}
+          title={this.state.contenidos[this.props.cContenido].titulo}
           />
           <img
             width="700"
@@ -90,7 +73,7 @@ class App extends React.Component {
           </img>
           <CardContent>
             <Typography component="p">
-              {/* {this.state.contenidos[this.props.cContenido].parrafo1} */}
+              {this.state.contenidos[this.props.cContenido].parrafo1}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>

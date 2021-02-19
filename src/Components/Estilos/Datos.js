@@ -238,13 +238,57 @@ class App extends React.Component {
     }
     componentDidMount() {
         setInterval(() => {
-            if (this.state.cColor == 2) {
+            if (this.state.cColor == 10) {
                 this.setState({
                     cColor: 0,
                 })
             } else {
                 this.setState({
                     cColor: this.state.cColor + 1,
+                })
+            }
+        }, 1000);
+        setInterval(() => {
+            if (this.state.cPosicion == 2) {
+                this.setState({
+                    cPosicion: 0,
+                })
+            } else {
+                this.setState({
+                    cPosicion: this.state.cPosicion + 1,
+                })
+            }
+        }, 1000);
+        setInterval(() => {
+            if (this.state.cPosicion2 == 4) {
+                this.setState({
+                    cPosicion2: 0,
+                })
+            } else {
+                this.setState({
+                    cPosicion2: this.state.cPosicion2 + 1,
+                })
+            }
+        }, 1000);
+        setInterval(() => {
+            if (this.state.cTamano == 2) {
+                this.setState({
+                    cTamano: 0,
+                })
+            } else {
+                this.setState({
+                    cTamano: this.state.cTamano + 1,
+                })
+            }
+        }, 1000);
+        setInterval(() => {
+            if (this.state.cContenido == 2) {
+                this.setState({
+                    cContenido: 0,
+                })
+            } else {
+                this.setState({
+                    cContenido: this.state.cContenido + 1,
                 })
             }
         }, 1000);
@@ -257,7 +301,11 @@ class App extends React.Component {
             <div>
                 {cColor}
                 <br />
-                {cContenido}
+                {cPosicion}
+                <br />
+                {cPosicion2}
+                <br />
+                {this.state.posicion[cPosicion]}
                 <Ccard
                     cColor={cColor}
                     cPosicion={cPosicion}
