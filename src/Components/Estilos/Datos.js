@@ -13,46 +13,46 @@ class App extends React.Component {
             cContenido: 0,
             tamano: [
                 {
-                    titulo:"h3",
-                    subtitulo:"subtitle1",
-                    parrafos:"body1",
-                    imagen:"60%",
+                    titulo: "h4",
+                    subtitulo: "h6",
+                    parrafos: 16,
+                    imagen: "60%",
                 },
                 {
-                    titulo:"h5",
-                    subtitulo:"subtitle2",
-                    parrafos:"body2",
-                    imagen:"80%",
+                    titulo: "h5",
+                    subtitulo: "subtitle1",
+                    parrafos: 12,
+                    imagen: "80%",
                 },
             ],
             posicion: ["center", "left", "right"],
-            posicionT: ["center", "flex-start", "flex-end", "space-between", "space-around"],
+            posicionT: ["center", "flex-start", "flex-end"],
+            //https://www.unicomfacauca.edu.co/tag/premio/
+            //https://www.elespectador.com/entretenimiento/musica/premios-lo-nuestro-como-ver-la-transmision/
+            //https://www.eltiempo.com/cultura/cine-y-tv/globos-de-oro-2021-conozca-las-series-peliculas-y-actores-nominados-564266
             contenidos: [{
                 titulo: "Ganamos premio de Cooperación Internacional de la Universidad Politécnica de Madrid",
                 parrafo1: "En pasados días, obtuvimos el premio de Cooperación Internacional en Investigación para el Desarrollo, por parte de la Universidad Politécnica de Madrid, gracias al trabajo académico y de investigación desarrollado con el Parque Tecnológico de Innovación del Café – Tecnicafé. […]",
                 subtitulo: "premio, reconocimiento, Universidad Politecnica de Madrid, upm",
-                parrafo2: "En pasados días, obtuvimos el premio de Cooperación Internacional en Investigación para el Desarrollo, por parte de la Universidad Politécnica de Madrid, gracias al trabajo académico y de investigación desarrollado con el Parque Tecnológico de Innovación del Café – Tecnicafé. <br/>La ceremonia de entrega de estos reconocimientos, denominados los Premios anuales de Investigación e Innovación 2020, la hace esta universidad española donde destaca sus alianzas estratégicas y proyectos desarrollados en conjunto con otras instituciones locales e internacionales. Además, tiene por objetivo premiar a aquellos aliados, seleccionados mediante concurrencia competitiva, que han contribuido significativamente a fomentar la investigación, innovación y la transferencia de conocimientos de la UPM.",
+                parrafo2: "En pasados días, obtuvimos el premio de Cooperación Internacional en Investigación para el Desarrollo, por parte de la Universidad Politécnica de Madrid, gracias al trabajo académico y de investigación desarrollado con el Parque Tecnológico de Innovación del Café – Tecnicafé.",
+                parrafo3: "La ceremonia de entrega de estos reconocimientos, denominados los Premios anuales de Investigación e Innovación 2020, la hace esta universidad española donde destaca sus alianzas estratégicas y proyectos desarrollados en conjunto con otras instituciones locales e internacionales. Además, tiene por objetivo premiar a aquellos aliados, seleccionados mediante concurrencia competitiva, que han contribuido significativamente a fomentar la investigación, innovación y la transferencia de conocimientos de la UPM.",
                 imagen: "https://www.unicomfacauca.edu.co/wp-content/uploads/Premio-UPM.jpg",
             },
             {
-                titulo: "En vivo",
-                parrafo1: "PERIODICOVIRTUAL.COM 16 FEB. 2021 • 1 MIN READ",
-                subtitulo: "sub",
-                parrafo2: "Cumplimiento al compromiso adquirido el día de ayer con los estudiantes de @unicauca , junto al Rector Jose Luis Diago, #SecEducaciónCauca, @Mineducacion y representantes estudiantiles para dialogar sobre la propuesta de",
-                tamañosubtitulo: "subtitle1",
-                tamañotitulo: "h1",
-                tamañoparrafos: "body1",
-                imagen: "https://www.fundacion-affinity.org/sites/default/files/dia-de-los-animales.jpg",
+                titulo: "Premios Lo Nuestro: hora y cómo ver a Maluma y otros artistas",
+                parrafo1: "Aunque las nominaciones de Premios Lo Nuestro siguen dominadas por los artistas de música urbana, con base en el reguetón, los exponentes y canciones de los distintos subgéneros del regional mexicano han comenzado a pisarles los talones. / Agencias",
+                subtitulo: "Música18 feb. 2021 - 7:04 p. m. Por: Agencia EFE",
+                parrafo2: "Aunque las nominaciones de Premios Lo Nuestro siguen dominadas por los artistas de música urbana, con base en el reguetón, los exponentes y canciones de los distintos subgéneros del regional mexicano han comenzado a pisarles los talones. / Agencias",
+                parrafo3: "La trigésima tercera entrega de Premio Lo Nuestro, el galardón más antiguo de música latina en Estados Unidos, se realiza este jueves en la ciudad estadounidense de Miami con varios números en vivo y alfombra, aunque sin público y con la notable ausencia de J Balvin, el artista con más nominaciones.",
+                imagen: "https://www.elespectador.com/resizer/1M6ysIvyemIITjAeeI7AqX7dLbA=/657x0/cloudfront-us-east-1.images.arcpublishing.com/elespectador/K4GAYQTL5FCGXKLYIRNDEU7XB4.jpg",
             },
             {
-                titulo: "Unicauca tendrá matricula cero",
-                parrafo1: "PERIODICOVIRTUAL.COM 16 FEB. 2021 • 1 MIN READ",
-                subtitulo: "sub",
-                parrafo2: "Cumplimiento al compromiso adquirido el día de ayer con los estudiantes de @unicauca , junto al Rector Jose Luis Diago, #SecEducaciónCauca, @Mineducacion y representantes estudiantiles para dialogar sobre la propuesta de",
-                tamañosubtitulo: "subtitle1",
-                tamañotitulo: "h1",
-                tamañoparrafos: "body1",
-                imagen: "https://www.fundacion-affinity.org/sites/default/files/dia-de-los-animales.jpg",
+                titulo: "'Gambito de Dama' y 'The Crown', favoritos a los Globos de Oro 2021",
+                parrafo1: "La temporada de premios en Hollywood arranca este miércoles, en la madrugada de Los Ángeles (EE.UU.), con el anuncio de las películas y series de televisión nominadas a los Globos de Oro en una de sus ediciones más abiertas e impredecibles por la pandemia del coronavirus.",
+                subtitulo: "Plataformas como Netflix esperan las nominaciones a los Golden Globes.",
+                parrafo2: "La temporada de premios en Hollywood arranca este miércoles, en la madrugada de Los Ángeles (EE.UU.), con el anuncio de las películas y series de televisión nominadas a los Globos de Oro en una de sus ediciones más abiertas e impredecibles por la pandemia del coronavirus.",
+                parrafo3: "Borat 2, Nomadland, Gambito de Dama, Orzac y The Crown son algunas de las producciones que suenan como favoritas para la Asociación de la Prensa Extranjera de Hollywood (HFPA), un grupo de unos 90 periodistas que, acostumbrados a viajes, premieres, fiestas y entrevistas, deberán escoger lo mejor del año desde el sofá de su casa.",
+                imagen: "https://www.eltiempo.com/files/article_main/files/crop/uploads/2020/11/16/5fb3353273d77.r_1612380235380.0-0-1033-512.jpeg",
             },
             ],
             colores: ["#ffebee",
@@ -248,6 +248,7 @@ class App extends React.Component {
         }
     }
     componentDidMount() {
+
         setInterval(() => {
             if (this.state.cColor == 10) {
                 this.setState({
@@ -258,40 +259,7 @@ class App extends React.Component {
                     cColor: this.state.cColor + 1,
                 })
             }
-        }, 10000);
-        setInterval(() => {
-            if (this.state.cPosicion == 2) {
-                this.setState({
-                    cPosicion: 0,
-                })
-            } else {
-                this.setState({
-                    cPosicion: this.state.cPosicion + 1,
-                })
-            }
-        }, 10000);
-        setInterval(() => {
-            if (this.state.cPosicion2 == 4) {
-                this.setState({
-                    cPosicion2: 0,
-                })
-            } else {
-                this.setState({
-                    cPosicion2: this.state.cPosicion2 + 1,
-                })
-            }
-        }, 10000);
-        setInterval(() => {
-            if (this.state.cTamano == 1) {
-                this.setState({
-                    cTamano: 0,
-                })
-            } else {
-                this.setState({
-                    cTamano: this.state.cTamano + 1,
-                })
-            }
-        }, 5000);
+        }, 160000);
         setInterval(() => {
             if (this.state.cContenido == 2) {
                 this.setState({
@@ -302,12 +270,44 @@ class App extends React.Component {
                     cContenido: this.state.cContenido + 1,
                 })
             }
-        }, 30000);
+        }, 80000);
+        setInterval(() => {
+            if (this.state.cPosicion2 == 2) {
+                this.setState({
+                    cPosicion2: 0,
+                })
+            } else {
+                this.setState({
+                    cPosicion2: this.state.cPosicion2 + 1,
+                })
+            }
+        }, 40000);
+        setInterval(() => {
+            if (this.state.cPosicion == 2) {
+                this.setState({
+                    cPosicion: 0,
+                })
+            } else {
+                this.setState({
+                    cPosicion: this.state.cPosicion + 1,
+                })
+            }
+        }, 20000);
 
+        setInterval(() => {
+            if (this.state.cTamano == 1) {
+                this.setState({
+                    cTamano: 0,
+                })
+            } else {
+                this.setState({
+                    cTamano: this.state.cTamano + 1,
+                })
+            }
+        }, 10000);
     }
     render() {
-        const { cColor, cPosicion, cPosicion2, cTamano, cContenido,tamanoT,tamanoP } = this.state
-
+        const { cColor, cPosicion, cPosicion2, cTamano, cContenido, tamanoT, tamanoP } = this.state
         return (
             <div>
                 <Ccard
@@ -322,7 +322,6 @@ class App extends React.Component {
                     posicionT={this.state.posicionT}
                     tamano={this.state.tamano}
                     contenidos={this.state.contenidos}
-
                 />
             </div>
         );

@@ -23,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="Margen">
-        <Datos/>
+        <Datos />
       </div>
     );
   }

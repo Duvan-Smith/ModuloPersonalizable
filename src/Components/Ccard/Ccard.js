@@ -14,6 +14,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 withStyles(({ transitions }) => ({
   expand: {
@@ -32,7 +33,6 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // ccontenidos: 0,
       expanded: false,
       colores: this.props.colores,
       posicion: this.props.posicion,
@@ -41,72 +41,107 @@ class App extends React.Component {
       tamano: this.props.tamano,
     }
   }
-
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
   };
-  // seleccionarContenido = (contenido) => {
-  //   this.setState({ ccontenidos: contenido })
-  // }
   render() {
     const classes = withStyles();
     return (
-      <Container fixed>
-        
-        <Card
-          style={{
-            background: this.state.colores[this.props.cColor],
-            textAlign: this.state.posicion[this.props.cPosicion],
-            justifyContent: this.state.posicionT[this.props.cPosicion2],
-            fontSize: this.state.tamanoT,
-          }}
-        >
-          {/* <CardHeader variant="h1"
+      <Grid
+        container
+        spacing={3}
+        justify={this.state.posicionT[this.props.cPosicion2]}
+        alignItems={this.state.posicionT[this.props.cPosicion2]}
+      >
+        <Grid item xs={10}>
+          <Card
+            style={{
+              background: this.state.colores[this.props.cColor],
+              textAlign: this.state.posicion[this.props.cPosicion],
+            }}
+          >
+            {/* <CardHeader 
+            variant={this.state.contenidos[this.props.cContenido].titulo}
             title={this.state.contenidos[this.props.cContenido].titulo}
           /> */}
-          <Typography gutterBottom variant={this.state.tamano[this.props.cTamano].titulo}
-          >
-            {this.state.contenidos[this.props.cContenido].titulo}
-          </Typography>
-          <img
-            width={this.state.tamano[this.props.cTamano].imagen}
-            height= "auto"
-            src={this.state.contenidos[this.props.cContenido].imagen}
-          >
-          </img>
-          <CardContent>
-            <Typography variant={this.state.tamano[this.props.cTamano].parrafos}>
-              {this.state.contenidos[this.props.cContenido].parrafo1}
-            </Typography>
-          </CardContent>
-          <CardActions disableSpacing>
-            <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: this.state.expanded,
-              })}
-              onClick={() => this.handleExpandClick()}
-              aria-expanded={this.state.expanded}
-              aria-label="show more"
+            <Typography gutterBottom
+              style={{
+                marginLeft: 20,
+                marginRight: 20,
+                marginBottom: 20,
+                marginTop: 20,
+              }}
+              variant={this.state.tamano[this.props.cTamano].titulo}
             >
-              <ExpandMoreIcon />
-            </IconButton>
-          </CardActions>
-          <Collapse in={this.state.expanded} timeout="auto"  >
+              {this.state.contenidos[this.props.cContenido].titulo}
+            </Typography>
+            {/* <CardMedia
+            // image={this.state.contenidos[this.props.cContenido].imagen}
+            image="../../Data/prueba.jpg"
+            title="Paella dish"
+          /> */}
+            <img
+              style={{
+                marginLeft: 20,
+                marginRight: 20,
+                marginBottom: 20,
+                marginTop: 20,
+              }}
+              width={this.state.tamano[this.props.cTamano].imagen}
+              height="auto"
+              src={this.state.contenidos[this.props.cContenido].imagen}
+            >
+            </img>
             <CardContent>
-              <Typography //paragraph
-                variant={this.state.tamano[this.props.cTamano].subtitulo}
+              <Typography
+                style={{
+                  fontSize: this.state.tamano[this.props.cTamano].parrafos,
+                }}
+              // variant={this.state.tamano[this.props.cTamano].parrafos}
               >
-                {this.state.contenidos[this.props.cContenido].subtitulo}
-              </Typography>
-              <Typography //paragraph
-                variant={this.state.tamano[this.props.cTamano].parrafos}
-              >
-                {this.state.contenidos[this.props.cContenido].parrafo2}
+                {this.state.contenidos[this.props.cContenido].parrafo1}
               </Typography>
             </CardContent>
-          </Collapse>
-        </Card>
-      </Container>
+            <CardActions disableSpacing>
+              <IconButton
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: this.state.expanded,
+                })}
+                onClick={() => this.handleExpandClick()}
+                aria-expanded={this.state.expanded}
+                aria-label="show more"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            </CardActions>
+            <Collapse in={this.state.expanded}  >
+              <CardContent>
+                <Typography
+                  variant={this.state.tamano[this.props.cTamano].subtitulo}
+                >
+                  {this.state.contenidos[this.props.cContenido].subtitulo}
+                </Typography>
+                <br />
+                <Typography paragraph
+                  style={{
+                    fontSize: this.state.tamano[this.props.cTamano].parrafos,
+                  }}
+                >
+                  {this.state.contenidos[this.props.cContenido].parrafo2}
+                </Typography>
+                <br />
+                <Typography paragraph
+                  style={{
+                    fontSize: this.state.tamano[this.props.cTamano].parrafos,
+                  }}
+                >
+                  {this.state.contenidos[this.props.cContenido].parrafo3}
+                </Typography>
+              </CardContent>
+            </Collapse>
+          </Card>
+        </Grid>
+      </Grid>
     );
   }
 }
