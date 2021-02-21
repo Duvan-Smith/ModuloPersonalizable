@@ -1,11 +1,16 @@
 import React from 'react';
 import Posicion from './Posicion';
 import Ccard from '../Ccard/Ccard';
+import Alert from '@material-ui/lab/Alert';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure()
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            timepoInicial: 5000,
             cColor: 0,
             cPosicion: 0,
             cPosicion2: 0,
@@ -248,9 +253,53 @@ class App extends React.Component {
         }
     }
     componentDidMount() {
-
+        this.notify("Inicio proceso personalizacion", 2000,toast.POSITION.TOP_CENTER)
+        var tiempo = this.state.timepoInicial;
+        // if(this.state.cTamano==0 && this.state.cPosicion==0&&this.state.cPosicion==0&&this.state.cColor==0){
+        //     this.notify("Se esta cambiando tamaño letra")
+        // }
         setInterval(() => {
-            if (this.state.cColor == 10) {
+            this.notify("Se esta cambiando tamaño letra",2000)
+            if (this.state.cTamano == this.state.tamano.length - 1) {
+                this.setState({
+                    cTamano: 0,
+                })
+            } else {
+                this.setState({
+                    cTamano: this.state.cTamano + 1,
+                })
+            }
+        }, tiempo);
+        tiempo = tiempo * this.state.tamano.length;
+        setInterval(() => {
+            this.notify("Se esta cambiando posicion del texto",3000)
+            if (this.state.cPosicion == this.state.posicion.length - 1) {
+                this.setState({
+                    cPosicion: 0,
+                })
+            } else {
+                this.setState({
+                    cPosicion: this.state.cPosicion + 1,
+                })
+            }
+        }, tiempo);
+        tiempo = tiempo * this.state.posicion.length;
+        setInterval(() => {
+            this.notify("Se esta cambiando posicion del componente",4000)
+            if (this.state.cPosicion2 == this.state.posicionT.length - 1) {
+                this.setState({
+                    cPosicion2: 0,
+                })
+            } else {
+                this.setState({
+                    cPosicion2: this.state.cPosicion2 + 1,
+                })
+            }
+        }, tiempo);
+        tiempo = tiempo * this.state.posicionT.length;
+        setInterval(() => {
+            this.notify("Se esta cambiando de color de fondo",5000)
+            if (this.state.cColor == this.state.colores.length - 1) {
                 this.setState({
                     cColor: 0,
                 })
@@ -259,9 +308,9 @@ class App extends React.Component {
                     cColor: this.state.cColor + 1,
                 })
             }
-        }, 160000);
+        }, tiempo);
         setInterval(() => {
-            if (this.state.cContenido == 2) {
+            if (this.state.cContenido == this.state.contenidos.length - 1) {
                 this.setState({
                     cContenido: 0,
                 })
@@ -271,51 +320,40 @@ class App extends React.Component {
                 })
             }
         }, 80000);
-        setInterval(() => {
-            if (this.state.cPosicion2 == 2) {
-                this.setState({
-                    cPosicion2: 0,
-                })
-            } else {
-                this.setState({
-                    cPosicion2: this.state.cPosicion2 + 1,
-                })
-            }
-        }, 40000);
-        setInterval(() => {
-            if (this.state.cPosicion == 2) {
-                this.setState({
-                    cPosicion: 0,
-                })
-            } else {
-                this.setState({
-                    cPosicion: this.state.cPosicion + 1,
-                })
-            }
-        }, 20000);
-
-        setInterval(() => {
-            if (this.state.cTamano == 1) {
-                this.setState({
-                    cTamano: 0,
-                })
-            } else {
-                this.setState({
-                    cTamano: this.state.cTamano + 1,
-                })
-            }
-        }, 10000);
+    }
+    notify(text,tiempo=3000, posicion = toast.POSITION.TOP_RIGHT) {
+        toast(text,
+            {
+                position: posicion,
+                autoClose: tiempo,
+            });
+        // toast.success("Se esta cambiando el tamaño de la letra",
+        //     {
+        //         position:toast.POSITION.TOP_RIGHT,
+        //         autoClose:2000
+        //     });
     }
     render() {
-        const { cColor, cPosicion, cPosicion2, cTamano, cContenido, tamanoT, tamanoP } = this.state
+        const { cColor, cPosicion, cPosicion2, cTamano, cContenido } = this.state
         return (
             <div>
+                {/* {
+                    cTamano==0?<>{this.notify()}</>:<></>
+                } */}
+                {/* <button onClick={this.notify}>Notify!</button> */}
+                {/* {cTamano}
+                <br />
+                {cPosicion}
+                <br />
+                {cPosicion2}
+                <br />
+                {cColor} */}
                 <Ccard
                     cColor={cColor}
                     cPosicion={cPosicion}
                     cPosicion2={cPosicion2}
                     cTamano={cTamano}
-                    cContenido={cContenido}
+                    cContenido={0}
 
                     colores={this.state.colores}
                     posicion={this.state.posicion}
