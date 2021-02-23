@@ -255,9 +255,6 @@ class App extends React.Component {
     componentDidMount() {
         this.notify("Inicio proceso personalizacion", 2000,toast.POSITION.TOP_CENTER)
         var tiempo = this.state.timepoInicial;
-        // if(this.state.cTamano==0 && this.state.cPosicion==0&&this.state.cPosicion==0&&this.state.cColor==0){
-        //     this.notify("Se esta cambiando tamaño letra")
-        // }
         setInterval(() => {
             this.notify("Se esta cambiando tamaño letra",2000)
             if (this.state.cTamano == this.state.tamano.length - 1) {
@@ -327,27 +324,11 @@ class App extends React.Component {
                 position: posicion,
                 autoClose: tiempo,
             });
-        // toast.success("Se esta cambiando el tamaño de la letra",
-        //     {
-        //         position:toast.POSITION.TOP_RIGHT,
-        //         autoClose:2000
-        //     });
     }
     render() {
         const { cColor, cPosicion, cPosicion2, cTamano, cContenido } = this.state
         return (
             <div>
-                {/* {
-                    cTamano==0?<>{this.notify()}</>:<></>
-                } */}
-                {/* <button onClick={this.notify}>Notify!</button> */}
-                {/* {cTamano}
-                <br />
-                {cPosicion}
-                <br />
-                {cPosicion2}
-                <br />
-                {cColor} */}
                 <Ccard
                     cColor={cColor}
                     cPosicion={cPosicion}

@@ -94,6 +94,9 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
+            <Link to="/usuario">
+            Iniciar Sesion
+              </Link>
             Iniciar Sesion
           </Button>
           <Grid container>

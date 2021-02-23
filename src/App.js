@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, /*Link*/ } from "react-router-dom";
 import AppBar from "./Components/Bar/AppBar";
 import InicioSesion from './Components/InicioSesion/InicioSesion';
 import Admin from './Components/Admin/Admin';
+import Usuario from './Components/Usuario/Usuario';
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -28,24 +29,32 @@ class App extends React.Component {
     return (
       <div className="Margen">
         <Router>
-          <Route path="/" component={() =>
+          <Route path="/inciosesion" component={() =>
             <>
               <InicioSesion />
             </>
           } />
 
-          {
-            this.state.iniciosesion == true ? <Route path="/admin" component={() =>
-              <>
-                <Admin />
-              </>
-            } /> : <Route path="/error" component={() =>
-              <>
-                usuario incorrecto
-              </>
-            } />
-          }
-
+          <Route path="/admin" component={() =>
+            <>
+              <Admin />
+            </>
+          } /> 
+          <Route path="/usuario" component={() =>
+            <>
+              <Usuario/>
+            </>
+          } />
+          <Route path="/error" component={() =>
+            <>
+              usuario incorrecto
+            </>
+          } />
+          <Route path="/com" component={() =>
+                    <>
+                        <Datos />
+                    </>
+                } />
         </Router>
       </div>
     );
