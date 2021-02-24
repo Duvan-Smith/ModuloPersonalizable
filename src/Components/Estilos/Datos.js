@@ -4,6 +4,8 @@ import Ccard from '../Ccard/Ccard';
 import Alert from '@material-ui/lab/Alert';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AppBar from "../Bar/AppBar";
+import Container from '@material-ui/core/Container';
 
 toast.configure()
 class App extends React.Component {
@@ -252,11 +254,11 @@ class App extends React.Component {
                 "#263238"]
         }
     }
-    componentDidMount() {
-        this.notify("Inicio proceso personalizacion", 2000,toast.POSITION.TOP_CENTER)
+    componentDidMount = async () => {
+        this.notify("Inicio proceso personalizacion", 2000, toast.POSITION.TOP_CENTER)
         var tiempo = this.state.timepoInicial;
-        setInterval(() => {
-            this.notify("Se esta cambiando tamaño letra",2000)
+        await setInterval(() => {
+            this.notify("Se esta cambiando tamaño letra", 2000)
             if (this.state.cTamano == this.state.tamano.length - 1) {
                 this.setState({
                     cTamano: 0,
@@ -268,8 +270,8 @@ class App extends React.Component {
             }
         }, tiempo);
         tiempo = tiempo * this.state.tamano.length;
-        setInterval(() => {
-            this.notify("Se esta cambiando posicion del texto",3000)
+        await setInterval(() => {
+            this.notify("Se esta cambiando posicion del texto", 3000)
             if (this.state.cPosicion == this.state.posicion.length - 1) {
                 this.setState({
                     cPosicion: 0,
@@ -281,8 +283,8 @@ class App extends React.Component {
             }
         }, tiempo);
         tiempo = tiempo * this.state.posicion.length;
-        setInterval(() => {
-            this.notify("Se esta cambiando posicion del componente",4000)
+        await setInterval(() => {
+            this.notify("Se esta cambiando posicion del componente", 4000)
             if (this.state.cPosicion2 == this.state.posicionT.length - 1) {
                 this.setState({
                     cPosicion2: 0,
@@ -294,8 +296,8 @@ class App extends React.Component {
             }
         }, tiempo);
         tiempo = tiempo * this.state.posicionT.length;
-        setInterval(() => {
-            this.notify("Se esta cambiando de color de fondo",5000)
+        await setInterval(() => {
+            this.notify("Se esta cambiando de color de fondo", 5000)
             if (this.state.cColor == this.state.colores.length - 1) {
                 this.setState({
                     cColor: 0,
@@ -306,7 +308,7 @@ class App extends React.Component {
                 })
             }
         }, tiempo);
-        setInterval(() => {
+        await setInterval(() => {
             if (this.state.cContenido == this.state.contenidos.length - 1) {
                 this.setState({
                     cContenido: 0,
@@ -318,7 +320,7 @@ class App extends React.Component {
             }
         }, 80000);
     }
-    notify(text,tiempo=3000, posicion = toast.POSITION.TOP_RIGHT) {
+    notify(text, tiempo = 3000, posicion = toast.POSITION.BOTTOM_RIGHT) {
         toast(text,
             {
                 position: posicion,
@@ -328,21 +330,38 @@ class App extends React.Component {
     render() {
         const { cColor, cPosicion, cPosicion2, cTamano, cContenido } = this.state
         return (
-            <div>
-                <Ccard
-                    cColor={cColor}
-                    cPosicion={cPosicion}
-                    cPosicion2={cPosicion2}
-                    cTamano={cTamano}
-                    cContenido={0}
+            <Container component="main"
+                style={{
+                    justifyContent: "center",
+                    textAlign: "center",
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    marginTop: 5,
+                    marginBottom: 5
+                }}
+            >
+                <AppBar />
+                <div
+                    style={{
+                        marginTop: 5,
+                        marginBottom: 5
+                    }}
+                >
+                    <Ccard
+                        cColor={cColor}
+                        cPosicion={cPosicion}
+                        cPosicion2={cPosicion2}
+                        cTamano={cTamano}
+                        cContenido={0}
 
-                    colores={this.state.colores}
-                    posicion={this.state.posicion}
-                    posicionT={this.state.posicionT}
-                    tamano={this.state.tamano}
-                    contenidos={this.state.contenidos}
-                />
-            </div>
+                        colores={this.state.colores}
+                        posicion={this.state.posicion}
+                        posicionT={this.state.posicionT}
+                        tamano={this.state.tamano}
+                        contenidos={this.state.contenidos}
+                    />
+                </div>
+            </Container>
         );
     }
 }

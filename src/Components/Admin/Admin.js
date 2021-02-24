@@ -1,44 +1,36 @@
 import React from 'react';
 import '../../CSS/App.css';
-import Card from '../Ccard/Ccard';
-import ColorFondo from '../Estilos/Fondo';
 import Datos from '../Estilos/Datos';
-import Posicion from '../Estilos/Posicion';
-import TamañoLetra from "../Estilos/TamanoLetra";
-import moment from 'moment';
-import Ccard from '../Ccard/Ccard';
 import { BrowserRouter as Router, Route, /*Link*/ } from "react-router-dom";
 import AppBar from "../Bar/AppBar";
-import InicioSesion from '../InicioSesion/InicioSesion';
+import Cookies from 'universal-cookie';
 
-class App extends React.Component {
+const cookies = new Cookies();
+
+class Admin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
     }
   }
-  seleccionarCFondo = (cfondo) => {
-    this.setState({ cFondoSeleccionada: cfondo })
-  }
-  seleccionarTLetra = (tletra) => {
-    this.setState({ tLetraSeleccionada: tletra })
+  componentDidMount(){
+    if(!cookies.get('nombreusuario')){
+        window.location.href="./";
+    }
   }
   render() {
+    console.log(cookies.get('id'));
+    console.log(cookies.get('nombreusuario'));
+    console.log(cookies.get('rol'));
+    console.log(cookies.get('fechacreacion'));
+    console.log(cookies.get('primernombre'));
+    console.log(cookies.get('primerapellido'));
     return (
       <div className="Margen">
-          <Route path="/admin" component={() =>
-            <>
-              <AppBar />
-            </>
-          } />
-          <br />
-          <Route path="/usuario" component={() =>
-            <>
-              <Datos />
-            </>
-          } />
+        <AppBar/>
+        admin
       </div>
     );
   }
 }
-export default App;
+export default Admin;

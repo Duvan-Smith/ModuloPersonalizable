@@ -53,7 +53,7 @@ class App extends React.Component {
         justify={this.state.posicionT[this.props.cPosicion2]}
         alignItems={this.state.posicionT[this.props.cPosicion2]}
       >
-        <Grid item xs={10}>
+        <Grid item xs={12}>
           <Card
             style={{
               background: this.state.colores[this.props.cColor],

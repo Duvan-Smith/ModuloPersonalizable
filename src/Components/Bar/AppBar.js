@@ -2,32 +2,22 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AppsIcon from '@material-ui/icons/Apps';
-import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
+import Cookies from 'universal-cookie';
+import Avatar from '@material-ui/core/Avatar';
+import FolderIcon from '@material-ui/icons/Folder';
+import PageviewIcon from '@material-ui/icons/Pageview';
 
+const cookies = new Cookies();
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
         maxWidth: 360,
-        // backgroundColor: theme.palette.background.paper,
-        background: "#03a9f4",
-        color:"inherit",
-      },
+        backgroundColor: theme.palette.background.paper,
+        //background: "#03a9f4",
+        color: "inherit",
+    },
     grow: {
         flexGrow: 1,
     },
@@ -67,106 +57,54 @@ const useStyles = makeStyles(theme => ({
 
 export default function PrimarySearchAppBar(props) {
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-    const handleProfileMenuOpen = event => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
-    };
-
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-        handleMobileMenuClose();
-    };
-
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMenuOpen}
-            onClose={() => handleMenuClose()}
-        >
-            <MenuItem onClick={() => handleMenuClose()} >
-                <div className={classes.root}>
-                <List component="nav" aria-label="main mailbox folders">
-                    {['admin', 'usuario'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <Link to={"/" + text}>
-                                {/* <ListItemText primary={text} /> */}
-                            <Button className={classes.sectionDesktop}>{text}</Button>
-                            </Link>
-                        </ListItem>
-
-                    ))}
-                </List>
-                </div>
-            </MenuItem>
-        </Menu>
-    );
-
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-    const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
-            <MenuItem onClick={() => handleMenuClose()} >
-                <List>
-                    {['admin', 'usuario'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <Link to={"/" + text}><ListItemText primary={text} /></Link>
-                        </ListItem>
-                    ))}
-                </List>
-            </MenuItem>
-        </Menu>
-    );
+    const cerrarSesion = () => {
+        cookies.remove('id', { path: "/" });
+        cookies.remove('nombreusuario', { path: "/" });
+        cookies.remove('rol', { path: "/" });
+        cookies.remove('fechacreacion', { path: "/" });
+        cookies.remove('primernombre', { path: "/" });
+        cookies.remove('primerapellido', { path: "/" });
+        window.location.href = "./";
+    }
+    const Volver = () => {
+        window.location.href = "./user";
+    }
 
     return (
         <div className={classes.grow}>
             <AppBar position="static" >
-                <Toolbar style={{ backgroundColor: '#03a9f4' }}>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleProfileMenuOpen}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-
+                <Toolbar color="primary">
+                {/* <Toolbar style={{ backgroundColor: '#03a9f4' }}> */}
+                    <Avatar>
+                        {
+                            cookies.get('rol')=="admin"?<FolderIcon />:<PageviewIcon />
+                        }
+                    </Avatar>
                     <Typography className={classes.title} variant="h6" noWrap>
-                        Componente personalizable
+                        {cookies.get('primernombre')}
                     </Typography>
-
-                    <div className={classes.grow} />
+                    {
+                        cookies.get('rol')=="user"?
+                        <>
+                            <div className={classes.grow} />
+                            <div className={classes.sectionDesktop}>
+                                <Button color="inherit" onClick={() => Volver()}>Volver</Button>
+                            </div>
+                        </>
+                        :
+                        <></>
+                        
+                    }
+                    {/* <div className={classes.grow} /> */}
                     <div className={classes.sectionDesktop}>
-                        <Button color="inherit">Login</Button>
+                        <Button color="inherit" onClick={() => cerrarSesion()}>Cerrar sesión</Button>
                     </div>
                     <div className={classes.sectionMobile}>
-                        <Button color="inherit">Login</Button>
+                        <Button color="inherit" onClick={() => cerrarSesion()}>Cerrar sesión</Button>
                     </div>
                 </Toolbar>
             </AppBar>
-            {renderMobileMenu}
-            {renderMenu}
         </div>
     );
 }
