@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import InicioSesion from '../Components/InicioSesion/InicioSesion';
 import Admin from '../Components/Admin/Admin';
 import Usuario from '../Components/Usuario/Usuario';
-import Datos from '../Components/Estilos/Datos';
+import Configurador from '../Components/ConfiguradorCard/Configurador';
 class Routes extends React.Component {
   constructor(props) {
     super(props)
@@ -18,7 +18,7 @@ class Routes extends React.Component {
           <Route exact path="/" component={InicioSesion}/>
           <Route exact path="/admin" component={Admin}/>
           <Route exact path="/user" component={Usuario}/>
-          <Route exact path="/personalizacion" component={Datos}/>
+          <Route exact path="/personalizacion" component={Configurador}/>
         </Switch>
       </BrowserRouter>
     );

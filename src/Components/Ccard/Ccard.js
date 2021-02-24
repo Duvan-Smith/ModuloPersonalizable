@@ -2,18 +2,12 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 
 withStyles(({ transitions }) => ({
@@ -29,7 +23,7 @@ withStyles(({ transitions }) => ({
     transform: 'rotate(180deg)',
   },
 }));
-class App extends React.Component {
+class Ccard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -53,7 +47,7 @@ class App extends React.Component {
         justify={this.state.posicionT[this.props.cPosicion2]}
         alignItems={this.state.posicionT[this.props.cPosicion2]}
       >
-        <Grid item xs={12}>
+        <Grid item xs={10}>
           <Card
             style={{
               background: this.state.colores[this.props.cColor],
@@ -97,7 +91,6 @@ class App extends React.Component {
                 style={{
                   fontSize: this.state.tamano[this.props.cTamano].parrafos,
                 }}
-              // variant={this.state.tamano[this.props.cTamano].parrafos}
               >
                 {this.state.contenidos[this.props.cContenido].parrafo1}
               </Typography>
@@ -145,4 +138,4 @@ class App extends React.Component {
     );
   }
 }
-export default withStyles(withStyles)(App);
+export default withStyles(withStyles)(Ccard);

@@ -3,29 +3,23 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-// import Link from '@material-ui/core/Link';
 import { Link } from "react-router-dom";
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { withStyles } from '@material-ui/core/styles';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import moment from "moment";
 import axios from 'axios';
 import md5 from 'md5';
 import Cookies from 'universal-cookie';
 import { toast } from 'react-toastify';
-
+import '../../CSS/App.css';
+import Grid from '@material-ui/core/Grid';
 
 const baseUrl = "http://localhost:3001/usuario"
 const cookies = new Cookies();
 toast.configure()
-
 class InicioSesion extends React.Component {
   constructor(props) {
     super(props)
@@ -35,7 +29,8 @@ class InicioSesion extends React.Component {
         contrasena: "",
         rol: "admin",
         fechacreacion: moment().format("DD-MM-YYYY hh:mm:ss"),
-      }
+      },
+      urlAvatar: "https://scontent-bog1-1.xx.fbcdn.net/v/t1.0-9/10409440_759040310816193_9203063013688875270_n.jpg?_nc_cat=101&ccb=3&_nc_sid=85a577&_nc_ohc=njocKDhf8JkAX_hYCjs&_nc_ht=scontent-bog1-1.xx&oh=e25d7431932061653fb0e36cc00af801&oe=605B375B",
     }
   }
   Copyright() {
@@ -119,18 +114,35 @@ class InicioSesion extends React.Component {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: 100
+          marginTop: 150,
+          flexGrow: 1,
         }}
       >
         <CssBaseline />
-        <div>
-          <Avatar >
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Iniciar Sesion
-        </Typography>
-          {/* <form noValidate> */}
+        <div className="Margen">
+          <Grid
+            container
+            spacing={3}
+            style={{
+              justifyContent: "center",
+              textAlign: "center",
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Grid item xs={10}>
+              <Avatar alt="Remy Sharp"
+
+                src={this.state.urlAvatar}
+              />
+            </Grid>
+            <Grid item xs={10}>
+              <Typography component="h1" variant="h5" justify="center" alignItems="center" >
+                Iniciar Sesion
+              </Typography>
+            </Grid>
+          </Grid>
           <TextField
             type="text"
             variant="outlined"
@@ -181,7 +193,6 @@ class InicioSesion extends React.Component {
             // </Grid>
             //#endregion
           }
-          {/* </form> */}
         </div>
         <Box mt={8}>
           {this.Copyright()}
