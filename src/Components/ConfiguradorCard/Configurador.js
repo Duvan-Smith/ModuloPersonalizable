@@ -11,6 +11,7 @@ class Configurador extends React.Component {
         super(props)
         this.state = {
             timepoInicial: 5000,
+            cStepper:0,
             cColor: 0,
             cPosicion: 0,
             cPosicion2: 0,
@@ -253,10 +254,10 @@ class Configurador extends React.Component {
         }
     }
     componentDidMount = async () => {
-        this.notify("Inicio proceso personalizacion", 2000, toast.POSITION.TOP_CENTER)
+        //this.notify("Inicio proceso personalizacion", 2000, toast.POSITION.TOP_CENTER)
         var tiempo = this.state.timepoInicial;
         await setInterval(() => {
-            this.notify("Se esta cambiando tamaño letra", 2000)
+            //this.notify("Se esta cambiando tamaño letra", 2000)
             if (this.state.cTamano == this.state.tamano.length - 1) {
                 this.setState({
                     cTamano: 0,
@@ -269,7 +270,7 @@ class Configurador extends React.Component {
         }, tiempo);
         tiempo = tiempo * this.state.tamano.length;
         await setInterval(() => {
-            this.notify("Se esta cambiando posicion del texto", 3000)
+            //this.notify("Se esta cambiando posicion del texto", 3000)
             if (this.state.cPosicion == this.state.posicion.length - 1) {
                 this.setState({
                     cPosicion: 0,
@@ -282,7 +283,7 @@ class Configurador extends React.Component {
         }, tiempo);
         tiempo = tiempo * this.state.posicion.length;
         await setInterval(() => {
-            this.notify("Se esta cambiando posicion del componente", 4000)
+            //this.notify("Se esta cambiando posicion del componente", 4000)
             if (this.state.cPosicion2 == this.state.posicionT.length - 1) {
                 this.setState({
                     cPosicion2: 0,
@@ -295,7 +296,7 @@ class Configurador extends React.Component {
         }, tiempo);
         tiempo = tiempo * this.state.posicionT.length;
         await setInterval(() => {
-            this.notify("Se esta cambiando de color de fondo", 5000)
+            //this.notify("Se esta cambiando de color de fondo", 5000)
             if (this.state.cColor == this.state.colores.length - 1) {
                 this.setState({
                     cColor: 0,
@@ -346,6 +347,7 @@ class Configurador extends React.Component {
                         cPosicion2={cPosicion2}
                         cTamano={cTamano}
                         cContenido={0}
+                        cStepper={this.state.cStepper}
 
                         colores={this.state.colores}
                         posicion={this.state.posicion}
