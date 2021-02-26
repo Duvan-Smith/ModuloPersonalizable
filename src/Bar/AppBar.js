@@ -8,6 +8,7 @@ import Cookies from 'universal-cookie';
 import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';
+import firebase from "firebase";
 
 const cookies = new Cookies();
 const useStyles = makeStyles(theme => ({
@@ -65,6 +66,7 @@ export default function PrimarySearchAppBar(props) {
         cookies.remove('fechacreacion', { path: "/" });
         cookies.remove('primernombre', { path: "/" });
         cookies.remove('primerapellido', { path: "/" });
+        firebase.auth().signOut()
         window.location.href = "./";
     }
     const Volver = () => {

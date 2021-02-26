@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import { Link } from "react-router-dom";
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,6 +15,7 @@ import Cookies from 'universal-cookie';
 import { toast } from 'react-toastify';
 import '../../CSS/App.css';
 import Grid from '@material-ui/core/Grid';
+import InicioSesionGoogle from './InicioSesionGoogle';
 
 const baseUrl = "http://localhost:3001/usuario"
 const cookies = new Cookies();
@@ -118,6 +118,7 @@ class InicioSesion extends React.Component {
           flexGrow: 1,
         }}
       >
+        <InicioSesionGoogle/>
         <CssBaseline />
         <div className="Margen">
           <Grid
