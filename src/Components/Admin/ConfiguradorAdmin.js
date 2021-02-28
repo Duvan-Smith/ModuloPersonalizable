@@ -302,25 +302,39 @@ class Usuario extends React.Component {
       cookies.set('cContenido', this.state.form.cContenido, { path: "/personalizacion" });
       console.log(this.state.form)
       console.log(this.state.form.cTamano)
-      this.enviar(this.state.form.cColor,this.state.form.cPosicion,this.state.form.cPosicion2,this.state.form.cTamano,this.state.form.cContenido)
+      this.enviar(this.state.form.cColor, this.state.form.cPosicion, this.state.form.cPosicion2, this.state.form.cTamano, this.state.form.cContenido)
       window.location.pathname = "./personalizacion";
     }
   }
-  enviar(cColor,cPosicion,cPosicion2,cTamano,cContenido){
-    return(
+  limpiar = () => {
+    cookies.remove('cTamano', { path: "/" });
+    cookies.remove('cPosicion', { path: "/" });
+    cookies.remove('cPosicion2', { path: "/" });
+    cookies.remove('cColor', { path: "/" });
+    cookies.remove('cContenido', { path: "/" });
+    this.setState({
+      cTamano: -1,
+      cPosicion: -1,
+      cPosicion2: -1,
+      cContenido: -1,
+      cColor: -1,
+    })
+  }
+  enviar(cColor, cPosicion, cPosicion2, cTamano, cContenido) {
+    return (
       <Ccard
-            cColor={cColor}
-            cPosicion={cPosicion}
-            cPosicion2={cPosicion2}
-            cTamano={cTamano}
-            cContenido={cContenido}
+        cColor={cColor}
+        cPosicion={cPosicion}
+        cPosicion2={cPosicion2}
+        cTamano={cTamano}
+        cContenido={cContenido}
 
-            colores={this.state.colores}
-            posicion={this.state.posicion}
-            posicionT={this.state.posicionT}
-            tamano={this.state.tamano}
-            contenidos={this.state.contenidos}
-        />
+        colores={this.state.colores}
+        posicion={this.state.posicion}
+        posicionT={this.state.posicionT}
+        tamano={this.state.tamano}
+        contenidos={this.state.contenidos}
+      />
     )
   }
   render() {
@@ -374,7 +388,7 @@ class Usuario extends React.Component {
                 {
                   this.state.posicion.map((dat, index) => {
                     return (
-                      <option key={"cPosicion" + index} value={index} style={{ color: "black" }}>
+                      <option key={"cPosicion" + index} value={index}>
                         {dat}
                       </option>
                     )
@@ -403,7 +417,7 @@ class Usuario extends React.Component {
                 {
                   this.state.posicionT.map((dat, index) => {
                     return (
-                      <option key={"cPosicion2" + index} value={index} style={{ color: "black" }}>
+                      <option key={"cPosicion2" + index} value={index}>
                         {dat}
                       </option>
                     )
@@ -432,7 +446,7 @@ class Usuario extends React.Component {
                 {
                   this.state.colores.map((dat, index) => {
                     return (
-                      <option key={"cColor" + index} value={index} style={{ background: dat }}>
+                      <option key={"cColor" + index} value={index} style={{background:dat,}}>
                         {dat}
                       </option>
                     )
@@ -461,7 +475,7 @@ class Usuario extends React.Component {
                 {
                   this.state.contenidos.map((dat, index) => {
                     return (
-                      <option key={"cContenido" + index} value={index} style={{ color: "black" }}>
+                      <option key={"cContenido" + index} value={index}>
                         {dat.titulo}
                       </option>
                     )
@@ -480,6 +494,16 @@ class Usuario extends React.Component {
             onClick={() => this.realizarCambios()}
           >
             Realizar Cambios
+            </Button>
+        </div>
+        <div className="col-6">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            onClick={() => this.limpiar()}
+          >
+            Limpiar Cambios
             </Button>
         </div>
       </div>

@@ -119,6 +119,7 @@ class InicioSesion extends React.Component {
         }}
       >
         <InicioSesionGoogle/>
+        {/* <InicioSesionGoogle2/> */}
         <CssBaseline />
         <div className="Margen">
           <Grid
@@ -178,22 +179,6 @@ class InicioSesion extends React.Component {
           >
             Iniciar Sesion
             </Button>
-          {
-            //#region Crear cuenta
-            // <Grid container>
-            //   <Grid item xs>
-            //     <Link to="#" variant="body2">
-            //       ¿Se te olvidó tu contraseña?
-            //   </Link>
-            //   </Grid>
-            //   <Grid item>
-            //     <Link href="#" variant="body2">
-            //       {"¿No tienes una cuenta? Regístrate"}
-            //     </Link>
-            //   </Grid>
-            // </Grid>
-            //#endregion
-          }
         </div>
         <Box mt={8}>
           {this.Copyright()}

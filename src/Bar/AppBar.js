@@ -8,7 +8,8 @@ import Cookies from 'universal-cookie';
 import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';
-import firebase from "firebase";
+import firebase from "firebase"
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 
 const cookies = new Cookies();
 const useStyles = makeStyles(theme => ({
@@ -66,13 +67,22 @@ export default function PrimarySearchAppBar(props) {
         cookies.remove('fechacreacion', { path: "/" });
         cookies.remove('primernombre', { path: "/" });
         cookies.remove('primerapellido', { path: "/" });
-        firebase.auth().signOut()
+        cookies.set('estadosesion', true, { path: "/" });
+        cookies.remove('cTamano', { path: "/" });
+        cookies.remove('cPosicion', { path: "/" });
+        cookies.remove('cPosicion2', { path: "/" });
+        cookies.remove('cColor', { path: "/" });
+        cookies.remove('cContenido', { path: "/" });
+
+        // firebase=firebase.auth.GoogleAuthProvider.PROVIDER_ID;
+        // firebase=firebase.auth().currentUser;
+        // firebase.auth().signOut();
         window.location.href = "./";
     }
     const Volver = () => {
-        if(cookies.get('rol') == "user"){
+        if (cookies.get('rol') == "user") {
             window.location.href = "./user";
-        }else{
+        } else {
             window.location.href = "./admin";
         }
     }
@@ -98,7 +108,6 @@ export default function PrimarySearchAppBar(props) {
                             </>
                             :
                             <>
-                                {/* <div className={classes.grow} /> */}
                                 <div className={classes.grow} />
                                 <div className={classes.sectionDesktop}>
                                     <Button color="inherit" onClick={() => Volver()}>Volver</Button>

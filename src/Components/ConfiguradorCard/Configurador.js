@@ -318,13 +318,13 @@ class Configurador extends React.Component {
             }
         }, 80000);
     }
-    notify(text, tiempo = 3000, posicion = toast.POSITION.BOTTOM_RIGHT) {
-        toast(text,
-            {
-                position: posicion,
-                autoClose: tiempo,
-            });
-    }
+    // notify(text, tiempo = 3000, posicion = toast.POSITION.BOTTOM_RIGHT) {
+    //     toast(text,
+    //         {
+    //             position: posicion,
+    //             autoClose: tiempo,
+    //         });
+    // }
     render() {
         const { cColor, cPosicion, cPosicion2, cTamano, cContenido } = this.state
         return (
