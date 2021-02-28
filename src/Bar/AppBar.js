@@ -70,7 +70,11 @@ export default function PrimarySearchAppBar(props) {
         window.location.href = "./";
     }
     const Volver = () => {
-        window.location.href = "./user";
+        if(cookies.get('rol') == "user"){
+            window.location.href = "./user";
+        }else{
+            window.location.href = "./admin";
+        }
     }
     return (
         <div className={classes.grow}>
@@ -94,7 +98,11 @@ export default function PrimarySearchAppBar(props) {
                             </>
                             :
                             <>
+                                {/* <div className={classes.grow} /> */}
                                 <div className={classes.grow} />
+                                <div className={classes.sectionDesktop}>
+                                    <Button color="inherit" onClick={() => Volver()}>Volver</Button>
+                                </div>
                             </>
                     }
                     <div className={classes.sectionDesktop}>

@@ -11,7 +11,6 @@ class Configurador extends React.Component {
         super(props)
         this.state = {
             timepoInicial: 5000,
-            cStepper:0,
             cColor: 0,
             cPosicion: 0,
             cPosicion2: 0,
@@ -347,7 +346,6 @@ class Configurador extends React.Component {
                         cPosicion2={cPosicion2}
                         cTamano={cTamano}
                         cContenido={0}
-                        cStepper={this.state.cStepper}
 
                         colores={this.state.colores}
                         posicion={this.state.posicion}

@@ -34,7 +34,7 @@ class Admin extends React.Component {
               alignItems: 'center',
             }}
           >
-            <Grid item xs={10}>
+            <Grid item xs={11}>
               <Configurador />
             </Grid></Grid>
         </div>
