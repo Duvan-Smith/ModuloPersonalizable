@@ -30,7 +30,7 @@ withStyles(({ transitions }) => ({
         transform: 'rotate(180deg)',
     },
 }));
-class Ccard extends React.Component {
+class CcardInicial extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -219,4 +219,4 @@ class Ccard extends React.Component {
         );
     }
 }
-export default withStyles(withStyles)(Ccard);
+export default withStyles(withStyles)(CcardInicial);

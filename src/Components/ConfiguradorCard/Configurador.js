@@ -3,8 +3,10 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AppBar from "../../Bar/AppBar";
-import Ccard from '../Ccard/Ccard';
+import CcardInicial from '../Ccard/CcardInicial';
+import Cookies from 'universal-cookie';
 
+const cookies = new Cookies();
 toast.configure()
 class Configurador extends React.Component {
     constructor(props) {
@@ -340,19 +342,37 @@ class Configurador extends React.Component {
                         marginBottom: 5
                     }}
                 >
-                    <Ccard
-                        cColor={cColor}
-                        cPosicion={cPosicion}
-                        cPosicion2={cPosicion2}
-                        cTamano={cTamano}
-                        cContenido={0}
+                    {
+                        cookies.get('ConfiguradorAdmin')?
+                            <CcardInicial
+                                cColor={cookies.get('cColor')}
+                                cPosicion={cookies.get('cPosicion')}
+                                cPosicion2={cookies.get('cPosicion2')}
+                                cTamano={cookies.get('cTamano')}
+                                cContenido={cookies.get('cContenido')}
 
-                        colores={this.state.colores}
-                        posicion={this.state.posicion}
-                        posicionT={this.state.posicionT}
-                        tamano={this.state.tamano}
-                        contenidos={this.state.contenidos}
-                    />
+                                colores={this.state.colores}
+                                posicion={this.state.posicion}
+                                posicionT={this.state.posicionT}
+                                tamano={this.state.tamano}
+                                contenidos={this.state.contenidos}
+                            />
+                        :
+                            <CcardInicial
+                                cColor={cColor}
+                                cPosicion={cPosicion}
+                                cPosicion2={cPosicion2}
+                                cTamano={cTamano}
+                                cContenido={0}
+
+                                colores={this.state.colores}
+                                posicion={this.state.posicion}
+                                posicionT={this.state.posicionT}
+                                tamano={this.state.tamano}
+                                contenidos={this.state.contenidos}
+                            />
+                    }
+                    
                 </Container>
             </div>
         );

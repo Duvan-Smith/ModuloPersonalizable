@@ -3,7 +3,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { withStyles } from '@material-ui/core/styles';
 import React from 'react';
 import Cookies from 'universal-cookie';
-import Ccard from '../Ccard/Ccard';
+import Ccard from '../Ccard/CcardInicial';
 
 const cookies = new Cookies();
 const useStyles = {
@@ -295,6 +295,7 @@ class Usuario extends React.Component {
             cookies.set('cPosicion2', this.state.form.cPosicion2, { path: "/personalizacion" });
             cookies.set('cColor', this.state.form.cColor, { path: "/personalizacion" });
             cookies.set('cContenido', this.state.form.cContenido, { path: "/personalizacion" });
+            cookies.set('ConfiguradorAdmin', true, { path: "/personalizacion" });
             // console.log(this.state.form)
             // console.log(this.state.form.cTamano)
             // this.enviar(this.state.form.cColor, this.state.form.cPosicion, this.state.form.cPosicion2, this.state.form.cTamano, this.state.form.cContenido)
@@ -307,6 +308,7 @@ class Usuario extends React.Component {
         cookies.remove('cPosicion2', { path: "/" });
         cookies.remove('cColor', { path: "/" });
         cookies.remove('cContenido', { path: "/" });
+        cookies.remove('ConfiguradorAdmin', { path: "/" });
         this.setState({
             cTamano: -1,
             cPosicion: -1,

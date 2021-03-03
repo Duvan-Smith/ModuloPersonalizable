@@ -3,8 +3,8 @@
     "",
     "\\src",
     "\\src\\Components",
-    "\\src\\Routes"
+    "\\src\\Components\\Ccard"
   ],
-  "SelectedNode": "\\src\\Routes\\Routes.js",
+  "SelectedNode": "\\src\\Components\\Ccard\\CcardInicial.js",
   "PreviewInSolutionExplorer": false
 }
