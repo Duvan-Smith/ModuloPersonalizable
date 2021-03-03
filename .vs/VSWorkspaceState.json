@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\Components",
-    "\\src\\Components\\Ccard"
+    "\\src\\Components"
   ],
-  "SelectedNode": "\\src\\Components\\Ccard\\CcardInicial.js",
+  "SelectedNode": "\\src\\Components\\Usuario",
   "PreviewInSolutionExplorer": false
 }

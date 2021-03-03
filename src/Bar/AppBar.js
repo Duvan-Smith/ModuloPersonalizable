@@ -1,15 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Cookies from 'universal-cookie';
-import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';
-import firebase from "firebase"
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+import React from 'react';
+import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 const useStyles = makeStyles(theme => ({
@@ -86,6 +84,11 @@ export default function PrimarySearchAppBar(props) {
             window.location.href = "./admin";
         }
     }
+    const EntrarAdmin = () => {
+        // cookies.set('rol', "admin", { path: "/" });
+        cookies.set('ConfiguradorAdmin', true, { path: "/" });
+        window.location.href = "./admin/Configurador";
+    }
     return (
         <div className={classes.grow}>
             <AppBar position="static" >
@@ -102,6 +105,9 @@ export default function PrimarySearchAppBar(props) {
                         cookies.get('rol') == "user" ?
                             <>
                                 <div className={classes.grow} />
+                                <div className={classes.sectionDesktop}>
+                                    <Button color="inherit" onClick={() => EntrarAdmin()}>Admin</Button>
+                                </div>
                                 <div className={classes.sectionDesktop}>
                                     <Button color="inherit" onClick={() => Volver()}>Volver</Button>
                                 </div>

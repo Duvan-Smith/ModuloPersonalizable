@@ -2,9 +2,9 @@ import Container from '@material-ui/core/Container';
 import React from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'universal-cookie';
 import AppBar from "../../Bar/AppBar";
 import CcardInicial from '../Ccard/CcardInicial';
-import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 toast.configure()
@@ -343,7 +343,7 @@ class Configurador extends React.Component {
                     }}
                 >
                     {
-                        cookies.get('ConfiguradorAdmin')?
+                        cookies.get('ConfiguradorAdmin') ?
                             <CcardInicial
                                 cColor={cookies.get('cColor')}
                                 cPosicion={cookies.get('cPosicion')}
@@ -357,7 +357,7 @@ class Configurador extends React.Component {
                                 tamano={this.state.tamano}
                                 contenidos={this.state.contenidos}
                             />
-                        :
+                            :
                             <CcardInicial
                                 cColor={cColor}
                                 cPosicion={cPosicion}
@@ -372,7 +372,7 @@ class Configurador extends React.Component {
                                 contenidos={this.state.contenidos}
                             />
                     }
-                    
+
                 </Container>
             </div>
         );

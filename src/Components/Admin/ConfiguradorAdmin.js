@@ -31,7 +31,7 @@ const useStyles = {
     },
 };
 
-class Usuario extends React.Component {
+class ConfiguradorAdmin extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -316,6 +316,11 @@ class Usuario extends React.Component {
             cContenido: -1,
             cColor: -1,
         })
+        if (cookies.get('rol') == "user") {
+            window.location.href = "../user";
+        } else {
+            window.location.href = "./admin";
+        }
     }
     enviar(cColor, cPosicion, cPosicion2, cTamano, cContenido) {
         return (
@@ -507,4 +512,4 @@ class Usuario extends React.Component {
         );
     }
 }
-export default withStyles(useStyles)(Usuario);
+export default withStyles(useStyles)(ConfiguradorAdmin);
