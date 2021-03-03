@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import "../../CSS/App.css"
-import firebase from "firebase"
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+import firebase from "firebase";
+import React, { Component } from "react";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import Cookies from 'universal-cookie';
+import "../../CSS/App.css";
 
 const cookies = new Cookies();
 

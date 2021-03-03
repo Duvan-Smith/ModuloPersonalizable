@@ -1,9 +1,9 @@
+import Container from '@material-ui/core/Container';
 import React from 'react';
-import Ccard from '../Ccard/Ccard';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AppBar from "../../Bar/AppBar";
-import Container from '@material-ui/core/Container';
+import Ccard from '../Ccard/Ccard';
 
 toast.configure()
 class Configurador extends React.Component {

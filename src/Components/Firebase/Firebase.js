@@ -5,4 +5,4 @@ export default {
     storageBucket: "pagina-personalizable.appspot.com",
     messagingSenderId: "927262150263",
     appId: "1:927262150263:web:4c1a38d21db808d3e10072"
-  };
+};
