@@ -62,10 +62,10 @@ class CcardInicial extends React.Component {
     }
     render() {
         const classes = withStyles();
-        const activeStep = !cookies.get('cColor') ? this.props.cColor : cookies.get('cColor')//cColor es el que mas dura
-        const activeStepcT = !cookies.get('cTamano') ? this.props.cTamano : cookies.get('cTamano')
-        const activeStepcP = !cookies.get('cPosicion') ? this.props.cPosicion : cookies.get('cPosicion')
-        const activeStepcP2 = !cookies.get('cPosicion2') ? this.props.cPosicion2 : cookies.get('cPosicion2')
+        const activeStep = this.props.cColor//cColor es el que mas dura
+        const activeStepcT = this.props.cTamano
+        const activeStepcP = this.props.cPosicion
+        const activeStepcP2 = this.props.cPosicion2
         const steps = this.getSteps();
         return (
             <>
@@ -88,8 +88,8 @@ class CcardInicial extends React.Component {
                             activeStep={activeStepcT + 1}
 
                         />
-            Se esta cambiando el tamaño de la letra
-          </Grid>
+                        Se esta cambiando el tamaño de la letra
+                    </Grid>
                     <Grid item xs={3}>
                         <MobileStepper
                             variant="progress"
@@ -97,8 +97,8 @@ class CcardInicial extends React.Component {
                             position="static"
                             activeStep={activeStepcP + 1}
                         />
-            Se esta cambiando la posicion del texto
-          </Grid>
+                        Se esta cambiando la posicion del texto
+                    </Grid>
                     <Grid item xs={3}>
                         <MobileStepper
                             variant="progress"
@@ -106,8 +106,8 @@ class CcardInicial extends React.Component {
                             position="static"
                             activeStep={activeStepcP2 + 1}
                         />
-            Se esta cambiando la posicion del componente completo
-          </Grid>
+                        Se esta cambiando la posicion del componente completo
+                    </Grid>
                     <Grid item xs={3}>
                         <MobileStepper
                             variant="progress"
@@ -115,14 +115,14 @@ class CcardInicial extends React.Component {
                             position="static"
                             activeStep={activeStep + 1}
                         />
-            Se esta cambiando el color de fondo
-          </Grid>
+                        Se esta cambiando el color de fondo
+                    </Grid>
                 </Grid>
                 <Grid
                     container
                     spacing={3}
-                    justify={this.state.posicionT[!cookies.get('cPosicion2') ? this.props.cPosicion2 : cookies.get('cPosicion2')]}
-                    alignItems={this.state.posicionT[!cookies.get('cPosicion2') ? this.props.cPosicion2 : cookies.get('cPosicion2')]}
+                    justify={this.props.cPosicion2}
+                    alignItems={this.props.cPosicion2}
                 >
 
                     {
@@ -137,8 +137,8 @@ class CcardInicial extends React.Component {
                                 <Grid item xs={10}>
                                     <Card
                                         style={{
-                                            background: this.state.colores[!cookies.get('cColor') ? this.props.cColor : cookies.get('cColor')],
-                                            textAlign: this.state.posicion[!cookies.get('cPosicion') ? this.props.cPosicion : cookies.get('cPosicion')],
+                                            background: this.state.colores[this.props.cColor],
+                                            textAlign: this.state.posicion[this.props.cPosicion],
                                         }}
                                     >
                                         <Typography gutterBottom
@@ -148,9 +148,9 @@ class CcardInicial extends React.Component {
                                                 marginBottom: 20,
                                                 marginTop: 20,
                                             }}
-                                            variant={this.state.tamano[!cookies.get('cTamano') ? this.props.cTamano : cookies.get('cTamano')].titulo}
+                                            variant={this.state.tamano[this.props.cTamano].titulo}
                                         >
-                                            {this.state.contenidos[!cookies.get('cContenido') ? this.props.cContenido : cookies.get('cContenido')].titulo}
+                                            {this.state.contenidos[this.props.cContenido].titulo}
                                         </Typography>
                                         <img
                                             style={{
@@ -159,18 +159,18 @@ class CcardInicial extends React.Component {
                                                 marginBottom: 20,
                                                 marginTop: 20,
                                             }}
-                                            width={this.state.tamano[!cookies.get('cTamano') ? this.props.cTamano : cookies.get('cTamano')].imagen}
+                                            width={this.state.tamano[this.props.cTamano].imagen}
                                             height="auto"
-                                            src={this.state.contenidos[!cookies.get('cContenido') ? this.props.cContenido : cookies.get('cContenido')].imagen}
+                                            src={this.state.contenidos[this.props.cContenido].imagen}
                                         >
                                         </img>
                                         <CardContent>
                                             <Typography
                                                 style={{
-                                                    fontSize: this.state.tamano[!cookies.get('cTamano') ? this.props.cTamano : cookies.get('cTamano')].parrafos,
+                                                    fontSize: this.state.tamano[this.props.cTamano].parrafos,
                                                 }}
                                             >
-                                                {this.state.contenidos[!cookies.get('cContenido') ? this.props.cContenido : cookies.get('cContenido')].parrafo1}
+                                                {this.state.contenidos[this.props.cContenido].parrafo1}
                                             </Typography>
                                         </CardContent>
                                         <CardActions disableSpacing>
@@ -188,25 +188,25 @@ class CcardInicial extends React.Component {
                                         <Collapse in={this.state.expanded}  >
                                             <CardContent>
                                                 <Typography
-                                                    variant={this.state.tamano[!cookies.get('cTamano') ? this.props.cTamano : cookies.get('cTamano')].subtitulo}
+                                                    variant={this.state.tamano[this.props.cTamano].subtitulo}
                                                 >
-                                                    {this.state.contenidos[!cookies.get('cContenido') ? this.props.cContenido : cookies.get('cContenido')].subtitulo}
+                                                    {this.state.contenidos[this.props.cContenido].subtitulo}
                                                 </Typography>
                                                 <br />
                                                 <Typography paragraph
                                                     style={{
-                                                        fontSize: this.state.tamano[!cookies.get('cTamano') ? this.props.cTamano : cookies.get('cTamano')].parrafos,
+                                                        fontSize: this.state.tamano[this.props.cTamano].parrafos,
                                                     }}
                                                 >
-                                                    {this.state.contenidos[!cookies.get('cContenido') ? this.props.cContenido : cookies.get('cContenido')].parrafo2}
+                                                    {this.state.contenidos[this.props.cContenido].parrafo2}
                                                 </Typography>
                                                 <br />
                                                 <Typography paragraph
                                                     style={{
-                                                        fontSize: this.state.tamano[!cookies.get('cTamano') ? this.props.cTamano : cookies.get('cTamano')].parrafos,
+                                                        fontSize: this.state.tamano[this.props.cTamano].parrafos,
                                                     }}
                                                 >
-                                                    {this.state.contenidos[!cookies.get('cContenido') ? this.props.cContenido : cookies.get('cContenido')].parrafo3}
+                                                    {this.state.contenidos[this.props.cContenido].parrafo3}
                                                 </Typography>
                                             </CardContent>
                                         </Collapse>

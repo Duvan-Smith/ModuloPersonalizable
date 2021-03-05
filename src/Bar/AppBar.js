@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
-        //background: "#03a9f4",
         color: "inherit",
     },
     grow: {
@@ -71,10 +70,6 @@ export default function PrimarySearchAppBar(props) {
         cookies.remove('cPosicion2', { path: "/" });
         cookies.remove('cColor', { path: "/" });
         cookies.remove('cContenido', { path: "/" });
-
-        // firebase=firebase.auth.GoogleAuthProvider.PROVIDER_ID;
-        // firebase=firebase.auth().currentUser;
-        // firebase.auth().signOut();
         window.location.href = "./";
     }
     const Volver = () => {
@@ -85,7 +80,6 @@ export default function PrimarySearchAppBar(props) {
         }
     }
     const EntrarAdmin = () => {
-        // cookies.set('rol', "admin", { path: "/" });
         cookies.set('ConfiguradorAdmin', true, { path: "/" });
         window.location.href = "./admin/Configurador";
     }
@@ -95,7 +89,7 @@ export default function PrimarySearchAppBar(props) {
                 <Toolbar color="primary">
                     <Avatar className={classes.menuButton}>
                         {
-                            cookies.get('rol') == "admin" ? <FolderIcon /> : <PageviewIcon />
+                            cookies.get('rol') == "admin" ? <FolderIcon /> : <Avatar alt="img user" src={cookies.get('Avatar')} />
                         }
                     </Avatar>
                     <Typography className={classes.title} variant="h6" noWrap>

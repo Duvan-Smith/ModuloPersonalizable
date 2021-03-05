@@ -5,27 +5,33 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'universal-cookie';
 import AppBar from "../../Bar/AppBar";
 import CcardInicial from '../Ccard/CcardInicial';
-
+//TODO: Duvan, bug - no reconoce la primera configuracion. Se debe realizar la configuracion 3 veses para que funcione.
 const cookies = new Cookies();
 toast.configure()
+///Summary
+///Este metodo permite configurar lo que va a ver el usuario final y el como lo va a ver
+///Puede ver diferentes noticias
+///Puede ver estas noticias con diferente color de fondo tamaño o posicion
 class Configurador extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            timepoInicial: 5000,
-            cColor: 0,
-            cPosicion: 0,
-            cPosicion2: 0,
-            cTamano: 0,
-            cContenido: 0,
+            timepoInicial: !cookies.get('ConfiguradorAdmin') ? 5000 : cookies.get('timepoInicial'),
+            cColor: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cColor'),
+            cPosicion: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cPosicion'),
+            cPosicion2: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cPosicion2'),
+            cTamano: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cTamano'),
+            cContenido: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cContenido'),
             tamano: [
                 {
+                    nombre: "Pequeño",
                     titulo: "h4",
                     subtitulo: "h6",
                     parrafos: 16,
                     imagen: "60%",
                 },
                 {
+                    nombre: "Grande",
                     titulo: "h5",
                     subtitulo: "subtitle1",
                     parrafos: 12,
@@ -255,11 +261,9 @@ class Configurador extends React.Component {
         }
     }
     componentDidMount = async () => {
-        //this.notify("Inicio proceso personalizacion", 2000, toast.POSITION.TOP_CENTER)
         var tiempo = this.state.timepoInicial;
         await setInterval(() => {
-            //this.notify("Se esta cambiando tamaño letra", 2000)
-            if (this.state.cTamano == this.state.tamano.length - 1) {
+            if (this.state.cTamano >= this.state.tamano.length - 1) {
                 this.setState({
                     cTamano: 0,
                 })
@@ -271,8 +275,7 @@ class Configurador extends React.Component {
         }, tiempo);
         tiempo = tiempo * this.state.tamano.length;
         await setInterval(() => {
-            //this.notify("Se esta cambiando posicion del texto", 3000)
-            if (this.state.cPosicion == this.state.posicion.length - 1) {
+            if (this.state.cPosicion >= this.state.posicion.length - 1) {
                 this.setState({
                     cPosicion: 0,
                 })
@@ -284,8 +287,7 @@ class Configurador extends React.Component {
         }, tiempo);
         tiempo = tiempo * this.state.posicion.length;
         await setInterval(() => {
-            //this.notify("Se esta cambiando posicion del componente", 4000)
-            if (this.state.cPosicion2 == this.state.posicionT.length - 1) {
+            if (this.state.cPosicion2 >= this.state.posicionT.length - 1) {
                 this.setState({
                     cPosicion2: 0,
                 })
@@ -297,8 +299,7 @@ class Configurador extends React.Component {
         }, tiempo);
         tiempo = tiempo * this.state.posicionT.length;
         await setInterval(() => {
-            //this.notify("Se esta cambiando de color de fondo", 5000)
-            if (this.state.cColor == this.state.colores.length - 1) {
+            if (this.state.cColor >= this.state.colores.length - 1) {
                 this.setState({
                     cColor: 0,
                 })
@@ -309,7 +310,7 @@ class Configurador extends React.Component {
             }
         }, tiempo);
         await setInterval(() => {
-            if (this.state.cContenido == this.state.contenidos.length - 1) {
+            if (this.state.cContenido >= this.state.contenidos.length - 1) {
                 this.setState({
                     cContenido: 0,
                 })
@@ -320,13 +321,6 @@ class Configurador extends React.Component {
             }
         }, 80000);
     }
-    // notify(text, tiempo = 3000, posicion = toast.POSITION.BOTTOM_RIGHT) {
-    //     toast(text,
-    //         {
-    //             position: posicion,
-    //             autoClose: tiempo,
-    //         });
-    // }
     render() {
         const { cColor, cPosicion, cPosicion2, cTamano, cContenido } = this.state
         return (
@@ -343,7 +337,7 @@ class Configurador extends React.Component {
                     }}
                 >
                     {
-                        cookies.get('ConfiguradorAdmin') ?
+                        cookies.get('cTamano') == 0?
                             <CcardInicial
                                 cColor={cookies.get('cColor')}
                                 cPosicion={cookies.get('cPosicion')}

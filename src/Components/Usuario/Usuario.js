@@ -24,15 +24,6 @@ class Usuario extends React.Component {
             mostrar: !this.state.mostrar,
         })
     }
-    // componentDidMount = () => {
-    //     if (cookies.get('ConfiguradorAdmin')) { return <Button color="inherit" onClick={() => this.irComPersonalizable()}>Iniciar</Button> }
-    //     else { return <Button color="inherit" onClick={() => this.mostrarComponente()}>Mostrar</Button> }
-    // }
-    // componentDidMount = () => {
-    //     this.setState({
-    //         ConfiguradorAdmin: cookies.get('ConfiguradorAdmin')
-    //     })
-    // }
     componentDidUpdate(prevProps) {
         // Uso tipico (no olvides de comparar las props):
         if (this.state.ConfiguradorAdmin !== cookies.get('ConfiguradorAdmin')) {

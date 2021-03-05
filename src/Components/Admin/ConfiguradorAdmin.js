@@ -41,7 +41,15 @@ class ConfiguradorAdmin extends React.Component {
                 cPosicion2: -1,
                 cContenido: -1,
                 cColor: -1,
+                timepoInicial:-1
             },
+            timepoInicialL:[
+                {tiempo:0,nombre:"Sin tiempo"},
+                {tiempo:1000,nombre:"1 segundo"},
+                {tiempo:2000,nombre:"2 segundos"},
+                {tiempo:5000,nombre:"5 segundos"},
+                {tiempo:10000,nombre:"10 segundos"}
+            ],
             tamano: [
                 {
                     nombre: "Pequeño",
@@ -287,18 +295,19 @@ class ConfiguradorAdmin extends React.Component {
                 [e.target.name]: e.target.value
             }
         });
+        console.log( [e.target.name]+":" + e.target.value )
     }
     realizarCambios = () => {
-        if (this.state.form.cTamano > -1 && this.state.form.cPosicion > -1 && this.state.form.cPosicion2 > -1 && this.state.form.cColor > -1 && this.state.form.cContenido > -1) {
+        if (this.state.form.cTamano > -1 && this.state.form.cPosicion > -1 && this.state.form.cPosicion2 > -1 && 
+            this.state.form.cColor > -1 && this.state.form.cContenido > -1 && this.state.form.timepoInicial > -1) {
             cookies.set('cTamano', this.state.form.cTamano, { path: "/personalizacion" });
             cookies.set('cPosicion', this.state.form.cPosicion, { path: "/personalizacion" });
             cookies.set('cPosicion2', this.state.form.cPosicion2, { path: "/personalizacion" });
             cookies.set('cColor', this.state.form.cColor, { path: "/personalizacion" });
             cookies.set('cContenido', this.state.form.cContenido, { path: "/personalizacion" });
+            cookies.set('timepoInicial',this.state.form.timepoInicial, { path: "/personalizacion" });
             cookies.set('ConfiguradorAdmin', true, { path: "/personalizacion" });
-            // console.log(this.state.form)
-            // console.log(this.state.form.cTamano)
-            // this.enviar(this.state.form.cColor, this.state.form.cPosicion, this.state.form.cPosicion2, this.state.form.cTamano, this.state.form.cContenido)
+            console.log(this.state.form.timepoInicial)
             window.location.pathname = "./personalizacion";
         }
     }
@@ -308,12 +317,14 @@ class ConfiguradorAdmin extends React.Component {
         cookies.remove('cPosicion2', { path: "/" });
         cookies.remove('cColor', { path: "/" });
         cookies.remove('cContenido', { path: "/" });
+        cookies.remove('timepoInicial', { path: "/" });
         cookies.remove('ConfiguradorAdmin', { path: "/" });
         this.setState({
             cTamano: -1,
             cPosicion: -1,
             cPosicion2: -1,
             cContenido: -1,
+            cColor: -1,
             cColor: -1,
         })
         if (cookies.get('rol') == "user") {
@@ -322,27 +333,39 @@ class ConfiguradorAdmin extends React.Component {
             window.location.href = "./admin";
         }
     }
-    enviar(cColor, cPosicion, cPosicion2, cTamano, cContenido) {
-        return (
-            <Ccard
-                cColor={cColor}
-                cPosicion={cPosicion}
-                cPosicion2={cPosicion2}
-                cTamano={cTamano}
-                cContenido={cContenido}
-
-                colores={this.state.colores}
-                posicion={this.state.posicion}
-                posicionT={this.state.posicionT}
-                tamano={this.state.tamano}
-                contenidos={this.state.contenidos}
-            />
-        )
-    }
     render() {
         const { classes } = this.props;
         return (
             <div className="row">
+                <div className="col-6">
+                    <InputLabel id="timepoInicial">Tiempo inicial de la iteracion</InputLabel>
+                    <select
+                        labelId="timepoInicial"
+                        id="timepoInicial"
+                        value={this.state.timepoInicial}
+                        onChange={this.handleChange}
+                        label="timepoInicial"
+                        name="timepoInicial"
+                    >
+                        <option value={-1}>
+                            Seleccionar
+                        </option>
+                        {
+                            <>
+                                {
+                                    this.state.timepoInicialL.map((dat, index) => {
+                                        return (
+                                            <option key={"timepoInicial" + index} value={dat.tiempo} >
+                                                {dat.nombre}
+                                            </option>
+                                        )
+                                    }
+                                    )
+                                }
+                            </>
+                        }
+                    </select>
+                </div>
                 <div className="col-6">
                     <InputLabel id="cTamano">Tamaño de la letra</InputLabel>
                     <select

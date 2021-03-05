@@ -5,7 +5,6 @@ import Cookies from 'universal-cookie';
 import "../../CSS/App.css";
 
 const cookies = new Cookies();
-
 class InicioSesionGoogle extends Component {
     constructor(props) {
         super(props)
@@ -36,7 +35,6 @@ class InicioSesionGoogle extends Component {
         }
         firebase.auth().onAuthStateChanged(user => {
             this.setState({ isSignedIn: !!user })
-            console.log("user", user)
         })
     }
     llenarCookies = async (respuesta) => {
@@ -44,7 +42,9 @@ class InicioSesionGoogle extends Component {
             cookies.set('email', respuesta.nombreusuario, { path: "/" });
             cookies.set('rol', "user", { path: "/" });
             cookies.set('primernombre', respuesta.displayName, { path: "/" });
-            console.log("entra");
+            cookies.set('Avatar', respuesta.photoURL, { path: "/" });
+            cookies.set('signin', respuesta.providerId, { path: "/" });
+            cookies.set('uid', respuesta.uid, { path: "/" });
             alert(`Bienvenido ${respuesta.displayName}`)
             window.location.href = "./user";
         }

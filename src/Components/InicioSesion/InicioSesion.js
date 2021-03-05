@@ -119,7 +119,6 @@ class InicioSesion extends React.Component {
                 }}
             >
                 <InicioSesionGoogle />
-                {/* <InicioSesionGoogle2/> */}
                 <CssBaseline />
                 <div className="Margen">
                     <Grid
