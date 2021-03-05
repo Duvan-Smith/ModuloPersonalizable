@@ -47,7 +47,6 @@ class Usuario extends React.Component {
                                 </Grid>
                                     <Grid item xs={3}>
                                         {
-                                            // cookies.get('ConfiguradorAdmin') ?
                                             this.state.ConfiguradorAdmin ?
                                                 <Button color="inherit" onClick={() => this.irComPersonalizable()}>Iniciar</Button>
                                                 :

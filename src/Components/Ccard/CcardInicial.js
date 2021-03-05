@@ -45,36 +45,27 @@ class CcardInicial extends React.Component {
     handleExpandClick = () => {
         this.setState({ expanded: !this.state.expanded });
     };
-    getStepContent(stepIndex) {
-        switch (stepIndex) {
-            case 0:
-                return 'Se esta cambiando el tamaño de la letra';
-            case 1:
-                return 'What is an ad group anyways?';
-            case 2:
-                return 'This is the bit I really care about!';
-            default:
-                return 'Unknown stepIndex';
-        }
-    }
     getSteps() {
-        return ['iteracion 1', 'iteracion 2', 'iteracion 3', 'iteracion 4', 'iteracion 5', 'iteracion 6'];
+        return ['Se ha iniciado la configuración', 'Se está procesando tu personalización', 'Se está finalizando tu personalización'];
     }
     render() {
         const classes = withStyles();
-        const activeStep = this.props.cColor//cColor es el que mas dura
+        const activeStep = this.props.cStepper//cColor es el que mas dura
+        const activeStepcC = this.props.cColor
         const activeStepcT = this.props.cTamano
         const activeStepcP = this.props.cPosicion
         const activeStepcP2 = this.props.cPosicion2
         const steps = this.getSteps();
         return (
             <>
-                <Stepper activeStep={activeStep} alternativeLabel>
-                    {steps.map((label) => (
-                        <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
-                        </Step>
-                    ))}
+                <Stepper activeStep={activeStep} >
+                    {
+                        steps.map((label) => (
+                            <Step key={label}>
+                                <StepLabel>{label}</StepLabel>
+                            </Step>
+                        ))
+                    }
                 </Stepper>
                 <Grid
                     container
@@ -113,7 +104,7 @@ class CcardInicial extends React.Component {
                             variant="progress"
                             steps={this.state.colores.length + 1}
                             position="static"
-                            activeStep={activeStep + 1}
+                            activeStep={activeStepcC + 1}
                         />
                         Se esta cambiando el color de fondo
                     </Grid>

@@ -16,12 +16,14 @@ class Configurador extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            timepoInicial: !cookies.get('ConfiguradorAdmin') ? 5000 : cookies.get('timepoInicial'),
+            timepoInicial: !cookies.get('ConfiguradorAdmin') ? 50 : cookies.get('timepoInicial'),
             cColor: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cColor'),
             cPosicion: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cPosicion'),
             cPosicion2: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cPosicion2'),
             cTamano: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cTamano'),
             cContenido: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cContenido'),
+            cStepper:0,
+            cCStepper:0,
             tamano: [
                 {
                     nombre: "Pequeño",
@@ -308,6 +310,25 @@ class Configurador extends React.Component {
                     cColor: this.state.cColor + 1,
                 })
             }
+            if(this.state.cCStepper<1)
+                {
+                    this.setState({
+                        cStepper: 0,
+                        cCStepper: this.state.cStepper + 1,
+                    })
+                }
+                if(this.state.cCStepper>=1){
+                    this.setState({
+                        cStepper: 1,
+                        cCStepper: this.state.cStepper + 1,
+                    })
+                }
+                if(this.state.cCStepper>=this.state.colores.length - 1){
+                    this.setState({
+                        cStepper: 2,
+                        cCStepper: this.state.cStepper + 1,
+                    })
+                }
         }, tiempo);
         await setInterval(() => {
             if (this.state.cContenido >= this.state.contenidos.length - 1) {
@@ -319,10 +340,10 @@ class Configurador extends React.Component {
                     cContenido: this.state.cContenido + 1,
                 })
             }
-        }, 80000);
+        }, 80000);//TODO: tiempo = tiempo * this.state.colores.length; -> no se implementa por el tamaño de la lista de colores
     }
     render() {
-        const { cColor, cPosicion, cPosicion2, cTamano, cContenido } = this.state
+        const { cColor, cPosicion, cPosicion2, cTamano, cContenido, cStepper } = this.state
         return (
             <div>
                 <AppBar />
@@ -344,6 +365,7 @@ class Configurador extends React.Component {
                                 cPosicion2={cookies.get('cPosicion2')}
                                 cTamano={cookies.get('cTamano')}
                                 cContenido={cookies.get('cContenido')}
+                                cStepper={cStepper}
 
                                 colores={this.state.colores}
                                 posicion={this.state.posicion}
@@ -358,6 +380,7 @@ class Configurador extends React.Component {
                                 cPosicion2={cPosicion2}
                                 cTamano={cTamano}
                                 cContenido={0}
+                                cStepper={cStepper}
 
                                 colores={this.state.colores}
                                 posicion={this.state.posicion}
