@@ -81,7 +81,7 @@ export default function PrimarySearchAppBar(props) {
     }
     const EntrarAdmin = () => {
         cookies.set('ConfiguradorAdmin', true, { path: "/" });
-        window.location.href = "./admin/Configurador";
+        window.location.href = "./Configurador";
     }
     return (
         <div className={classes.grow}>
@@ -96,22 +96,46 @@ export default function PrimarySearchAppBar(props) {
                         {cookies.get('primernombre')} {cookies.get('primerapellido')}
                     </Typography>
                     {
-                        cookies.get('rol') == "user" ?
+                        window.location.pathname!=="/Configurador" ?
                             <>
-                                <div className={classes.grow} />
-                                <div className={classes.sectionDesktop}>
-                                    <Button color="inherit" onClick={() => EntrarAdmin()}>Admin</Button>
-                                </div>
-                                <div className={classes.sectionDesktop}>
-                                    <Button color="inherit" onClick={() => Volver()}>Volver</Button>
-                                </div>
+                                {
+                                    cookies.get('rol') == "user" ?
+                                        <>
+                                            <div className={classes.grow} />
+                                            <div className={classes.sectionDesktop}>
+                                                <Button color="inherit" onClick={() => EntrarAdmin()}>Admin</Button>
+                                            </div>
+                                            <div className={classes.sectionDesktop}>
+                                                <Button color="inherit" onClick={() => Volver()}>Volver</Button>
+                                            </div>
+                                        </>
+                                        :
+                                        <>
+                                            <div className={classes.grow} />
+                                            <div className={classes.sectionDesktop}>
+                                                <Button color="inherit" onClick={() => Volver()}>Volver</Button>
+                                            </div>
+                                        </>
+                                }
                             </>
                             :
                             <>
-                                <div className={classes.grow} />
-                                <div className={classes.sectionDesktop}>
-                                    <Button color="inherit" onClick={() => Volver()}>Volver</Button>
-                                </div>
+                                {
+                                    cookies.get('rol') == "user" ?
+                                        <>
+                                            <div className={classes.grow}/>
+                                            <div className={classes.sectionDesktop}>
+                                                <Button color="inherit" onClick={() => Volver()}>Volver</Button>
+                                            </div>
+                                        </>
+                                        :
+                                        <>
+                                            <div className={classes.grow} />
+                                            <div className={classes.sectionDesktop}>
+                                                <Button color="inherit" onClick={() => Volver()}>Volver</Button>
+                                            </div>
+                                        </>
+                                }
                             </>
                     }
                     <div className={classes.sectionDesktop}>

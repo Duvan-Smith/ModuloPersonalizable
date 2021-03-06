@@ -19,9 +19,7 @@ class Routes extends React.Component {
                 <Switch>
                     <Route exact path="/" component={InicioSesion} />
                     <Route exact path="/admin" component={Admin} />
-                    {/* si funciona */}
-                    {/* <Route exact path="/admin/Configurador" component={ConfiguradorAdmin} /> */}
-                    <Route exact path="/admin/Configurador" component={AdminC} />
+                    <Route exact path="/Configurador" component={AdminC} />
                     <Route exact path="/user" component={Usuario} />
                     <Route exact path="/personalizacion" component={Configurador} />
                 </Switch>
