@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
-import PageviewIcon from '@material-ui/icons/Pageview';
 import React from 'react';
 import Cookies from 'universal-cookie';
 
@@ -96,7 +95,7 @@ export default function PrimarySearchAppBar(props) {
                         {cookies.get('primernombre')} {cookies.get('primerapellido')}
                     </Typography>
                     {
-                        window.location.pathname!=="/Configurador" ?
+                        window.location.pathname !== "/Configurador" ?
                             <>
                                 {
                                     cookies.get('rol') == "user" ?
@@ -123,7 +122,7 @@ export default function PrimarySearchAppBar(props) {
                                 {
                                     cookies.get('rol') == "user" ?
                                         <>
-                                            <div className={classes.grow}/>
+                                            <div className={classes.grow} />
                                             <div className={classes.sectionDesktop}>
                                                 <Button color="inherit" onClick={() => Volver()}>Volver</Button>
                                             </div>

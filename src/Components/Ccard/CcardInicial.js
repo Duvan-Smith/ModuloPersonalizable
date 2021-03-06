@@ -112,8 +112,8 @@ class CcardInicial extends React.Component {
                 <Grid
                     container
                     spacing={3}
-                    justify={this.props.cPosicion2}
-                    alignItems={this.props.cPosicion2}
+                    justify={this.state.posicionT[this.props.cPosicion2]}
+                    alignItems={this.state.posicionT[this.props.cPosicion2]}
                 >
 
                     {

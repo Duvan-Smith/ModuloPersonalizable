@@ -3,7 +3,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { withStyles } from '@material-ui/core/styles';
 import React from 'react';
 import Cookies from 'universal-cookie';
-import Ccard from '../Ccard/CcardInicial';
 
 const cookies = new Cookies();
 const useStyles = {
@@ -235,208 +234,208 @@ class ConfiguradorAdmin extends React.Component {
         const { classes } = this.props;
         return (
             <>
-            <div className="row" style={{margin:10}}>
-                <div className="col-6">
-                    <InputLabel id="timepoInicial">Tiempo inicial de la iteracion</InputLabel>
-                    <select
-                        labelId="timepoInicial"
-                        id="timepoInicial"
-                        value={this.state.timepoInicial}
-                        onChange={this.handleChange}
-                        label="timepoInicial"
-                        name="timepoInicial"
-                    >
-                        <option value={-1}>
-                            Seleccionar
+                <div className="row" style={{ margin: 10 }}>
+                    <div className="col-6">
+                        <InputLabel id="timepoInicial">Tiempo inicial de la iteracion</InputLabel>
+                        <select
+                            labelId="timepoInicial"
+                            id="timepoInicial"
+                            value={this.state.timepoInicial}
+                            onChange={this.handleChange}
+                            label="timepoInicial"
+                            name="timepoInicial"
+                        >
+                            <option value={-1}>
+                                Seleccionar
                         </option>
-                        {
-                            <>
-                                {
-                                    this.state.timepoInicialL.map((dat, index) => {
-                                        return (
-                                            <option key={"timepoInicial" + index} value={dat.tiempo} >
-                                                {dat.nombre}
-                                            </option>
+                            {
+                                <>
+                                    {
+                                        this.state.timepoInicialL.map((dat, index) => {
+                                            return (
+                                                <option key={"timepoInicial" + index} value={dat.tiempo} >
+                                                    {dat.nombre}
+                                                </option>
+                                            )
+                                        }
                                         )
                                     }
-                                    )
-                                }
-                            </>
-                        }
-                    </select>
-                </div>
-                <div className="col-6" >
-                    <InputLabel id="cTamano">Tamaño de la letra</InputLabel>
-                    <select
-                        labelId="cTamano"
-                        id="cTamano"
-                        value={this.state.cTamano}
-                        onChange={this.handleChange}
-                        label="cTamano"
-                        name="cTamano"
-                    >
-                        <option value={-1}>
-                            Seleccionar
+                                </>
+                            }
+                        </select>
+                    </div>
+                    <div className="col-6" >
+                        <InputLabel id="cTamano">Tamaño de la letra</InputLabel>
+                        <select
+                            labelId="cTamano"
+                            id="cTamano"
+                            value={this.state.cTamano}
+                            onChange={this.handleChange}
+                            label="cTamano"
+                            name="cTamano"
+                        >
+                            <option value={-1}>
+                                Seleccionar
                         </option>
-                        {
-                            <>
-                                {
-                                    this.state.tamano.map((dat, index) => {
-                                        return (
-                                            <option key={"cTamano" + index} value={index} >
-                                                {dat.nombre}
-                                            </option>
+                            {
+                                <>
+                                    {
+                                        this.state.tamano.map((dat, index) => {
+                                            return (
+                                                <option key={"cTamano" + index} value={index} >
+                                                    {dat.nombre}
+                                                </option>
+                                            )
+                                        }
                                         )
                                     }
-                                    )
-                                }
-                            </>
-                        }
-                    </select>
+                                </>
+                            }
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div className="row" style={{margin:10}}>
-                <div className="col-6" >
-                    <InputLabel id="cPosicion">Posicion del texto</InputLabel>
-                    <select
-                        labelId="cPosicion"
-                        id="cPosicion"
-                        value={this.state.cPosicion}
-                        onChange={this.handleChange}
-                        label="cPosicion"
-                        name="cPosicion"
-                    >
-                        <option value={-1}>
-                            Seleccionar
+                <div className="row" style={{ margin: 10 }}>
+                    <div className="col-6" >
+                        <InputLabel id="cPosicion">Posicion del texto</InputLabel>
+                        <select
+                            labelId="cPosicion"
+                            id="cPosicion"
+                            value={this.state.cPosicion}
+                            onChange={this.handleChange}
+                            label="cPosicion"
+                            name="cPosicion"
+                        >
+                            <option value={-1}>
+                                Seleccionar
                         </option>
-                        {
-                            <>
-                                {
-                                    this.state.posicion.map((dat, index) => {
-                                        return (
-                                            <option key={"cPosicion" + index} value={index}>
-                                                {dat}
-                                            </option>
+                            {
+                                <>
+                                    {
+                                        this.state.posicion.map((dat, index) => {
+                                            return (
+                                                <option key={"cPosicion" + index} value={index}>
+                                                    {dat}
+                                                </option>
+                                            )
+                                        }
                                         )
                                     }
-                                    )
-                                }
-                            </>
-                        }
-                    </select>
-                </div>
-                <div className="col-6" >
-                    <InputLabel id="cPosicion2">Posicion del componente</InputLabel>
-                    <select
-                        labelId="cPosicion2"
-                        id="cPosicion2"
-                        value={this.state.cPosicion2}
-                        onChange={this.handleChange}
-                        label="cPosicion2"
-                        name="cPosicion2"
-                    >
-                        <option value={-1}>
-                            Seleccionar
+                                </>
+                            }
+                        </select>
+                    </div>
+                    <div className="col-6" >
+                        <InputLabel id="cPosicion2">Posicion del componente</InputLabel>
+                        <select
+                            labelId="cPosicion2"
+                            id="cPosicion2"
+                            value={this.state.cPosicion2}
+                            onChange={this.handleChange}
+                            label="cPosicion2"
+                            name="cPosicion2"
+                        >
+                            <option value={-1}>
+                                Seleccionar
                         </option>
-                        {
-                            <>
-                                {
-                                    this.state.posicionT.map((dat, index) => {
-                                        return (
-                                            <option key={"cPosicion2" + index} value={index}>
-                                                {dat}
-                                            </option>
+                            {
+                                <>
+                                    {
+                                        this.state.posicionT.map((dat, index) => {
+                                            return (
+                                                <option key={"cPosicion2" + index} value={index}>
+                                                    {dat}
+                                                </option>
+                                            )
+                                        }
                                         )
                                     }
-                                    )
-                                }
-                            </>
-                        }
-                    </select>
+                                </>
+                            }
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div className="row" style={{margin:10}}>
-                <div className="col-6" >
-                    <InputLabel id="cColor">Color</InputLabel>
-                    <select
-                        labelId="cColor"
-                        id="cColor"
-                        value={this.state.cColor}
-                        onChange={this.handleChange}
-                        label="cColor"
-                        name="cColor"
-                    >
-                        <option value={-1}>
-                            Seleccionar
+                <div className="row" style={{ margin: 10 }}>
+                    <div className="col-6" >
+                        <InputLabel id="cColor">Color</InputLabel>
+                        <select
+                            labelId="cColor"
+                            id="cColor"
+                            value={this.state.cColor}
+                            onChange={this.handleChange}
+                            label="cColor"
+                            name="cColor"
+                        >
+                            <option value={-1}>
+                                Seleccionar
                         </option>
-                        {
-                            <>
-                                {
-                                    this.state.colores.map((dat, index) => {
-                                        return (
-                                            <option key={"cColor" + index} value={index} style={{ background: dat, }}>
-                                                {dat}
-                                            </option>
+                            {
+                                <>
+                                    {
+                                        this.state.colores.map((dat, index) => {
+                                            return (
+                                                <option key={"cColor" + index} value={index} style={{ background: dat, }}>
+                                                    {dat}
+                                                </option>
+                                            )
+                                        }
                                         )
                                     }
-                                    )
-                                }
-                            </>
-                        }
-                    </select>
-                </div>
-                <div className="col-12" >
-                    <InputLabel id="cContenido">Noticia</InputLabel>
-                    <select
-                        labelId="cContenido"
-                        id="cContenido"
-                        value={this.state.cContenido}
-                        onChange={this.handleChange}
-                        label="cContenido"
-                        name="cContenido"
-                    >
-                        <option value={-1}>
-                            Seleccionar
+                                </>
+                            }
+                        </select>
+                    </div>
+                    <div className="col-12" >
+                        <InputLabel id="cContenido">Noticia</InputLabel>
+                        <select
+                            labelId="cContenido"
+                            id="cContenido"
+                            value={this.state.cContenido}
+                            onChange={this.handleChange}
+                            label="cContenido"
+                            name="cContenido"
+                        >
+                            <option value={-1}>
+                                Seleccionar
                         </option>
-                        {
-                            <>
-                                {
-                                    this.state.contenidos.map((dat, index) => {
-                                        return (
-                                            <option key={"cContenido" + index} value={index}>
-                                                {dat.titulo}
-                                            </option>
+                            {
+                                <>
+                                    {
+                                        this.state.contenidos.map((dat, index) => {
+                                            return (
+                                                <option key={"cContenido" + index} value={index}>
+                                                    {dat.titulo}
+                                                </option>
+                                            )
+                                        }
                                         )
                                     }
-                                    )
-                                }
-                            </>
-                        }
-                    </select>
+                                </>
+                            }
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div className="row" style={{margin:10}}>
-                <div className="col-6" >
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        onClick={() => this.realizarCambios()}
-                    >
-                        Realizar Cambios
+                <div className="row" style={{ margin: 10 }}>
+                    <div className="col-6" >
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            onClick={() => this.realizarCambios()}
+                        >
+                            Realizar Cambios
                     </Button>
-                </div>
-                <div className="col-6" >
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        onClick={() => this.limpiar()}
-                    >
-                        Limpiar Cambios
+                    </div>
+                    <div className="col-6" >
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            onClick={() => this.limpiar()}
+                        >
+                            Limpiar Cambios
                     </Button>
+                    </div>
                 </div>
-            </div>
             </>
         );
     }

@@ -17,14 +17,14 @@ class Configurador extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            timepoInicial: !cookies.get('ConfiguradorAdmin') ? 50 : cookies.get('timepoInicial'),
-            cColor: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cColor'),
-            cPosicion: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cPosicion'),
-            cPosicion2: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cPosicion2'),
-            cTamano: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cTamano'),
-            cContenido: !cookies.get('ConfiguradorAdmin') ? 0: cookies.get('cContenido'),
-            cStepper:0,
-            cCStepper:0,
+            timepoInicial: !cookies.get('ConfiguradorAdmin') ? 250 : cookies.get('timepoInicial'),
+            cColor: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cColor'),
+            cPosicion: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cPosicion'),
+            cPosicion2: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cPosicion2'),
+            cTamano: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cTamano'),
+            cContenido: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cContenido'),
+            cStepper: 0,
+            cCStepper: 0,
             tamano: [
                 {
                     nombre: "Pequeño",
@@ -159,7 +159,7 @@ class Configurador extends React.Component {
                 '#cfd8dc',
                 '#b0bec5',
                 '#90a4ae'
-            ],                
+            ],
         }
     }
     componentDidMount = async () => {
@@ -210,25 +210,24 @@ class Configurador extends React.Component {
                     cColor: this.state.cColor + 1,
                 })
             }
-            if(this.state.cCStepper<1)
-                {
-                    this.setState({
-                        cStepper: 0,
-                        cCStepper: this.state.cStepper + 1,
-                    })
-                }
-                if(this.state.cCStepper>=1){
-                    this.setState({
-                        cStepper: 1,
-                        cCStepper: this.state.cStepper + 1,
-                    })
-                }
-                if(this.state.cCStepper>=this.state.colores.length - 1){
-                    this.setState({
-                        cStepper: 2,
-                        cCStepper: this.state.cStepper + 1,
-                    })
-                }
+            if (this.state.cCStepper < 1) {
+                this.setState({
+                    cStepper: 0,
+                    cCStepper: this.state.cStepper + 1,
+                })
+            }
+            if (this.state.cCStepper >= 1) {
+                this.setState({
+                    cStepper: 1,
+                    cCStepper: this.state.cStepper + 1,
+                })
+            }
+            if (this.state.cCStepper >= this.state.colores.length - 1) {
+                this.setState({
+                    cStepper: 2,
+                    cCStepper: this.state.cStepper + 1,
+                })
+            }
         }, tiempo);
         await setInterval(() => {
             if (this.state.cContenido >= this.state.contenidos.length - 1) {
@@ -258,7 +257,7 @@ class Configurador extends React.Component {
                     }}
                 >
                     {
-                        cookies.get('cTamano') == 0?
+                        cookies.get('cTamano') == 0 ?
                             <CcardInicial
                                 cColor={cookies.get('cColor')}
                                 cPosicion={cookies.get('cPosicion')}
