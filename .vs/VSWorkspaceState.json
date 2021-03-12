@@ -2,8 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\Components"
+    "\\src\\Components",
+    "\\src\\Components\\Admin",
+    "\\src\\Components\\Ccard",
+    "\\src\\Components\\ConfiguradorCard",
+    "\\src\\Components\\Firebase",
+    "\\src\\Components\\InicioSesion",
+    "\\src\\Components\\Usuario"
   ],
-  "SelectedNode": "\\src\\Components\\Usuario",
+  "SelectedNode": "\\src\\Components\\Usuario\\ComponenteUsuario.js",
   "PreviewInSolutionExplorer": false
 }

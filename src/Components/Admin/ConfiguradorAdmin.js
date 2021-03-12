@@ -324,37 +324,43 @@ class ConfiguradorAdmin extends React.Component {
                             }
                         </select>
                     </div>
-                    <div className="col-6" >
-                        <InputLabel id="cPosicion2">Posicion del componente</InputLabel>
-                        <select
-                            labelId="cPosicion2"
-                            id="cPosicion2"
-                            value={this.state.cPosicion2}
-                            onChange={this.handleChange}
-                            label="cPosicion2"
-                            name="cPosicion2"
-                        >
-                            <option value={-1}>
-                                Seleccionar
-                        </option>
-                            {
-                                <>
-                                    {
-                                        this.state.posicionT.map((dat, index) => {
-                                            return (
-                                                <option key={"cPosicion2" + index} value={index}>
-                                                    {dat}
-                                                </option>
-                                            )
-                                        }
-                                        )
-                                    }
-                                </>
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div className="row" style={{ margin: 10 }}>
+                    {
+                        //#region Error
+                        // TODO: Componente se comenta para futuras mejoras
+                        // <div className="col-6" >
+                        //     <InputLabel id="cPosicion2">Posicion del componente</InputLabel>
+                        //     <select
+                        //         labelId="cPosicion2"
+                        //         id="cPosicion2"
+                        //         value={this.state.cPosicion2}
+                        //         onChange={this.handleChange}
+                        //         label="cPosicion2"
+                        //         name="cPosicion2"
+                        //     >
+                        //         <option value={-1}>
+                        //             Seleccionar
+                        //     </option>
+                        //         {
+                        //             <>
+                        //                 {
+                        //                     this.state.posicionT.map((dat, index) => {
+                        //                         return (
+                        //                             <option key={"cPosicion2" + index} value={index}>
+                        //                                 {dat}
+                        //                             </option>
+                        //                         )
+                        //                     }
+                        //                     )
+                        //                 }
+                        //             </>
+                        //         }
+                        //     </select>
+                        // </div>
+                        // </div>
+                        // <div className="row" style={{ margin: 10 }}></div>
+                        //#endregion
+                    }
+                
                     <div className="col-6" >
                         <InputLabel id="cColor">Color</InputLabel>
                         <select

@@ -17,7 +17,7 @@ class Configurador extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            timepoInicial: !cookies.get('ConfiguradorAdmin') ? 250 : cookies.get('timepoInicial'),
+            timepoInicial: !cookies.get('ConfiguradorAdmin') ? 5000 : cookies.get('timepoInicial'),
             cColor: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cColor'),
             cPosicion: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cPosicion'),
             cPosicion2: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cPosicion2'),
@@ -42,6 +42,7 @@ class Configurador extends React.Component {
                 },
             ],
             posicion: ["center", "left", "right"],
+            //TODO: Se desactiva iteraciones 
             posicionT: ["center", "flex-start", "flex-end"],
             //https://www.unicomfacauca.edu.co/tag/premio/
             //https://www.elespectador.com/entretenimiento/musica/premios-lo-nuestro-como-ver-la-transmision/
@@ -188,18 +189,21 @@ class Configurador extends React.Component {
             }
         }, tiempo);
         tiempo = tiempo * this.state.posicion.length;
-        await setInterval(() => {
-            if (this.state.cPosicion2 >= this.state.posicionT.length - 1) {
-                this.setState({
-                    cPosicion2: 0,
-                })
-            } else {
-                this.setState({
-                    cPosicion2: this.state.cPosicion2 + 1,
-                })
-            }
-        }, tiempo);
-        tiempo = tiempo * this.state.posicionT.length;
+        //#region Error
+        //TODO: Se debe comentar esta funcion 
+        // await setInterval(() => {
+        //     if (this.state.cPosicion2 >= this.state.posicionT.length - 1) {
+        //         this.setState({
+        //             cPosicion2: 0,
+        //         })
+        //     } else {
+        //         this.setState({
+        //             cPosicion2: this.state.cPosicion2 + 1,
+        //         })
+        //     }
+        // }, tiempo);
+        //TODO: Se desactiva tiempo = tiempo * this.state.posicionT.length;
+        //#endregion
         await setInterval(() => {
             if (this.state.cColor >= this.state.colores.length - 1) {
                 this.setState({
@@ -261,7 +265,8 @@ class Configurador extends React.Component {
                             <CcardInicial
                                 cColor={cookies.get('cColor')}
                                 cPosicion={cookies.get('cPosicion')}
-                                cPosicion2={cookies.get('cPosicion2')}
+                                cPosicion2={0}
+                                // cPosicion2={cookies.get('cPosicion2')}
                                 cTamano={cookies.get('cTamano')}
                                 cContenido={cookies.get('cContenido')}
                                 cStepper={cStepper}
@@ -276,7 +281,8 @@ class Configurador extends React.Component {
                             <CcardInicial
                                 cColor={cColor}
                                 cPosicion={cPosicion}
-                                cPosicion2={cPosicion2}
+                                cPosicion2={0}
+                                // cPosicion2={cPosicion2}
                                 cTamano={cTamano}
                                 cContenido={0}
                                 cStepper={cStepper}

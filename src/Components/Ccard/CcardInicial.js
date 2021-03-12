@@ -70,6 +70,7 @@ class CcardInicial extends React.Component {
                 <Grid
                     container
                     spacing={3}
+                    justify="center"
                 >
                     <Grid item xs={3}>
                         <MobileStepper
@@ -90,15 +91,20 @@ class CcardInicial extends React.Component {
                         />
                         Se esta cambiando la posicion del texto
                     </Grid>
-                    <Grid item xs={3}>
-                        <MobileStepper
-                            variant="progress"
-                            steps={this.state.posicionT.length + 1}
-                            position="static"
-                            activeStep={activeStepcP2 + 1}
-                        />
-                        Se esta cambiando la posicion del componente completo
-                    </Grid>
+                    {
+                        //TODO: Comentar este Steepr 
+                        //#region Error
+                        /* <Grid item xs={3}>
+                            <MobileStepper
+                                variant="progress"
+                                steps={this.state.posicionT.length + 1}
+                                position="static"
+                                activeStep={activeStepcP2 + 1}
+                            />
+                            Se esta cambiando la posicion del componente completo
+                        </Grid> */
+                        //#endregion
+                    }
                     <Grid item xs={3}>
                         <MobileStepper
                             variant="progress"
@@ -109,6 +115,9 @@ class CcardInicial extends React.Component {
                         Se esta cambiando el color de fondo
                     </Grid>
                 </Grid>
+                {
+                    //TODO: el justify y alignItems se encuentran quemados en codigo.
+                }
                 <Grid
                     container
                     spacing={3}
