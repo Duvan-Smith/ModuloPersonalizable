@@ -253,9 +253,6 @@ class ConfiguradorAdmin extends React.Component {
         const { classes } = this.props;
         return (
             <>
-            {
-                this.state.form.coloresList
-            }
                 <Paper
                     style={{
                         padding: "5%",
