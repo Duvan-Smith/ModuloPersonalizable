@@ -15,6 +15,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import React from 'react';
 import Cookies from 'universal-cookie';
+import Paper from '@material-ui/core/Paper';
 
 const cookies = new Cookies();
 withStyles(({ transitions }) => ({
@@ -58,9 +59,7 @@ class CcardInicial extends React.Component {
         const steps = this.getSteps();
         return (
             <>
-            {this.state.colores}
-            <br/>
-            {this.props.cColor}
+                <br />
                 <Stepper activeStep={activeStep} >
                     {
                         steps.map((label) => (
@@ -70,54 +69,6 @@ class CcardInicial extends React.Component {
                         ))
                     }
                 </Stepper>
-                <Grid
-                    container
-                    spacing={3}
-                    justify="center"
-                >
-                    <Grid item xs={3}>
-                        <MobileStepper
-                            variant="progress"
-                            steps={this.state.tamano.length + 1}
-                            position="static"
-                            activeStep={activeStepcT + 1}
-
-                        />
-                        Se esta cambiando el tamaño de la letra
-                    </Grid>
-                    <Grid item xs={3}>
-                        <MobileStepper
-                            variant="progress"
-                            steps={this.state.posicion.length + 1}
-                            position="static"
-                            activeStep={activeStepcP + 1}
-                        />
-                        Se esta cambiando la posicion del texto
-                    </Grid>
-                    {
-                        //TODO: Comentar este Steepr 
-                        //#region Error
-                        /* <Grid item xs={3}>
-                            <MobileStepper
-                                variant="progress"
-                                steps={this.state.posicionT.length + 1}
-                                position="static"
-                                activeStep={activeStepcP2 + 1}
-                            />
-                            Se esta cambiando la posicion del componente completo
-                        </Grid> */
-                        //#endregion
-                    }
-                    <Grid item xs={3}>
-                        <MobileStepper
-                            variant="progress"
-                            steps={this.state.colores.length + 1}
-                            position="static"
-                            activeStep={activeStepcC + 1}
-                        />
-                        Se esta cambiando el color de fondo
-                    </Grid>
-                </Grid>
                 {
                     //TODO: el justify y alignItems se encuentran quemados en codigo.
                 }
@@ -130,18 +81,43 @@ class CcardInicial extends React.Component {
 
                     {
                         activeStep === steps.length ? (
-                            <div>
-                                <Typography className={classes.instructions}>All steps completed</Typography>
-                                <Button>Regresar</Button>
-                            </div>
+                            <Paper style={{
+                                margin: 20,
+                                justifyContent: "center",
+                                textAlign: "center",
+                                display: 'flex',
+                                alignItems: 'center',
+                                flexGrow: 1,
+                                width: "110%",
+                            }}>
+                                <div class="row" style={{
+                                    margin: 20,
+                                    justifyContent: "center",
+                                    textAlign: "center",
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    flexGrow: 1,
+                                    width: "110%",
+                                }}>
+
+                                    <div class="col-12" style={{ margin: 20, }}>
+                                        <Typography className={classes.instructions}>Configuracion finalizada</Typography>
+                                    </div>
+                                    <div class="col-12" style={{ margin: 10, }}>
+                                        <Button>Ver mi componente</Button>
+                                    </div>
+                                </div>
+                            </Paper>
                         )
                             :
                             (
                                 <Grid item xs={10}>
                                     <Card
                                         style={{
-                                            background: this.state.colores[this.props.cColor],
-                                            textAlign: this.state.posicion[this.props.cPosicion],
+                                            background: this.props.color,
+                                            // background: this.state.colores[this.props.cColor],
+                                            // textAlign: this.state.posicion[this.props.cPosicion],
+                                            textAlign: this.props.posicionLetra,
                                         }}
                                     >
                                         <Typography gutterBottom
@@ -151,7 +127,8 @@ class CcardInicial extends React.Component {
                                                 marginBottom: 20,
                                                 marginTop: 20,
                                             }}
-                                            variant={this.state.tamano[this.props.cTamano].titulo}
+                                            // variant={this.state.tamano[this.props.cTamano].titulo}
+                                            variant={this.props.titulo}
                                         >
                                             {this.state.contenidos[this.props.cContenido].titulo}
                                         </Typography>
@@ -162,7 +139,8 @@ class CcardInicial extends React.Component {
                                                 marginBottom: 20,
                                                 marginTop: 20,
                                             }}
-                                            width={this.state.tamano[this.props.cTamano].imagen}
+                                            // width={this.state.tamano[this.props.cTamano].imagen}
+                                            width={this.props.imagen}
                                             height="auto"
                                             src={this.state.contenidos[this.props.cContenido].imagen}
                                         >
@@ -170,7 +148,8 @@ class CcardInicial extends React.Component {
                                         <CardContent>
                                             <Typography
                                                 style={{
-                                                    fontSize: this.state.tamano[this.props.cTamano].parrafos,
+                                                    // fontSize: this.state.tamano[this.props.cTamano].parrafos,
+                                                    fontSize: this.props.parrafos,
                                                 }}
                                             >
                                                 {this.state.contenidos[this.props.cContenido].parrafo1}
@@ -191,14 +170,16 @@ class CcardInicial extends React.Component {
                                         <Collapse in={this.state.expanded}  >
                                             <CardContent>
                                                 <Typography
-                                                    variant={this.state.tamano[this.props.cTamano].subtitulo}
+                                                    // variant={this.state.tamano[this.props.cTamano].subtitulo}
+                                                    variant={this.props.subtitulo}
                                                 >
                                                     {this.state.contenidos[this.props.cContenido].subtitulo}
                                                 </Typography>
                                                 <br />
                                                 <Typography paragraph
                                                     style={{
-                                                        fontSize: this.state.tamano[this.props.cTamano].parrafos,
+                                                        // fontSize: this.state.tamano[this.props.cTamano].parrafos,
+                                                        fontSize: this.props.parrafos,
                                                     }}
                                                 >
                                                     {this.state.contenidos[this.props.cContenido].parrafo2}
@@ -206,7 +187,8 @@ class CcardInicial extends React.Component {
                                                 <br />
                                                 <Typography paragraph
                                                     style={{
-                                                        fontSize: this.state.tamano[this.props.cTamano].parrafos,
+                                                        // fontSize: this.state.tamano[this.props.cTamano].parrafos,
+                                                        fontSize: this.props.parrafos,
                                                     }}
                                                 >
                                                     {this.state.contenidos[this.props.cContenido].parrafo3}
