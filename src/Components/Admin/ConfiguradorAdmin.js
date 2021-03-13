@@ -3,6 +3,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { withStyles } from '@material-ui/core/styles';
 import React from 'react';
 import Cookies from 'universal-cookie';
+import Paper from '@material-ui/core/Paper';
+import ColorList from './ListaColores';
 
 const cookies = new Cookies();
 const useStyles = {
@@ -40,7 +42,8 @@ class ConfiguradorAdmin extends React.Component {
                 cPosicion2: -1,
                 cContenido: -1,
                 cColor: -1,
-                timepoInicial: -1
+                timepoInicial: -1,
+                coloresList: []
             },
             timepoInicialL: [
                 { tiempo: 0, nombre: "Sin tiempo" },
@@ -95,94 +98,95 @@ class ConfiguradorAdmin extends React.Component {
                 imagen: "https://www.eltiempo.com/files/article_main/files/crop/uploads/2020/11/16/5fb3353273d77.r_1612380235380.0-0-1033-512.jpeg",
             },
             ],
-            colores: ['#ffcdd2',
-                '#ef9a9a',
-                '#e57373',
-                '#f8bbd0',
-                '#f48fb1',
-                '#e1bee7',
-                '#ce93d8',
-                '#d1c4e9',
-                '#b39ddb',
-                '#c5cae9',
-                '#9fa8da',
-                '#bbdefb',
-                '#90caf9',
-                '#64b5f6',
-                '#42a5f5',
-                '#b3e5fc',
-                '#81d4fa',
-                '#4fc3f7',
-                '#29b6f6',
-                '#03a9f4',
-                '#b2ebf2',
-                '#80deea',
-                '#4dd0e1',
-                '#26c6da',
-                '#00bcd4',
-                '#00acc1',
-                '#b2dfdb',
-                '#80cbc4',
-                '#4db6ac',
-                '#c8e6c9',
-                '#a5d6a7',
-                '#81c784',
-                '#66bb6a',
-                '#4caf50',
-                '#dcedc8',
-                '#c5e1a5',
-                '#aed581',
-                '#9ccc65',
-                '#8bc34a',
-                '#7cb342',
-                '#f0f4c3',
-                '#e6ee9c',
-                '#dce775',
-                '#d4e157',
-                '#cddc39',
-                '#c0ca33',
-                '#afb42b',
-                '#9e9d24',
-                '#fff9c4',
-                '#fff59d',
-                '#fff176',
-                '#ffee58',
-                '#ffeb3b',
-                '#fdd835',
-                '#fbc02d',
-                '#f9a825',
-                '#f57f17',
-                '#ffecb3',
-                '#ffe082',
-                '#ffd54f',
-                '#ffca28',
-                '#ffc107',
-                '#ffb300',
-                '#ffa000',
-                '#ff8f00',
-                '#ff6f00',
-                '#ffe0b2',
-                '#ffcc80',
-                '#ffb74d',
-                '#ffa726',
-                '#ff9800',
-                '#fb8c00',
-                '#f57c00',
-                '#ffccbc',
-                '#ffab91',
-                '#ff8a65',
-                '#ff7043',
-                '#d7ccc8',
-                '#bcaaa4',
-                '#f5f5f5',
-                '#eeeeee',
-                '#e0e0e0',
-                '#bdbdbd',
-                '#9e9e9e',
-                '#cfd8dc',
-                '#b0bec5',
-                '#90a4ae'
-            ]
+            // colores: ['#ffcdd2',
+            //     '#ef9a9a',
+            //     '#e57373',
+            //     '#f8bbd0',
+            //     '#f48fb1',
+            //     '#e1bee7',
+            //     '#ce93d8',
+            //     '#d1c4e9',
+            //     '#b39ddb',
+            //     '#c5cae9',
+            //     '#9fa8da',
+            //     '#bbdefb',
+            //     '#90caf9',
+            //     '#64b5f6',
+            //     '#42a5f5',
+            //     '#b3e5fc',
+            //     '#81d4fa',
+            //     '#4fc3f7',
+            //     '#29b6f6',
+            //     '#03a9f4',
+            //     '#b2ebf2',
+            //     '#80deea',
+            //     '#4dd0e1',
+            //     '#26c6da',
+            //     '#00bcd4',
+            //     '#00acc1',
+            //     '#b2dfdb',
+            //     '#80cbc4',
+            //     '#4db6ac',
+            //     '#c8e6c9',
+            //     '#a5d6a7',
+            //     '#81c784',
+            //     '#66bb6a',
+            //     '#4caf50',
+            //     '#dcedc8',
+            //     '#c5e1a5',
+            //     '#aed581',
+            //     '#9ccc65',
+            //     '#8bc34a',
+            //     '#7cb342',
+            //     '#f0f4c3',
+            //     '#e6ee9c',
+            //     '#dce775',
+            //     '#d4e157',
+            //     '#cddc39',
+            //     '#c0ca33',
+            //     '#afb42b',
+            //     '#9e9d24',
+            //     '#fff9c4',
+            //     '#fff59d',
+            //     '#fff176',
+            //     '#ffee58',
+            //     '#ffeb3b',
+            //     '#fdd835',
+            //     '#fbc02d',
+            //     '#f9a825',
+            //     '#f57f17',
+            //     '#ffecb3',
+            //     '#ffe082',
+            //     '#ffd54f',
+            //     '#ffca28',
+            //     '#ffc107',
+            //     '#ffb300',
+            //     '#ffa000',
+            //     '#ff8f00',
+            //     '#ff6f00',
+            //     '#ffe0b2',
+            //     '#ffcc80',
+            //     '#ffb74d',
+            //     '#ffa726',
+            //     '#ff9800',
+            //     '#fb8c00',
+            //     '#f57c00',
+            //     '#ffccbc',
+            //     '#ffab91',
+            //     '#ff8a65',
+            //     '#ff7043',
+            //     '#d7ccc8',
+            //     '#bcaaa4',
+            //     '#f5f5f5',
+            //     '#eeeeee',
+            //     '#e0e0e0',
+            //     '#bdbdbd',
+            //     '#9e9e9e',
+            //     '#cfd8dc',
+            //     '#b0bec5',
+            //     '#90a4ae'
+            // ]
+            colores:[]
         }
     }
     handleChange = async e => {
@@ -195,14 +199,20 @@ class ConfiguradorAdmin extends React.Component {
         console.log([e.target.name] + ":" + e.target.value)
     }
     realizarCambios = () => {
-        if (this.state.form.cTamano > -1 && this.state.form.cPosicion > -1 && this.state.form.cPosicion2 > -1 &&
-            this.state.form.cColor > -1 && this.state.form.cContenido > -1 && this.state.form.timepoInicial > -1) {
+        // if (this.state.form.cTamano > -1 && this.state.form.cPosicion > -1 && this.state.form.cPosicion2 > -1 && 
+        //     this.state.form.cColor > -1 && this.state.form.cContenido > -1 && this.state.form.timepoInicial > -1) 
+        if (this.state.form.cTamano > -1 && this.state.form.cPosicion > -1 && 
+            this.state.form.coloresList.length > 0 && this.state.form.cContenido > -1 && this.state.form.timepoInicial > -1){
+            console.log(this.state.form)
             cookies.set('cTamano', this.state.form.cTamano, { path: "/personalizacion" });
             cookies.set('cPosicion', this.state.form.cPosicion, { path: "/personalizacion" });
-            cookies.set('cPosicion2', this.state.form.cPosicion2, { path: "/personalizacion" });
-            cookies.set('cColor', this.state.form.cColor, { path: "/personalizacion" });
+            // cookies.set('cPosicion2', this.state.form.cPosicion2, { path: "/personalizacion" });
+            cookies.set('cPosicion2', 0, { path: "/personalizacion" });
+            // cookies.set('cColor', this.state.form.cColor, { path: "/personalizacion" });
+            cookies.set('cColor', 0, { path: "/personalizacion" });
+            cookies.set('colores', this.state.form.coloresList, { path: "/personalizacion" });
             cookies.set('cContenido', this.state.form.cContenido, { path: "/personalizacion" });
-            cookies.set('timepoInicial', this.state.form.timepoInicial, { path: "/personalizacion" });
+            cookies.set('timepoInicial', this.state.form.timepoInicial, { path: "/" });
             cookies.set('ConfiguradorAdmin', true, { path: "/personalizacion" });
             console.log(this.state.form.timepoInicial)
             window.location.pathname = "./personalizacion";
@@ -230,218 +240,259 @@ class ConfiguradorAdmin extends React.Component {
             window.location.href = "./admin";
         }
     }
+    seleccionarColor=(lcolore)=>{
+        // this.setState({colores:lcolore})
+        this.setState({
+            form: {
+                ...this.state.form,
+                coloresList:lcolore
+            }
+        });
+      }
     render() {
         const { classes } = this.props;
         return (
             <>
-                <div className="row" style={{ margin: 10 }}>
-                    <div className="col-6">
-                        <InputLabel id="timepoInicial">Tiempo inicial de la iteracion</InputLabel>
-                        <select
-                            labelId="timepoInicial"
-                            id="timepoInicial"
-                            value={this.state.timepoInicial}
-                            onChange={this.handleChange}
-                            label="timepoInicial"
-                            name="timepoInicial"
-                        >
-                            <option value={-1}>
-                                Seleccionar
-                        </option>
-                            {
-                                <>
-                                    {
-                                        this.state.timepoInicialL.map((dat, index) => {
-                                            return (
-                                                <option key={"timepoInicial" + index} value={dat.tiempo} >
-                                                    {dat.nombre}
-                                                </option>
+            {
+                this.state.form.coloresList
+            }
+                <Paper
+                    style={{
+                        padding: "5%",
+                        textAlign: 'center',
+                    }}
+                >
+                    <div className="row" style={{ margin: 10 }}>
+
+                        <div className="col-12" style={{ margin: 10, marginBottom: 20 }}>
+                            <h3>Configuración manual del componente</h3>
+                        </div>
+
+                        <div className="col-6" style={{ marginBottom: 20 }}>
+                            <InputLabel id="timepoInicial">Tiempo inicial de la iteracion</InputLabel>
+                            <select
+                                labelId="timepoInicial"
+                                id="timepoInicial"
+                                value={this.state.timepoInicial}
+                                onChange={this.handleChange}
+                                label="timepoInicial"
+                                name="timepoInicial"
+                            >
+                                <option value={-1}>
+                                    Seleccionar
+                                </option>
+                                {
+                                    <>
+                                        {
+                                            this.state.timepoInicialL.map((dat, index) => {
+                                                return (
+                                                    <option key={"timepoInicial" + index} value={dat.tiempo} >
+                                                        {dat.nombre}
+                                                    </option>
+                                                )
+                                            }
                                             )
                                         }
-                                        )
-                                    }
-                                </>
-                            }
-                        </select>
-                    </div>
-                    <div className="col-6" >
-                        <InputLabel id="cTamano">Tamaño de la letra</InputLabel>
-                        <select
-                            labelId="cTamano"
-                            id="cTamano"
-                            value={this.state.cTamano}
-                            onChange={this.handleChange}
-                            label="cTamano"
-                            name="cTamano"
-                        >
-                            <option value={-1}>
-                                Seleccionar
+                                    </>
+                                }
+                            </select>
+                        </div>
+                        <div className="col-6" style={{ marginBottom: 20 }}>
+                            <InputLabel id="cTamano">Tamaño de la letra</InputLabel>
+                            <select
+                                labelId="cTamano"
+                                id="cTamano"
+                                value={this.state.cTamano}
+                                onChange={this.handleChange}
+                                label="cTamano"
+                                name="cTamano"
+                            >
+                                <option value={-1}>
+                                    Seleccionar
                         </option>
-                            {
-                                <>
-                                    {
-                                        this.state.tamano.map((dat, index) => {
-                                            return (
-                                                <option key={"cTamano" + index} value={index} >
-                                                    {dat.nombre}
-                                                </option>
+                                {
+                                    <>
+                                        {
+                                            this.state.tamano.map((dat, index) => {
+                                                return (
+                                                    <option key={"cTamano" + index} value={index} >
+                                                        {dat.nombre}
+                                                    </option>
+                                                )
+                                            }
                                             )
                                         }
-                                        )
-                                    }
-                                </>
-                            }
-                        </select>
+                                    </>
+                                }
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div className="row" style={{ margin: 10 }}>
-                    <div className="col-6" >
-                        <InputLabel id="cPosicion">Posicion del texto</InputLabel>
-                        <select
-                            labelId="cPosicion"
-                            id="cPosicion"
-                            value={this.state.cPosicion}
-                            onChange={this.handleChange}
-                            label="cPosicion"
-                            name="cPosicion"
-                        >
-                            <option value={-1}>
-                                Seleccionar
+                    <div className="row" style={{ margin: 10 }}>
+                        <div className="col-6" >
+                            <InputLabel id="cPosicion">Posicion del texto</InputLabel>
+                            <select
+                                labelId="cPosicion"
+                                id="cPosicion"
+                                value={this.state.cPosicion}
+                                onChange={this.handleChange}
+                                label="cPosicion"
+                                name="cPosicion"
+                            >
+                                <option value={-1}>
+                                    Seleccionar
                         </option>
-                            {
-                                <>
-                                    {
-                                        this.state.posicion.map((dat, index) => {
-                                            return (
-                                                <option key={"cPosicion" + index} value={index}>
-                                                    {dat}
-                                                </option>
+                                {
+                                    <>
+                                        {
+                                            this.state.posicion.map((dat, index) => {
+                                                return (
+                                                    <option key={"cPosicion" + index} value={index}>
+                                                        {dat}
+                                                    </option>
+                                                )
+                                            }
                                             )
                                         }
-                                        )
-                                    }
-                                </>
-                            }
-                        </select>
-                    </div>
-                    {
-                        //#region Error
-                        // TODO: Componente se comenta para futuras mejoras
-                        // <div className="col-6" >
-                        //     <InputLabel id="cPosicion2">Posicion del componente</InputLabel>
-                        //     <select
-                        //         labelId="cPosicion2"
-                        //         id="cPosicion2"
-                        //         value={this.state.cPosicion2}
-                        //         onChange={this.handleChange}
-                        //         label="cPosicion2"
-                        //         name="cPosicion2"
-                        //     >
-                        //         <option value={-1}>
-                        //             Seleccionar
-                        //     </option>
-                        //         {
-                        //             <>
-                        //                 {
-                        //                     this.state.posicionT.map((dat, index) => {
-                        //                         return (
-                        //                             <option key={"cPosicion2" + index} value={index}>
-                        //                                 {dat}
-                        //                             </option>
-                        //                         )
-                        //                     }
-                        //                     )
-                        //                 }
-                        //             </>
-                        //         }
-                        //     </select>
-                        // </div>
-                        // </div>
-                        // <div className="row" style={{ margin: 10 }}></div>
-                        //#endregion
-                    }
-                
-                    <div className="col-6" >
-                        <InputLabel id="cColor">Color</InputLabel>
-                        <select
-                            labelId="cColor"
-                            id="cColor"
-                            value={this.state.cColor}
-                            onChange={this.handleChange}
-                            label="cColor"
-                            name="cColor"
-                        >
-                            <option value={-1}>
-                                Seleccionar
-                        </option>
-                            {
-                                <>
-                                    {
-                                        this.state.colores.map((dat, index) => {
-                                            return (
-                                                <option key={"cColor" + index} value={index} style={{ background: dat, }}>
-                                                    {dat}
-                                                </option>
+                                    </>
+                                }
+                            </select>
+                        </div>
+                        {
+                            //#region Posicion del componente
+                            // TODO: Componente se comenta para futuras mejoras
+                            // <div className="col-6" >
+                            //     <InputLabel id="cPosicion2">Posicion del componente</InputLabel>
+                            //     <select
+                            //         labelId="cPosicion2"
+                            //         id="cPosicion2"
+                            //         value={this.state.cPosicion2}
+                            //         onChange={this.handleChange}
+                            //         label="cPosicion2"
+                            //         name="cPosicion2"
+                            //     >
+                            //         <option value={-1}>
+                            //             Seleccionar
+                            //     </option>
+                            //         {
+                            //             <>
+                            //                 {
+                            //                     this.state.posicionT.map((dat, index) => {
+                            //                         return (
+                            //                             <option key={"cPosicion2" + index} value={index}>
+                            //                                 {dat}
+                            //                             </option>
+                            //                         )
+                            //                     }
+                            //                     )
+                            //                 }
+                            //             </>
+                            //         }
+                            //     </select>
+                            // </div>
+                            // </div>
+                            // <div className="row" style={{ margin: 10 }}></div>
+                            //#endregion
+                        }
+                        {
+                            //#region Color
+                            //TODO: por la gran cantidad de clores se cambia el tipo de lista a un checklist
+                            // <div className="col-6" style={{ marginBottom: 20 }}>
+                            //     <InputLabel id="cColor">Color</InputLabel>
+                            //     <select
+                            //         labelId="cColor"
+                            //         id="cColor"
+                            //         value={this.state.cColor}
+                            //         onChange={this.handleChange}
+                            //         label="cColor"
+                            //         name="cColor"
+                            //     >
+                            //         <option value={-1}>
+                            //             Seleccionar
+                            //         </option>
+                            //         {
+                            //             <>
+                            //                 {
+                            //                     this.state.colores.map((dat, index) => {
+                            //                         return (
+                            //                             <option key={"cColor" + index} value={index} style={{ background: dat, }}>
+                            //                                 {dat}
+                            //                             </option>
+                            //                         )
+                            //                     }
+                            //                     )
+                            //                 }
+                            //             </>
+                            //         }
+                            //     </select>
+                            // </div>
+                            //#endregion
+                        }
+                        <div className="col-12" style={{ marginBottom: 20 }}>
+                            <InputLabel id="cContenido">Noticia</InputLabel>
+                            <select
+                                labelId="cContenido"
+                                id="cContenido"
+                                value={this.state.cContenido}
+                                onChange={this.handleChange}
+                                label="cContenido"
+                                name="cContenido"
+                            >
+                                <option value={-1}>
+                                    Seleccionar
+                                </option>
+                                {
+                                    <>
+                                        {
+                                            this.state.contenidos.map((dat, index) => {
+                                                return (
+                                                    <option key={"cContenido" + index} value={index}>
+                                                        {dat.titulo}
+                                                    </option>
+                                                )
+                                            }
                                             )
                                         }
-                                        )
-                                    }
-                                </>
-                            }
-                        </select>
+                                    </>
+                                }
+                            </select>
+                        </div>
                     </div>
-                    <div className="col-12" >
-                        <InputLabel id="cContenido">Noticia</InputLabel>
-                        <select
-                            labelId="cContenido"
-                            id="cContenido"
-                            value={this.state.cContenido}
-                            onChange={this.handleChange}
-                            label="cContenido"
-                            name="cContenido"
+                    <div className="col-12" style={{ margin: 10, alignItems: "center" }}>
+                        <Paper
+                            style={{
+                                padding: "5%",
+                                textAlign: 'center',
+                            }}
                         >
-                            <option value={-1}>
-                                Seleccionar
-                        </option>
-                            {
-                                <>
-                                    {
-                                        this.state.contenidos.map((dat, index) => {
-                                            return (
-                                                <option key={"cContenido" + index} value={index}>
-                                                    {dat.titulo}
-                                                </option>
-                                            )
-                                        }
-                                        )
-                                    }
-                                </>
-                            }
-                        </select>
+                            <ColorList 
+                                seleccionarColor={this.seleccionarColor}
+                            />
+                        </Paper>
                     </div>
-                </div>
-                <div className="row" style={{ margin: 10 }}>
-                    <div className="col-6" >
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            onClick={() => this.realizarCambios()}
-                        >
-                            Realizar Cambios
-                    </Button>
+                    <div className="row" style={{ margin: 10 }}>
+                        <div className="col-6" >
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                onClick={() => this.realizarCambios()}
+                            >
+                                Realizar Cambios
+                            </Button>
+                        </div>
+                        <div className="col-6" >
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                onClick={() => this.limpiar()}
+                            >
+                                Limpiar Cambios
+                            </Button>
+                        </div>
                     </div>
-                    <div className="col-6" >
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            onClick={() => this.limpiar()}
-                        >
-                            Limpiar Cambios
-                    </Button>
-                    </div>
-                </div>
+                </Paper>
+
             </>
         );
     }

@@ -72,7 +72,7 @@ class Configurador extends React.Component {
                 imagen: "https://www.eltiempo.com/files/article_main/files/crop/uploads/2020/11/16/5fb3353273d77.r_1612380235380.0-0-1033-512.jpeg",
             },
             ],
-            colores: [
+            colores: !cookies.get('ConfiguradorAdmin') ? [
                 '#ffcdd2',
                 '#ef9a9a',
                 '#e57373',
@@ -160,7 +160,7 @@ class Configurador extends React.Component {
                 '#cfd8dc',
                 '#b0bec5',
                 '#90a4ae'
-            ],
+            ]:cookies.get('colores'),
         }
     }
     componentDidMount = async () => {
@@ -250,6 +250,9 @@ class Configurador extends React.Component {
         return (
             <div>
                 <AppBar />
+                {this.state.timepoInicial}
+                <br/>
+                {this.state.colores}
                 <Container component="main"
                     style={{
                         justifyContent: "center",

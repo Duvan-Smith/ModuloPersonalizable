@@ -58,6 +58,9 @@ class CcardInicial extends React.Component {
         const steps = this.getSteps();
         return (
             <>
+            {this.state.colores}
+            <br/>
+            {this.props.cColor}
                 <Stepper activeStep={activeStep} >
                     {
                         steps.map((label) => (

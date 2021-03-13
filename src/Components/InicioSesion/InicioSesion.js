@@ -16,6 +16,8 @@ import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 import '../../CSS/App.css';
 import InicioSesionGoogle from './InicioSesionGoogle';
+import ImgStepper from '../../Data/HiEyeBlinks.webm';
+import Paper from '@material-ui/core/Paper';
 
 const baseUrl = "http://localhost:3001/usuario"
 const cookies = new Cookies();
@@ -107,82 +109,114 @@ class InicioSesion extends React.Component {
     }
     render() {
         return (
-            <Container component="main" maxWidth="xs"
-                style={{
-                    justifyContent: "center",
-                    textAlign: "center",
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    marginTop: 150,
-                    flexGrow: 1,
-                }}
-            >
-                <InicioSesionGoogle />
-                <CssBaseline />
-                <div className="Margen">
-                    <Grid
-                        container
-                        spacing={3}
+            <>
+                <div className="row" alignItems="center" justify="center"
+                    style={{
+                        margin: 65,
+                        justifyContent: "center",
+                        textAlign: "center",
+                        display: 'flex',
+                        flexDirection: 'inherit',
+                        alignItems: 'center',
+                        flexGrow: 1,
+                    }}
+                >
+                    <div className="col-6">
+                        <video id="preview-player_html5_api"
+                            crossorigin="anonymous"
+                            class="vjs-tech"
+                            tabindex="-1"
+                            poster={ImgStepper}
+                            src={ImgStepper}
+                            autoplay=""
+                            loop="" muted="" playsinline="" preload="false" alt="GUIv4.gif" style={{ width: "110%" }}
+                        >
+                        </video>
+                    </div>
+                    <div className="row"
                         style={{
                             justifyContent: "center",
                             textAlign: "center",
                             display: 'flex',
-                            flexDirection: 'column',
+                            flexDirection: 'inherit',
                             alignItems: 'center',
+                            flexGrow: 1,
                         }}
                     >
-                        <Grid item xs={10}>
-                            <Avatar alt="Remy Sharp"
+                        <div className="col-7">
+                            <Paper
+                                style={{
+                                    padding: "15%",
+                                    textAlign: 'center',
+                                }}
+                            >
+                                <Grid
+                                    container
+                                    spacing={3}
+                                    style={{
+                                        justifyContent: "center",
+                                        textAlign: "center",
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <InicioSesionGoogle />
+                                    <CssBaseline />
+                                    <Grid item xs={10}>
+                                        <Avatar alt="Remy Sharp"
 
-                                src={this.state.urlAvatar}
-                            />
-                        </Grid>
-                        <Grid item xs={10}>
-                            <Typography component="h1" variant="h5" justify="center" alignItems="center" >
-                                Iniciar Sesion
-              </Typography>
-                        </Grid>
-                    </Grid>
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="nombreusuario"
-                        label="Correo electronico"
-                        name="nombreusuario"
-                        autoComplete="email"
-                        autoFocus
-                        onChange={this.handleChange}
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="contrasena"
-                        label="Contraseña"
-                        type="password"
-                        id="contrasena"
-                        autoComplete="current-password"
-                        onChange={this.handleChange}
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        onClick={() => this.iniciarSesion()}
-                    >
-                        Iniciar Sesion
-            </Button>
+                                            src={this.state.urlAvatar}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={10}>
+                                        <Typography component="h1" variant="h5" justify="center" alignItems="center" >
+                                            Iniciar Sesion
+                                    </Typography>
+                                    </Grid>
+                                </Grid>
+                                <TextField
+                                    type="text"
+                                    variant="outlined"
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="nombreusuario"
+                                    label="Correo electronico"
+                                    name="nombreusuario"
+                                    autoComplete="email"
+                                    autoFocus
+                                    onChange={this.handleChange}
+                                />
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    name="contrasena"
+                                    label="Contraseña"
+                                    type="password"
+                                    id="contrasena"
+                                    autoComplete="current-password"
+                                    onChange={this.handleChange}
+                                />
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => this.iniciarSesion()}
+                                >
+                                    Iniciar Sesion
+                            </Button>
+                            </Paper>
+                        </div>
+                    </div>
                 </div>
                 <Box mt={8}>
                     {this.Copyright()}
                 </Box>
-            </Container>
+            </>
         );
     }
 }
