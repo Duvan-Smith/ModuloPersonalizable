@@ -5,8 +5,9 @@ import AdminC from '../Components/Admin/AdminC';
 import Configurador from '../Components/ConfiguradorCard/Configurador';
 import InicioSesion from '../Components/InicioSesion/InicioSesion';
 import Usuario from '../Components/Usuario/Usuario';
-import DemoC from '../Demo/Demo';
 import '../CSS/App.css';
+import DemoC from '../Demo/Demo';
+
 class Routes extends React.Component {
     constructor(props) {
         super(props)

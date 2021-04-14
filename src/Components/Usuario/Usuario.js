@@ -1,5 +1,4 @@
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import Cookies from 'universal-cookie';
 import AppBar from "../../Bar/AppBar";
@@ -40,20 +39,35 @@ class Usuario extends React.Component {
                         <>
                             <AppBar />
                             <ComponentUsuario />
-                            <div style={{ margin: 20 }}>
-                                <Grid container spacing={3}>
-                                    <Grid item xs={6}>
-                                        Si comprendes cual es tu tarea dale al boton de iniciar para ser parte de esta gran esperiencia.
-                                </Grid>
-                                    <Grid item xs={3}>
+                            <div className="row" style={{ margin: 20 }}>
+                                <div className="col-12" >
+                                    Si comprendes cual es tu tarea dale al boton de iniciar para ser parte de esta gran esperiencia.
+                                </div>
+                                <hr/>
+                                <div className="col-12" >
                                         {
                                             this.state.ConfiguradorAdmin ?
-                                                <Button color="inherit" onClick={() => this.irComPersonalizable()}>Iniciar</Button>
+                                                <Button
+                                                        type="submit"
+                                                        fullWidth
+                                                        variant="contained"
+                                                        color="primary"
+                                                        onClick={() => this.iniciarDemo()}
+                                                    >
+                                                        Iniciar
+                                                </Button>
                                                 :
-                                                <Button color="inherit" onClick={() => this.mostrarComponente()}>Mostrar</Button>
+                                                <Button
+                                                        type="submit"
+                                                        fullWidth
+                                                        variant="contained"
+                                                        color="primary"
+                                                        onClick={() => this.mostrarComponente()}
+                                                    >
+                                                        Mostrar
+                                                </Button>
                                         }
-                                    </Grid>
-                                </Grid>
+                                </div>
                             </div>
                         </>
                         :

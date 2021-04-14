@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Collapse from '@material-ui/core/Collapse';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import MobileStepper from '@material-ui/core/MobileStepper';
+import Paper from '@material-ui/core/Paper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Stepper from '@material-ui/core/Stepper';
@@ -15,7 +15,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import React from 'react';
 import Cookies from 'universal-cookie';
-import Paper from '@material-ui/core/Paper';
 
 const cookies = new Cookies();
 withStyles(({ transitions }) => ({
@@ -52,10 +51,6 @@ class CcardInicial extends React.Component {
     render() {
         const classes = withStyles();
         const activeStep = this.props.cStepper//cColor es el que mas dura
-        const activeStepcC = this.props.cColor
-        const activeStepcT = this.props.cTamano
-        const activeStepcP = this.props.cPosicion
-        const activeStepcP2 = this.props.cPosicion2
         const steps = this.getSteps();
         return (
             <>
@@ -69,16 +64,12 @@ class CcardInicial extends React.Component {
                         ))
                     }
                 </Stepper>
-                {
-                    //TODO: el justify y alignItems se encuentran quemados en codigo.
-                }
                 <Grid
                     container
                     spacing={3}
                     justify={this.state.posicionT[this.props.cPosicion2]}
                     alignItems={this.state.posicionT[this.props.cPosicion2]}
                 >
-
                     {
                         activeStep === steps.length ? (
                             <Paper style={{

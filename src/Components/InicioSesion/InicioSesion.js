@@ -1,9 +1,9 @@
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
@@ -15,9 +15,8 @@ import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 import '../../CSS/App.css';
-import InicioSesionGoogle from './InicioSesionGoogle';
 import ImgStepper from '../../Data/HiEyeBlinks.webm';
-import Paper from '@material-ui/core/Paper';
+import InicioSesionGoogle from './InicioSesionGoogle';
 
 const baseUrl = "http://localhost:3001/usuario"
 const cookies = new Cookies();
@@ -41,7 +40,8 @@ class InicioSesion extends React.Component {
                 {'Copyright © '}
                 <Link color="inherit" href="https://material-ui.com/">
                     Your Website
-        </Link>{' '}
+                </Link>
+                {' '}
                 {new Date().getFullYear()}
                 {'.'}
             </Typography>
@@ -76,22 +76,8 @@ class InicioSesion extends React.Component {
                     } else {
                         window.location.href = "./user";
                     }
-                    //#region Error
-                    // toast("Bienvenido "+respuesta.primernombre,
-                    //   {
-                    //     position: toast.POSITION.TOP_CENTER,
-                    //     autoClose: 3000,
-                    //   });
-                    //#endregion
                 } else {
                     alert("El usuario o la contraseña no son correctos")
-                    //#region Error
-                    // toast("El usuario o la contraseña no son correctos",
-                    //   {
-                    //     position: toast.POSITION.TOP_CENTER,
-                    //     autoClose: 3000,
-                    //   });
-                    //#endregion
                 }
             })
             .catch(error => {
