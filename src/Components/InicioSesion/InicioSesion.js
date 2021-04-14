@@ -208,7 +208,7 @@ class InicioSesion extends React.Component {
                                     onClick={() => this.iniciarSesion()}
                                 >
                                     Iniciar Sesion
-                            </Button>
+                                </Button>
                             </Paper>
                         </div>
                     </div>

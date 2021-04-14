@@ -248,7 +248,10 @@ class ConfiguradorAdmin extends React.Component {
                 coloresList:lcolore
             }
         });
-      }
+    }
+    iniciarDemo = async () => {
+        window.location.href = "./demo";
+    }
     render() {
         const { classes } = this.props;
         return (
@@ -487,6 +490,22 @@ class ConfiguradorAdmin extends React.Component {
                                 Limpiar Cambios
                             </Button>
                         </div>
+                    </div>
+                    <div className="row" style={{ margin: 10 }}>
+                    {
+                        cookies.get('rol') == "admin" ? 
+                        <div className="col-12" >
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => this.iniciarDemo()}
+                                >
+                                    Demo
+                                </Button>
+                        </div>:<></>
+                    }
                     </div>
                 </Paper>
 

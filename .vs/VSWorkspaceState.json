@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src",
-    "\\src\\Components"
+    "\\src"
   ],
-  "SelectedNode": "\\src\\Components\\InicioSesion",
+  "SelectedNode": "\\src\\index.js",
   "PreviewInSolutionExplorer": false
 }

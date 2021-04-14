@@ -5,7 +5,7 @@ import AdminC from '../Components/Admin/AdminC';
 import Configurador from '../Components/ConfiguradorCard/Configurador';
 import InicioSesion from '../Components/InicioSesion/InicioSesion';
 import Usuario from '../Components/Usuario/Usuario';
-import ConfiguradorAdmin from '../Components/Admin/ConfiguradorAdmin';
+import DemoC from '../Demo/Demo';
 import '../CSS/App.css';
 class Routes extends React.Component {
     constructor(props) {
@@ -22,6 +22,7 @@ class Routes extends React.Component {
                     <Route exact path="/Configurador" component={AdminC} />
                     <Route exact path="/user" component={Usuario} />
                     <Route exact path="/personalizacion" component={Configurador} />
+                    <Route exact path="/demo" component={DemoC} />
                 </Switch>
             </BrowserRouter>
         );

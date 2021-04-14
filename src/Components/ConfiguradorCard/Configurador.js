@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'universal-cookie';
 import AppBar from "../../Bar/AppBar";
 import CcardInicial from '../Ccard/CcardInicial';
-//TODO: Duvan, bug - no reconoce la primera configuracion. Se debe realizar la configuracion 3 veses para que funcione.
+
 const cookies = new Cookies();
 toast.configure()
 ///<summary>
@@ -196,6 +196,7 @@ class Configurador extends React.Component {
         //TODO: si es mayor de
         if (option <= this.state.opcions.length - 1) {
             setTimeout(() => {
+                this.sendData(option)
                 this.SetCountStepper(option)
                 this.SetValueOpcion(option)
                 this.ChangeOpcion(option + 1)
@@ -206,10 +207,6 @@ class Configurador extends React.Component {
         }
     }
     SetCountStepper(option) {
-        console.log(this.state.opcions.length)
-        console.log(this.state.cStepper)
-        console.log(this.state.cCStepper)
-        console.log(option)
         if (option < 1) {
             this.setState({
                 cStepper: 0,
@@ -230,11 +227,8 @@ class Configurador extends React.Component {
                 })
             }, 1000);
         }
-        
-        
     }
     SetValueOpcion(posicion) {
-        // console.log(this.state.opcions[posicion].t)
         this.setState({
             color: this.state.opcions[posicion].c,
             posicionLetra: this.state.opcions[posicion].p,
@@ -244,98 +238,31 @@ class Configurador extends React.Component {
             parrafos: this.state.opcions[posicion].t.parrafos,
             imagen: this.state.opcions[posicion].t.imagen,
         })
-        // console.log(this.state.opcions[posicion])
-        // console.log(this.state.opcions[posicion].t)
     }
-    // componentDidMount = async () => {
-    //     var tiempo = this.state.timepoInicial;
-    //     document.write(
-    //         "<h1> "+tiempo+" </h1>"
-    //     )
-    //     await setInterval(() => {
-    //         if (this.state.cTamano >= this.state.tamano.length - 1) {
-    //             this.setState({
-    //                 cTamano: 0,
-    //             })
-    //         } else {
-    //             this.setState({
-    //                 cTamano: this.state.cTamano + 1,
-    //             })
-    //         }
-    //         console.log(tiempo)
-    //     }, tiempo);
-    //     tiempo = tiempo * this.state.tamano.length;
-    //     document.write(
-    //         "<h1> "+tiempo+" </h1>"
-    //     )
-    //     await setInterval(() => {
-    //         if (this.state.cPosicion >= this.state.posicion.length - 1) {
-    //             this.setState({
-    //                 cPosicion: 0,
-    //             })
-    //         } else {
-    //             this.setState({
-    //                 cPosicion: this.state.cPosicion + 1,
-    //             })
-    //         }
-    //     }, tiempo);
-    //     tiempo = tiempo * this.state.posicion.length;
-    //     //#region Error
-    //     //TODO: Se debe comentar esta funcion 
-    //     // await setInterval(() => {
-    //     //     if (this.state.cPosicion2 >= this.state.posicionT.length - 1) {
-    //     //         this.setState({
-    //     //             cPosicion2: 0,
-    //     //         })
-    //     //     } else {
-    //     //         this.setState({
-    //     //             cPosicion2: this.state.cPosicion2 + 1,
-    //     //         })
-    //     //     }
-    //     // }, tiempo);
-    //     //TODO: Se desactiva tiempo = tiempo * this.state.posicionT.length;
-    //     //#endregion
-    //     await setInterval(() => {
-    //         if (this.state.cColor >= this.state.colores.length - 1) {
-    //             this.setState({
-    //                 cColor: 0,
-    //             })
-    //         } else {
-    //             this.setState({
-    //                 cColor: this.state.cColor + 1,
-    //             })
-    //         }
-    //         if (this.state.cCStepper < 1) {
-    //             this.setState({
-    //                 cStepper: 0,
-    //                 cCStepper: this.state.cStepper + 1,
-    //             })
-    //         }
-    //         if (this.state.cCStepper >= 1) {
-    //             this.setState({
-    //                 cStepper: 1,
-    //                 cCStepper: this.state.cStepper + 1,
-    //             })
-    //         }
-    //         if (this.state.cCStepper >= this.state.colores.length - 1) {
-    //             this.setState({
-    //                 cStepper: 2,
-    //                 cCStepper: this.state.cStepper + 1,
-    //             })
-    //         }
-    //     }, tiempo);
-    //     await setInterval(() => {
-    //         if (this.state.cContenido >= this.state.contenidos.length - 1) {
-    //             this.setState({
-    //                 cContenido: 0,
-    //             })
-    //         } else {
-    //             this.setState({
-    //                 cContenido: this.state.cContenido + 1,
-    //             })
-    //         }
-    //     }, 80000);//TODO: tiempo = tiempo * this.state.colores.length; -> no se implementa por el tamaño de la lista de colores
-    // }
+    sendData=(posicion)=>{
+        var value={
+            color: this.state.opcions[posicion].c,
+            posicionLetra: this.state.opcions[posicion].p,
+            letra: this.state.opcions[posicion].t,
+            titulo: this.state.opcions[posicion].t.titulo,
+            subtitulo: this.state.opcions[posicion].t.subtitulo,
+            parrafos: this.state.opcions[posicion].t.parrafos,
+            imagen: this.state.opcions[posicion].t.imagen,
+        }
+        var url = 'http://localhost:5000/api';
+        var data = {'mensaje': value};
+        console.log(data)
+        console.log(JSON.stringify(data))
+        fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers:{
+            'Content-Type':'application/json'
+        }
+        }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response));
+    }
     render() {
         const { cColor, cPosicion, cPosicion2, cTamano, cContenido, cStepper } = this.state
         return (
