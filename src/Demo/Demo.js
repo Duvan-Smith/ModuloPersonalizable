@@ -6,7 +6,6 @@ import '../CSS/App.css';
 const sendData = (value) => {
     var url = 'http://localhost:5000/api';
     var data = { 'mensaje': value };
-    console.log(data)
     fetch(url, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!

@@ -105,7 +105,6 @@ class Configurador extends React.Component {
         //TODO: si es mayor de
         if (option <= this.state.opcions.length - 1) {
             setTimeout(() => {
-                this.sendData(option)
                 this.SetCountStepper(option)
                 this.SetValueOpcion(option)
                 this.ChangeOpcion(option + 1)
@@ -138,6 +137,7 @@ class Configurador extends React.Component {
         }
     }
     SetValueOpcion(posicion) {
+        this.sendData(posicion)
         this.setState({
             color: this.state.opcions[posicion].c,
             posicionLetra: this.state.opcions[posicion].p,
@@ -158,15 +158,15 @@ class Configurador extends React.Component {
             parrafos: this.state.opcions[posicion].t.parrafos,
             imagen: this.state.opcions[posicion].t.imagen,
         }
+        value = JSON.stringify(value)
         var url = 'http://localhost:5000/api';
         var data = {'mensaje': value};
         console.log(data)
-        console.log(JSON.stringify(data))
         fetch(url, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
         headers:{
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
         }
         }).then(res => res.json())
         .catch(error => console.error('Error:', error))

@@ -115,7 +115,7 @@ class InicioSesion extends React.Component {
                             poster={ImgStepper}
                             src={ImgStepper}
                             autoplay=""
-                            loop="" muted="" playsinline="" preload="false" alt="GUIv4.gif" style={{ width: "110%" }}
+                            loop="true" muted="" playsinline="" preload="false" alt="GUIv4.gif" style={{ width: "110%" }}
                         >
                         </video>
                     </div>
