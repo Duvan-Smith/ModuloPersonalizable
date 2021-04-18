@@ -42,38 +42,11 @@ class CcardInicial extends React.Component {
             tamano: this.props.tamano,
         }
     }
-    // componentDidUpdate() {
-    //     this.sendData()
-    // }
     handleExpandClick = () => {
         this.setState({ expanded: !this.state.expanded });
     };
     getSteps() {
         return ['Se ha iniciado la configuración', 'Se está procesando tu personalización', 'Se está finalizando tu personalización'];
-    }
-    sendData=()=>{
-        var value={
-            color: this.props.color,
-            posicionLetra: this.props.posicionLetra,
-            letra: this.props.letra,
-            titulo: this.state.contenidos[this.props.cContenido].titulo,
-            subtitulo: this.state.contenidos[this.props.cContenido].subtitulo,
-            parrafos: this.state.contenidos[this.props.cContenido].parrafos,
-            imagen: this.state.contenidos[this.props.cContenido].imagen,
-        }
-        value = JSON.stringify(value)
-        var url = 'http://localhost:5000/api';
-        var data = {'mensaje': value};
-        console.log(data)
-        fetch(url, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers:{
-            'Content-Type':'application/json',
-        }
-        }).then(res => res.json())
-        .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response));
     }
     render() {
         const classes = withStyles();

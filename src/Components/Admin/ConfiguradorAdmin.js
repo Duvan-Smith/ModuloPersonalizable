@@ -107,12 +107,10 @@ class ConfiguradorAdmin extends React.Component {
                 [e.target.name]: e.target.value
             }
         });
-        console.log([e.target.name] + ":" + e.target.value)
     }
     realizarCambios = () => {
         if (this.state.form.cTamano > -1 && this.state.form.cPosicion > -1 &&
             this.state.form.coloresList.length > 0 && this.state.form.cContenido > -1 && this.state.form.timepoInicial > -1) {
-            console.log(this.state.form)
             cookies.set('cTamano', this.state.form.cTamano, { path: "/personalizacion" });
             cookies.set('cPosicion', this.state.form.cPosicion, { path: "/personalizacion" });
             // cookies.set('cPosicion2', this.state.form.cPosicion2, { path: "/personalizacion" });
@@ -123,7 +121,6 @@ class ConfiguradorAdmin extends React.Component {
             cookies.set('cContenido', this.state.form.cContenido, { path: "/personalizacion" });
             cookies.set('timepoInicial', this.state.form.timepoInicial, { path: "/" });
             cookies.set('ConfiguradorAdmin', true, { path: "/personalizacion" });
-            console.log(this.state.form.timepoInicial)
             window.location.pathname = "./personalizacion";
         }
     }
@@ -185,6 +182,7 @@ class ConfiguradorAdmin extends React.Component {
                                 onChange={this.handleChange}
                                 label="timepoInicial"
                                 name="timepoInicial"
+                                defaultValue={0}
                             >
                                 <option value={-1}>
                                     Seleccionar
@@ -214,6 +212,7 @@ class ConfiguradorAdmin extends React.Component {
                                 onChange={this.handleChange}
                                 label="cTamano"
                                 name="cTamano"
+                                defaultValue={0}
                             >
                                 <option value={-1}>
                                     Seleccionar
@@ -245,10 +244,11 @@ class ConfiguradorAdmin extends React.Component {
                                 onChange={this.handleChange}
                                 label="cPosicion"
                                 name="cPosicion"
+                                defaultValue={0}
                             >
                                 <option value={-1}>
                                     Seleccionar
-                        </option>
+                                </option>
                                 {
                                     <>
                                         {
@@ -274,6 +274,7 @@ class ConfiguradorAdmin extends React.Component {
                                 onChange={this.handleChange}
                                 label="cContenido"
                                 name="cContenido"
+                                defaultValue={0}
                             >
                                 <option value={-1}>
                                     Seleccionar

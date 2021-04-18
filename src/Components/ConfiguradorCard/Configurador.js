@@ -10,8 +10,7 @@ const cookies = new Cookies();
 toast.configure()
 ///<summary>
 ///Este metodo permite configurar lo que va a ver el usuario final y el como lo va a ver
-///Puede ver diferentes noticias
-///Puede ver estas noticias con diferente color de fondo tamaño o posicion
+///Puede ver diferentes noticias - Puede ver estas noticias con diferente color de fondo tamaño o posicion
 ///</summary>
 class Configurador extends React.Component {
     constructor(props) {
@@ -80,6 +79,7 @@ class Configurador extends React.Component {
                 '#e57373'
             ] : cookies.get('colores'),
         }
+        // this.sendData = this.sendData.bind(this);
     }
     crearOpciones = () => {
         var opcions = []
@@ -90,27 +90,34 @@ class Configurador extends React.Component {
         this.setState({
             opcions: opcions
         })
-        // return this.state.tamano.forEach((t)=>this.state.posicion.forEach((p,t)=>this.state.colores.forEach((c,p,t)=>{return({t,p,c})})))
     }
     componentDidMount() {
         this.crearOpciones()
     }
-    componentDidUpdate() {
-        // console.log(this.state.opcions)
+    componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.opcions.length > 0 && this.state.color == 0) {
             this.ChangeOpcion(0)
         }
+        if (
+            prevState.color != this.state.color ||
+            prevState.posicionLetra != this.state.posicionLetra ||
+            prevState.letra != this.state.letra ||
+            prevState.titulo != this.state.titulo ||
+            prevState.subtitulo != this.state.subtitulo ||
+            prevState.parrafos != this.state.parrafos ||
+            prevState.contenidos != this.state.contenidos
+        ) {
+            this.sendData()
+        }
     }
     ChangeOpcion = (option) => {
-        //TODO: si es mayor de
         if (option <= this.state.opcions.length - 1) {
-            setTimeout(() => {
-                this.SetCountStepper(option)
-                this.SetValueOpcion(option)
-                this.ChangeOpcion(option + 1)
+                setTimeout(() => {
+                    this.SetCountStepper(option)
+                    this.ChangeOpcion(option + 1)
             }, this.state.timepoInicial);
-        }
-        else {
+            this.SetValueOpcion(option)
+        }else{
             console.log("Configuracion finalizada")
         }
     }
@@ -137,7 +144,6 @@ class Configurador extends React.Component {
         }
     }
     SetValueOpcion(posicion) {
-        this.sendData(posicion)
         this.setState({
             color: this.state.opcions[posicion].c,
             posicionLetra: this.state.opcions[posicion].p,
@@ -148,29 +154,31 @@ class Configurador extends React.Component {
             imagen: this.state.opcions[posicion].t.imagen,
         })
     }
-    sendData=(posicion)=>{
-        var value={
-            color: this.state.opcions[posicion].c,
-            posicionLetra: this.state.opcions[posicion].p,
-            letra: this.state.opcions[posicion].t,
-            titulo: this.state.opcions[posicion].t.titulo,
-            subtitulo: this.state.opcions[posicion].t.subtitulo,
-            parrafos: this.state.opcions[posicion].t.parrafos,
-            imagen: this.state.opcions[posicion].t.imagen,
+    sendData() {
+        var value = {
+            color: this.state.color,
+            posicionLetra: this.state.posicionLetra,
+            letra: this.state.letra,
+            titulo: this.state.titulo,
+            subtitulo: this.state.subtitulo,
+            parrafos: this.state.parrafos,
+            imagen: this.state.imagen,
+            contenidos: this.state.contenidos[this.state.cContenido],
         }
-        value = JSON.stringify(value)
-        var url = 'http://localhost:5000/api';
-        var data = {'mensaje': value};
-        console.log(data)
-        fetch(url, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers:{
-            'Content-Type':'application/json',
+        if (this.state.color != 0) {
+            value = JSON.stringify(value)
+            var url = 'http://localhost:5000/api';
+            var data = { 'mensaje': value };
+            fetch(url, {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify(data), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }).then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => console.log('Success:', response));
         }
-        }).then(res => res.json())
-        .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response));
     }
     render() {
         const { cColor, cPosicion, cPosicion2, cTamano, cContenido, cStepper } = this.state
