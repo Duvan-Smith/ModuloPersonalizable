@@ -141,7 +141,7 @@ class Configurador extends React.Component {
                     cStepper: 3,
                 })
                 this.mensajeCierre()
-            }, 1000);
+            }, 500);
         }
     }
     SetValueOpcion(posicion) {
@@ -157,7 +157,7 @@ class Configurador extends React.Component {
     }
     sendData() {
         var value = {
-            email: cookies.get('email'),
+            uid: cookies.get('uid'),
             color: this.state.color,
             posicionLetra: this.state.posicionLetra,
             letra: this.state.letra,
@@ -185,13 +185,13 @@ class Configurador extends React.Component {
     mensajeCierre() {
         console.log("Envio Fin")
         var data = { 
-            email: cookies.get('email'),
-            'mensaje': "Fin" };
-        data = JSON.stringify(data)
+            uid: cookies.get('uid'),
+            'mensaje': "FinTomaMuestraUsuario"};
+        console.log(data)
         var url = 'http://localhost:5000/api';
         fetch(url, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(data), // data can be `string` or {object}!
+            method: 'POST',
+            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
             }

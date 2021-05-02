@@ -69,6 +69,8 @@ class InicioSesion extends React.Component {
                     cookies.set('fechacreacion', respuesta.fechacreacion, { path: "/" });
                     cookies.set('primernombre', respuesta.primernombre, { path: "/" });
                     cookies.set('primerapellido', respuesta.primerapellido, { path: "/" });
+                    cookies.set('email', "user.admin.email", { path: "/" });
+                    cookies.set('uid', "idAdmin", { path: "/" });
                     console.log("entra");
                     alert(`Bienvenido ${respuesta.primernombre}`)
                     if (respuesta.rol == "admin") {
