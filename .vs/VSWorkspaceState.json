@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\Components",
+    "\\src\\Components\\Admin",
+    "\\src\\Components\\Usuario"
   ],
-  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }

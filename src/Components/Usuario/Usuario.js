@@ -12,7 +12,6 @@ class Usuario extends React.Component {
         super(props)
         this.state = {
             mostrar: false,
-            ConfiguradorAdmin: cookies.get('ConfiguradorAdmin'),
         }
     }
     irComPersonalizable = () => {
@@ -22,14 +21,6 @@ class Usuario extends React.Component {
         this.setState({
             mostrar: !this.state.mostrar,
         })
-    }
-    componentDidUpdate(prevProps) {
-        // Uso tipico (no olvides de comparar las props):
-        if (this.state.ConfiguradorAdmin !== cookies.get('ConfiguradorAdmin')) {
-            this.setState({
-                ConfiguradorAdmin: cookies.get('ConfiguradorAdmin')
-            })
-        }
     }
     render() {
         return (
@@ -46,13 +37,13 @@ class Usuario extends React.Component {
                                 <hr/>
                                 <div className="col-12" >
                                         {
-                                            this.state.ConfiguradorAdmin ?
+                                            cookies.get('ActivoConfigurador') ?
                                                 <Button
                                                         type="submit"
                                                         fullWidth
                                                         variant="contained"
                                                         color="primary"
-                                                        onClick={() => this.iniciarDemo()}
+                                                        onClick={() => this.irComPersonalizable()}
                                                     >
                                                         Iniciar
                                                 </Button>

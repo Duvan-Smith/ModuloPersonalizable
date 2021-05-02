@@ -162,13 +162,11 @@ export default function TransferList(props) {
         setLeft(left.concat(rightChecked));
         setRight(not(right, rightChecked));
         setChecked(not(checked, rightChecked));
-        // props.seleccionarColor(right);
     };
 
     const handleAllLeft = () => {
         setLeft(left.concat(right));
         setRight([]);
-        // props.seleccionarColor(right);
     };
 
     const customList = (items) => (

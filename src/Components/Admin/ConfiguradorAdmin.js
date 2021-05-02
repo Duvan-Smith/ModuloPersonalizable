@@ -36,6 +36,7 @@ class ConfiguradorAdmin extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            ConfiguradorAdmin:false,
             form: {
                 cTamano: -1,
                 cPosicion: -1,
@@ -111,17 +112,25 @@ class ConfiguradorAdmin extends React.Component {
     realizarCambios = () => {
         if (this.state.form.cTamano > -1 && this.state.form.cPosicion > -1 &&
             this.state.form.coloresList.length > 0 && this.state.form.cContenido > -1 && this.state.form.timepoInicial > -1) {
-            cookies.set('cTamano', this.state.form.cTamano, { path: "/personalizacion" });
-            cookies.set('cPosicion', this.state.form.cPosicion, { path: "/personalizacion" });
-            // cookies.set('cPosicion2', this.state.form.cPosicion2, { path: "/personalizacion" });
-            cookies.set('cPosicion2', 0, { path: "/personalizacion" });
-            // cookies.set('cColor', this.state.form.cColor, { path: "/personalizacion" });
-            cookies.set('cColor', 0, { path: "/personalizacion" });
-            cookies.set('colores', this.state.form.coloresList, { path: "/personalizacion" });
-            cookies.set('cContenido', this.state.form.cContenido, { path: "/personalizacion" });
-            cookies.set('timepoInicial', this.state.form.timepoInicial, { path: "/" });
-            cookies.set('ConfiguradorAdmin', true, { path: "/personalizacion" });
-            window.location.pathname = "./personalizacion";
+                this.setState({
+                    ConfiguradorAdmin:true
+                })
+                cookies.set('cTamano', this.state.form.cTamano, { path: "/personalizacion" });
+                cookies.set('cPosicion', this.state.form.cPosicion, { path: "/personalizacion" });
+                // cookies.set('cPosicion2', this.state.form.cPosicion2, { path: "/personalizacion" });
+                cookies.set('cPosicion2', 0, { path: "/personalizacion" });
+                // cookies.set('cColor', this.state.form.cColor, { path: "/personalizacion" });
+                cookies.set('cColor', 0, { path: "/personalizacion" });
+                cookies.set('colores', this.state.form.coloresList, { path: "/personalizacion" });
+                cookies.set('cContenido', this.state.form.cContenido, { path: "/personalizacion" });
+                cookies.set('timepoInicial', this.state.form.timepoInicial, { path: "/" });
+                cookies.set('ConfiguradorAdmin', this.state.ConfiguradorAdmin, { path: "/personalizacion" });
+                cookies.set('ActivoConfigurador', true, { path: "/" });
+
+                window.location.pathname = "./personalizacion";
+                if (cookies.get('rol') == "user") {
+                    window.location.href = "../user";
+                }
         }
     }
     limpiar = () => {
@@ -132,6 +141,7 @@ class ConfiguradorAdmin extends React.Component {
         cookies.remove('cContenido', { path: "/" });
         cookies.remove('timepoInicial', { path: "/" });
         cookies.remove('ConfiguradorAdmin', { path: "/" });
+        cookies.remove('ActivoConfigurador', { path: "/" });
         this.setState({
             cTamano: -1,
             cPosicion: -1,
@@ -168,7 +178,6 @@ class ConfiguradorAdmin extends React.Component {
                     }}
                 >
                     <div className="row" style={{ margin: 10 }}>
-
                         <div className="col-12" style={{ margin: 10, marginBottom: 20 }}>
                             <h3>Configuración manual del componente</h3>
                         </div>
@@ -182,7 +191,6 @@ class ConfiguradorAdmin extends React.Component {
                                 onChange={this.handleChange}
                                 label="timepoInicial"
                                 name="timepoInicial"
-                                defaultValue={0}
                             >
                                 <option value={-1}>
                                     Seleccionar
@@ -212,7 +220,6 @@ class ConfiguradorAdmin extends React.Component {
                                 onChange={this.handleChange}
                                 label="cTamano"
                                 name="cTamano"
-                                defaultValue={0}
                             >
                                 <option value={-1}>
                                     Seleccionar
@@ -244,7 +251,6 @@ class ConfiguradorAdmin extends React.Component {
                                 onChange={this.handleChange}
                                 label="cPosicion"
                                 name="cPosicion"
-                                defaultValue={0}
                             >
                                 <option value={-1}>
                                     Seleccionar
@@ -274,7 +280,6 @@ class ConfiguradorAdmin extends React.Component {
                                 onChange={this.handleChange}
                                 label="cContenido"
                                 name="cContenido"
-                                defaultValue={0}
                             >
                                 <option value={-1}>
                                     Seleccionar

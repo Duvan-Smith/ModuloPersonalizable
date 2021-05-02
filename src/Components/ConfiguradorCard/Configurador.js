@@ -18,12 +18,12 @@ class Configurador extends React.Component {
         this.state = {
             color: 0,
             opcions: [],
-            timepoInicial: !cookies.get('ConfiguradorAdmin') ? 5000 : cookies.get('timepoInicial'),
-            cColor: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cColor'),
-            cPosicion: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cPosicion'),
-            cPosicion2: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cPosicion2'),
-            cTamano: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cTamano'),
-            cContenido: !cookies.get('ConfiguradorAdmin') ? 0 : cookies.get('cContenido'),
+            timepoInicial: !cookies.get('ActivoConfigurador') ? 5000 : cookies.get('timepoInicial'),
+            cColor: !cookies.get('ActivoConfigurador') ? 0 : cookies.get('cColor'),
+            cPosicion: !cookies.get('ActivoConfigurador') ? 0 : cookies.get('cPosicion'),
+            cPosicion2: !cookies.get('ActivoConfigurador') ? 0 : cookies.get('cPosicion2'),
+            cTamano: !cookies.get('ActivoConfigurador') ? 0 : cookies.get('cTamano'),
+            cContenido: !cookies.get('ActivoConfigurador') ? 0 : cookies.get('cContenido'),
             cStepper: 0,
             cCStepper: 0,
             tamano: [
@@ -73,7 +73,7 @@ class Configurador extends React.Component {
                 imagen: "https://www.eltiempo.com/files/article_main/files/crop/uploads/2020/11/16/5fb3353273d77.r_1612380235380.0-0-1033-512.jpeg",
             },
             ],
-            colores: !cookies.get('ConfiguradorAdmin') ? [
+            colores: !cookies.get('ActivoConfigurador') ? [
                 '#ffcdd2',
                 '#ef9a9a',
                 '#e57373'
@@ -112,12 +112,12 @@ class Configurador extends React.Component {
     }
     ChangeOpcion = (option) => {
         if (option <= this.state.opcions.length - 1) {
-                setTimeout(() => {
-                    this.SetCountStepper(option)
-                    this.ChangeOpcion(option + 1)
+            setTimeout(() => {
+                this.SetCountStepper(option)
+                this.ChangeOpcion(option + 1)
             }, this.state.timepoInicial);
             this.SetValueOpcion(option)
-        }else{
+        } else {
             console.log("Configuracion finalizada")
         }
     }
@@ -140,6 +140,7 @@ class Configurador extends React.Component {
                 this.setState({
                     cStepper: 3,
                 })
+                this.mensajeCierre()
             }, 1000);
         }
     }
@@ -156,6 +157,7 @@ class Configurador extends React.Component {
     }
     sendData() {
         var value = {
+            email: cookies.get('email'),
             color: this.state.color,
             posicionLetra: this.state.posicionLetra,
             letra: this.state.letra,
@@ -180,6 +182,23 @@ class Configurador extends React.Component {
                 .then(response => console.log('Success:', response));
         }
     }
+    mensajeCierre() {
+        console.log("Envio Fin")
+        var data = { 
+            email: cookies.get('email'),
+            'mensaje': "Fin" };
+        data = JSON.stringify(data)
+        var url = 'http://localhost:5000/api';
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => console.log('Success:', response));
+    }
     render() {
         const { cColor, cPosicion, cPosicion2, cTamano, cContenido, cStepper } = this.state
         return (
@@ -196,7 +215,7 @@ class Configurador extends React.Component {
                     }}
                 >
                     {
-                        cookies.get('cTamano') == 0 ?
+                        cookies.get('ActivoConfigurador') ?
                             <CcardInicial
                                 cColor={cookies.get('cColor')}
                                 cPosicion={cookies.get('cPosicion')}

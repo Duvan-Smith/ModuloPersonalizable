@@ -37,15 +37,15 @@ class InicioSesionGoogle extends Component {
             this.setState({ isSignedIn: !!user })
         })
     }
-    llenarCookies = async (respuesta) => {
-        if (respuesta != null) {
-            cookies.set('email', respuesta.nombreusuario, { path: "/" });
+    llenarCookies = async (user) => {
+        if (user != null) {
+            cookies.set('email', user.email, { path: "/" });
             cookies.set('rol', "user", { path: "/" });
-            cookies.set('primernombre', respuesta.displayName, { path: "/" });
-            cookies.set('Avatar', respuesta.photoURL, { path: "/" });
-            cookies.set('signin', respuesta.providerId, { path: "/" });
-            cookies.set('uid', respuesta.uid, { path: "/" });
-            alert(`Bienvenido ${respuesta.displayName}`)
+            cookies.set('primernombre', user.displayName, { path: "/" });
+            cookies.set('Avatar', user.photoURL, { path: "/" });
+            cookies.set('signin', user.providerId, { path: "/" });
+            cookies.set('uid', user.uid, { path: "/" });
+            alert(`Bienvenido ${user.displayName}`)
             window.location.href = "./user";
         }
     }
