@@ -15,8 +15,17 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import React from 'react';
 import Cookies from 'universal-cookie';
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+
+// import firebaseConfig from "../Firebase/Firebase";
+// import * as firebase from 'firebase';
 
 const cookies = new Cookies();
+// firebase.initializeApp(config);
+// const auth = firebase.auth()
+
 withStyles(({ transitions }) => ({
     expand: {
         transform: 'rotate(0deg)',
@@ -45,6 +54,25 @@ class CcardInicial extends React.Component {
     handleExpandClick = () => {
         this.setState({ expanded: !this.state.expanded });
     };
+    verMiComponente = () => {
+        const database = firebase.database();
+        // database.ref("/componenteUser/"+cookies.get('uid')).set
+        // window.location.href = "./micomponente";
+        // var database = firebase.database();
+        // console.log(firebase.auth().currentUser)
+
+        var uid = cookies.get('uid')+""
+
+        var rooRef = database.ref("/componenteUser/"+uid);
+        console.log("2",uid)
+        rooRef.orderByKey().on('value', snpashot => {
+            console.log(snpashot.val())
+        });
+
+        rooRef.orderByChild('promedio').limitToLast(2).on('value',snpashot=>{
+            console.log(snpashot.val());
+        });
+    }
     getSteps() {
         return ['Se ha iniciado la configuración', 'Se está procesando tu personalización', 'Se está finalizando tu personalización'];
     }
@@ -95,7 +123,11 @@ class CcardInicial extends React.Component {
                                         <Typography className={classes.instructions}>Configuracion finalizada</Typography>
                                     </div>
                                     <div class="col-12" style={{ margin: 10, }}>
-                                        <Button>Ver mi componente</Button>
+                                        <Button
+                                            onClick={() => this.verMiComponente()}
+                                        >
+                                            Ver mi componente
+                                        </Button>
                                     </div>
                                 </div>
                             </Paper>
