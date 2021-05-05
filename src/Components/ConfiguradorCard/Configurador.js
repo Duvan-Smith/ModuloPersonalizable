@@ -184,9 +184,10 @@ class Configurador extends React.Component {
     }
     mensajeCierre() {
         console.log("Envio Fin")
-        var data = { 
+        var data = {
             uid: cookies.get('uid'),
-            'mensaje': "FinTomaMuestraUsuario"};
+            'mensaje': "FinTomaMuestraUsuario"
+        };
         console.log(data)
         var url = 'http://localhost:5000/api';
         fetch(url, {

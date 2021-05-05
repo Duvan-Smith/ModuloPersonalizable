@@ -7,6 +7,7 @@ import InicioSesion from '../Components/InicioSesion/InicioSesion';
 import Usuario from '../Components/Usuario/Usuario';
 import '../CSS/App.css';
 import DemoC from '../Demo/Demo';
+import Personalizado from "../Components/ComPersonalizado/CPersonalizado";
 
 class Routes extends React.Component {
     constructor(props) {
@@ -24,6 +25,7 @@ class Routes extends React.Component {
                     <Route exact path="/user" component={Usuario} />
                     <Route exact path="/personalizacion" component={Configurador} />
                     <Route exact path="/demo" component={DemoC} />
+                    <Route exact path="/micomponente" component={Personalizado} />
                 </Switch>
             </BrowserRouter>
         );
