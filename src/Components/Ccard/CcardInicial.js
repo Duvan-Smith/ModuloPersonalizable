@@ -64,31 +64,35 @@ class CcardInicial extends React.Component {
         rooRef.orderByChild('promedio').limitToLast(1).on('value', snapshot => {
 
             var newPost = snapshot.val();
+            if (newPost == null) {
+                alert("Se están cargando las ultimas configuraciones de tu componente.")
+            }
+            else {
+                var jsonString = JSON.stringify(newPost)
 
-            var jsonString = JSON.stringify(newPost)
+                var id = jsonString.substring(2, jsonString.indexOf('":{"color":"'))
 
-            var id = jsonString.substring(2, jsonString.indexOf('":{"color":"'))
+                var newPostId = newPost[id]
 
-            var newPostId=newPost[id]
+                var cont = newPostId['contenidos']
 
-            var cont=newPostId['contenidos']
+                cookies.set('color', newPostId['color'], { path: "/" });
+                cookies.set('posicionLetra', newPostId['posicionLetra'], { path: "/" });
+                cookies.set('titulo', newPostId['titulo'], { path: "/" });
+                cookies.set('subtitulo', newPostId['subtitulo'], { path: "/" });
+                cookies.set('parrafos', newPostId['parrafos'], { path: "/" });
+                cookies.set('imagen', newPostId['imagen'], { path: "/" });
 
-            cookies.set('color', newPostId['color'], { path: "/" });
-            cookies.set('posicionLetra', newPostId['posicionLetra'], { path: "/" });
-            cookies.set('titulo', newPostId['titulo'], { path: "/" });
-            cookies.set('subtitulo', newPostId['subtitulo'], { path: "/" });
-            cookies.set('parrafos', newPostId['parrafos'], { path: "/" });
-            cookies.set('imagen', newPostId['imagen'], { path: "/" });
+                cookies.set('conimagen', cont['imagen'], { path: "/" });
+                cookies.set('conparrafo1', cont['parrafo1'], { path: "/" });
+                cookies.set('conparrafo2', cont['parrafo2'], { path: "/" });
+                cookies.set('conparrafo3', cont['parrafo3'], { path: "/" });
+                cookies.set('consubtitulo', cont['subtitulo'], { path: "/" });
+                cookies.set('contitulo', cont['titulo'], { path: "/" });
 
-            cookies.set('conimagen', cont['imagen'], { path: "/" });
-            cookies.set('conparrafo1', cont['parrafo1'], { path: "/" });
-            cookies.set('conparrafo2', cont['parrafo2'], { path: "/" });
-            cookies.set('conparrafo3', cont['parrafo3'], { path: "/" });
-            cookies.set('consubtitulo', cont['subtitulo'], { path: "/" });
-            cookies.set('contitulo', cont['titulo'], { path: "/" });
-
-            window.location.pathname = "./micomponente";
-            window.location.href = "./micomponente";
+                window.location.pathname = "./micomponente";
+                window.location.href = "./micomponente";
+            }
         });
     }
     getSteps() {

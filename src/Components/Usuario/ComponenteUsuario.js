@@ -36,28 +36,6 @@ export default function CenteredGrid() {
                             }}
                             width="80%"
                             height="auto"
-                            src={ImgStepper} alt="Stepper" 
-                        />
-                        <img 
-                            style={{
-                                marginLeft: 10,
-                                marginRight: 10,
-                                marginBottom: 10,
-                                marginTop: 10,
-                            }}
-                            width="80%"
-                            height="auto"
-                            src={ImgStepperMedio} alt="StepperMedio" 
-                        />
-                        <img 
-                            style={{
-                                marginLeft: 10,
-                                marginRight: 10,
-                                marginBottom: 10,
-                                marginTop: 10,
-                            }}
-                            width="80%"
-                            height="auto"
                             src={ImgStepperFin} alt="StepperFin" 
                         />
                         </div>

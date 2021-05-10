@@ -18,6 +18,7 @@ import Cookies from 'universal-cookie';
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import AppBar from "../../Bar/AppBar";
 
 const cookies = new Cookies();
 
@@ -52,7 +53,6 @@ class CPersonalizado extends React.Component {
             conparrafo3: cookies.get('conparrafo3'),
             consubtitulo: cookies.get('consubtitulo'),
             contitulo: cookies.get('contitulo'),
-
         }
     }
     handleExpandClick = () => {
@@ -64,14 +64,22 @@ class CPersonalizado extends React.Component {
 
         return (
             <>
+                <AppBar />
                 <br />
                 <Grid
                     container
-                    spacing={3}
+                    spacing={0}
                     justify={"center"}
                     alignItems={"center"}
                 >
-                    <Grid item xs={10}>
+                    <Grid item xs={10}
+                    style={{
+                        marginLeft: 20,
+                        marginRight: 20,
+                        marginBottom: 20,
+                        marginTop: 20,
+                    }}
+                    >
                         <Card
                             style={{
                                 background: this.state.color,
