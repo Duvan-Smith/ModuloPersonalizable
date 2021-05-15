@@ -38,8 +38,8 @@ class InicioSesion extends React.Component {
         return (
             <Typography variant="body2" color="textSecondary" align="center">
                 {'Copyright © '}
-                <Link color="inherit" href="https://material-ui.com/">
-                    Your Website
+                <Link color="inherit" href="https://scienti.minciencias.gov.co/gruplac/jsp/visualiza/visualizagr.jsp?nro=00000000004806">
+                    MIND - Investigación en Computación e Informática Aplicada
                 </Link>
                 {' '}
                 {new Date().getFullYear()}

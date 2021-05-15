@@ -98,7 +98,6 @@ class Usuario extends React.Component {
                         <>
                             <AppBar />
                             <ComponentUsuario />
-
                             {
                                 this.state.mostrarP == true ?
                                     <div className="row" style={{
