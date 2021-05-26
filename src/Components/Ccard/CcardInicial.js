@@ -1,245 +1,183 @@
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Collapse from '@material-ui/core/Collapse';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import Paper from '@material-ui/core/Paper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Stepper from '@material-ui/core/Stepper';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import clsx from 'clsx';
-import React from 'react';
-import Cookies from 'universal-cookie';
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Collapse from "@material-ui/core/Collapse";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import Paper from "@material-ui/core/Paper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Stepper from "@material-ui/core/Stepper";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import clsx from "clsx";
+import React from "react";
+import Cookies from "universal-cookie";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-
-// import firebaseConfig from "../Firebase/Firebase";
-// import * as firebase from 'firebase';
+import VerComCreado from "./VerComponenteCreado";
 
 const cookies = new Cookies();
-// firebase.initializeApp(config);
-// const auth = firebase.auth()
 
 withStyles(({ transitions }) => ({
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
 
-        transition: transitions.create('transform', {
-            duration: transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
+    transition: transitions.create("transform", {
+      duration: transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(180deg)",
+  },
 }));
 class CcardInicial extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            expanded: false,
-            colores: this.props.colores,
-            posicion: this.props.posicion,
-            posicionT: this.props.posicionT,
-            contenidos: this.props.contenidos,
-            tamano: this.props.tamano,
-        }
-    }
-    handleExpandClick = () => {
-        this.setState({ expanded: !this.state.expanded });
+  constructor(props) {
+    super(props);
+    this.state = {
+      expanded: false,
+      colores: this.props.colores,
+      posicion: this.props.posicion,
+      posicionT: this.props.posicionT,
+      contenidos: this.props.contenidos,
+      tamano: this.props.tamano,
     };
-    verMiComponente = () => {
-        const database = firebase.database();
+  }
+  handleExpandClick = () => {
+    this.setState({ expanded: !this.state.expanded });
+  };
 
-        var uid = cookies.get('uid') + ""
+  getSteps() {
+    return [
+      "Se ha iniciado la configuración",
+      "Se está procesando tu personalización",
+      "Se está finalizando tu personalización",
+    ];
+  }
+  render() {
+    const classes = withStyles();
+    const activeStep = this.props.cStepper; //cColor es el que mas dura
+    const steps = this.getSteps();
 
-        var rooRef = database.ref("/componenteUser/" + uid);
-
-        rooRef.orderByChild('promedio').limitToLast(1).on('value', snapshot => {
-
-            var newPost = snapshot.val();
-            if (newPost == null) {
-                alert("Se están cargando las ultimas configuraciones de tu componente.")
-            }
-            else {
-                var jsonString = JSON.stringify(newPost)
-
-                var id = jsonString.substring(2, jsonString.indexOf('":{"color":"'))
-
-                var newPostId = newPost[id]
-
-                var cont = newPostId['contenidos']
-
-                cookies.set('color', newPostId['color'], { path: "/" });
-                cookies.set('posicionLetra', newPostId['posicionLetra'], { path: "/" });
-                cookies.set('titulo', newPostId['titulo'], { path: "/" });
-                cookies.set('subtitulo', newPostId['subtitulo'], { path: "/" });
-                cookies.set('parrafos', newPostId['parrafos'], { path: "/" });
-                cookies.set('imagen', newPostId['imagen'], { path: "/" });
-
-                cookies.set('conimagen', cont['imagen'], { path: "/" });
-                cookies.set('conparrafo1', cont['parrafo1'], { path: "/" });
-                cookies.set('conparrafo2', cont['parrafo2'], { path: "/" });
-                cookies.set('conparrafo3', cont['parrafo3'], { path: "/" });
-                cookies.set('consubtitulo', cont['subtitulo'], { path: "/" });
-                cookies.set('contitulo', cont['titulo'], { path: "/" });
-
-                window.location.pathname = "./micomponente";
-                window.location.href = "./micomponente";
-            }
-        });
-    }
-    getSteps() {
-        return ['Se ha iniciado la configuración', 'Se está procesando tu personalización', 'Se está finalizando tu personalización'];
-    }
-    render() {
-        const classes = withStyles();
-        const activeStep = this.props.cStepper//cColor es el que mas dura
-        const steps = this.getSteps();
-        
-        return (
-            <>
-                <br />
-                <Stepper activeStep={activeStep} >
-                    {
-                        steps.map((label) => (
-                            <Step key={label}>
-                                <StepLabel>{label}</StepLabel>
-                            </Step>
-                        ))
-                    }
-                </Stepper>
-                <Grid
-                    container
-                    spacing={3}
-                    justify={this.state.posicionT[this.props.cPosicion2]}
-                    alignItems={this.state.posicionT[this.props.cPosicion2]}
+    return (
+      <>
+        <br />
+        <Stepper activeStep={activeStep}>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <Grid
+          container
+          spacing={3}
+          justify={this.state.posicionT[this.props.cPosicion2]}
+          alignItems={this.state.posicionT[this.props.cPosicion2]}
+        >
+          {activeStep === steps.length ? (
+            <div
+              class="row"
+              style={{
+                margin: 20,
+                justifyContent: "center",
+                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+                flexGrow: 1,
+                width: "110%",
+              }}
+            >
+              Aqui poner si le gusta la noticia
+              <VerComCreado />
+            </div>
+          ) : (
+            <Grid item xs={10}>
+              <Card
+                style={{
+                  background: this.props.color,
+                  textAlign: this.props.posicionLetra,
+                }}
+              >
+                <Typography
+                  gutterBottom
+                  style={{
+                    marginLeft: 20,
+                    marginRight: 20,
+                    marginBottom: 20,
+                    marginTop: 20,
+                  }}
+                  variant={this.props.titulo}
                 >
-                    {
-                        activeStep === steps.length ? (
-                            <Paper style={{
-                                margin: 20,
-                                justifyContent: "center",
-                                textAlign: "center",
-                                display: 'flex',
-                                alignItems: 'center',
-                                flexGrow: 1,
-                                width: "110%",
-                            }}>
-                                <div class="row" style={{
-                                    margin: 20,
-                                    justifyContent: "center",
-                                    textAlign: "center",
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    flexGrow: 1,
-                                    width: "110%",
-                                }}>
-
-                                    <div class="col-12" style={{ margin: 20, }}>
-                                        <Typography className={classes.instructions}>Configuracion finalizada</Typography>
-                                    </div>
-                                    <div class="col-12" style={{ margin: 10, }}>
-                                        <Button
-                                            onClick={() => this.verMiComponente()}
-                                        >
-                                            Ver mi componente
-                                        </Button>
-                                    </div>
-                                </div>
-                            </Paper>
-                        )
-                            :
-                            (
-                                <Grid item xs={10}>
-                                    <Card
-                                        style={{
-                                            background: this.props.color,
-                                            textAlign: this.props.posicionLetra,
-                                        }}
-                                    >
-                                        <Typography gutterBottom
-                                            style={{
-                                                marginLeft: 20,
-                                                marginRight: 20,
-                                                marginBottom: 20,
-                                                marginTop: 20,
-                                            }}
-                                            variant={this.props.titulo}
-                                        >
-                                            {this.state.contenidos[this.props.cContenido].titulo}
-                                        </Typography>
-                                        <img
-                                            style={{
-                                                marginLeft: 20,
-                                                marginRight: 20,
-                                                marginBottom: 20,
-                                                marginTop: 20,
-                                            }}
-                                            width={this.props.imagen}
-                                            height="auto"
-                                            src={this.state.contenidos[this.props.cContenido].imagen}
-                                        >
-                                        </img>
-                                        <CardContent>
-                                            <Typography
-                                                style={{
-                                                    fontSize: this.props.parrafos,
-                                                }}
-                                            >
-                                                {this.state.contenidos[this.props.cContenido].parrafo1}
-                                            </Typography>
-                                        </CardContent>
-                                        <CardActions disableSpacing>
-                                            <IconButton
-                                                className={clsx(classes.expand, {
-                                                    [classes.expandOpen]: this.state.expanded,
-                                                })}
-                                                onClick={() => this.handleExpandClick()}
-                                                aria-expanded={this.state.expanded}
-                                                aria-label="show more"
-                                            >
-                                                <ExpandMoreIcon />
-                                            </IconButton>
-                                        </CardActions>
-                                        <Collapse in={this.state.expanded}  >
-                                            <CardContent>
-                                                <Typography
-                                                    variant={this.props.subtitulo}
-                                                >
-                                                    {this.state.contenidos[this.props.cContenido].subtitulo}
-                                                </Typography>
-                                                <br />
-                                                <Typography paragraph
-                                                    style={{
-                                                        fontSize: this.props.parrafos,
-                                                    }}
-                                                >
-                                                    {this.state.contenidos[this.props.cContenido].parrafo2}
-                                                </Typography>
-                                                <br />
-                                                <Typography paragraph
-                                                    style={{
-                                                        fontSize: this.props.parrafos,
-                                                    }}
-                                                >
-                                                    {this.state.contenidos[this.props.cContenido].parrafo3}
-                                                </Typography>
-                                            </CardContent>
-                                        </Collapse>
-                                    </Card>
-                                </Grid>
-                            )
-                    }
-                </Grid>
-            </>
-        );
-    }
+                  {this.state.contenidos[this.props.cContenido].titulo}
+                </Typography>
+                <img
+                  style={{
+                    marginLeft: 20,
+                    marginRight: 20,
+                    marginBottom: 20,
+                    marginTop: 20,
+                  }}
+                  width={this.props.imagen}
+                  height="auto"
+                  src={this.state.contenidos[this.props.cContenido].imagen}
+                ></img>
+                <CardContent>
+                  <Typography
+                    style={{
+                      fontSize: this.props.parrafos,
+                    }}
+                  >
+                    {this.state.contenidos[this.props.cContenido].parrafo1}
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton
+                    className={clsx(classes.expand, {
+                      [classes.expandOpen]: this.state.expanded,
+                    })}
+                    onClick={() => this.handleExpandClick()}
+                    aria-expanded={this.state.expanded}
+                    aria-label="show more"
+                  >
+                    <ExpandMoreIcon />
+                  </IconButton>
+                </CardActions>
+                <Collapse in={this.state.expanded}>
+                  <CardContent>
+                    <Typography variant={this.props.subtitulo}>
+                      {this.state.contenidos[this.props.cContenido].subtitulo}
+                    </Typography>
+                    <br />
+                    <Typography
+                      paragraph
+                      style={{
+                        fontSize: this.props.parrafos,
+                      }}
+                    >
+                      {this.state.contenidos[this.props.cContenido].parrafo2}
+                    </Typography>
+                    <br />
+                    <Typography
+                      paragraph
+                      style={{
+                        fontSize: this.props.parrafos,
+                      }}
+                    >
+                      {this.state.contenidos[this.props.cContenido].parrafo3}
+                    </Typography>
+                  </CardContent>
+                </Collapse>
+              </Card>
+            </Grid>
+          )}
+        </Grid>
+      </>
+    );
+  }
 }
 export default withStyles(withStyles)(CcardInicial);

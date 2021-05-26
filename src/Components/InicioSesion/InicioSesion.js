@@ -38,9 +38,9 @@ class InicioSesion extends React.Component {
         return (
             <Typography variant="body2" color="textSecondary" align="center">
                 {'Copyright © '}
-                <Link color="inherit" href="https://scienti.minciencias.gov.co/gruplac/jsp/visualiza/visualizagr.jsp?nro=00000000004806">
+                <a color="inherit" href="https://www.unicomfacauca.edu.co/investigacion/grupos-investigacion/grupo-tic-unicomfacauca/" target="_blank">
                     MIND - Investigación en Computación e Informática Aplicada
-                </Link>
+                </a>
                 {' '}
                 {new Date().getFullYear()}
                 {'.'}
