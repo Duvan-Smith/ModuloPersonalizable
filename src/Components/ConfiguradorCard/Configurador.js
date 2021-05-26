@@ -156,6 +156,10 @@ class Configurador extends React.Component {
         })
     }
     sendData() {
+        var hoy = new Date();
+        var fecha = hoy.getDate() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
+        var hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+        var fechaYHora = fecha + ' ' + hora;
         var value = {
             uid: cookies.get('uid'),
             color: this.state.color,
@@ -166,6 +170,7 @@ class Configurador extends React.Component {
             parrafos: this.state.parrafos,
             imagen: this.state.imagen,
             contenidos: this.state.contenidos[this.state.cContenido],
+            fechaYHora:fechaYHora,
         }
         if (this.state.color != 0) {
             value = JSON.stringify(value)
