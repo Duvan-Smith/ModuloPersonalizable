@@ -50,6 +50,11 @@ class Configurador extends React.Component {
           imagen: "80%",
         },
       ],
+      usuario: [
+        cookies.get("uid"),
+        cookies.get("primernombre"),
+        cookies.get("primerapellido"),
+      ],
       posicion: ["center", "left", "right"],
       //TODO: Se desactiva iteraciones
       posicionT: ["center", "flex-start", "flex-end"],
@@ -190,6 +195,7 @@ class Configurador extends React.Component {
     var fechaYHora = fecha + " " + hora;
     var value = {
       uid: cookies.get("uid"),
+      usuario: this.state.usuario,
       color: this.state.color,
       posicionLetra: this.state.posicionLetra,
       letra: this.state.letra,
