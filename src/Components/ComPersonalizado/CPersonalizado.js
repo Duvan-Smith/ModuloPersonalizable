@@ -5,10 +5,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Collapse from "@material-ui/core/Collapse";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
-import Paper from "@material-ui/core/Paper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Stepper from "@material-ui/core/Stepper";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -19,6 +15,14 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import AppBar from "../../Bar/AppBar";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+import ShareIcon from "@material-ui/icons/Share";
+import SaveAltIcon from "@material-ui/icons/SaveAlt";
+import MenuIcon from "@material-ui/icons/Menu";
+import Avatar from "@material-ui/core/Avatar";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import TextField from "@material-ui/core/TextField";
 
 const cookies = new Cookies();
 
@@ -153,6 +157,101 @@ class CPersonalizado extends React.Component {
                 </CardContent>
               </Collapse>
             </Card>
+            <br />
+              <hr />
+
+              <div
+                className="col-12"
+                style={{
+                  margin: 20,
+                  justifyContent: "space-between",
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  flexGrow: 1,
+                  width: "110%",
+                }}
+              >
+                <div>
+                  <h4>
+                    <n>Sección de comentarios</n>
+                  </h4>
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div>
+                  <ThumbUpIcon />
+                  <ThumbDownIcon />
+                </div>
+                <div>
+                  <ShareIcon /> COMPARTIR
+                </div>
+                <div>
+                  <SaveAltIcon /> GUARDAR
+                </div>
+                <div>
+                  <MenuIcon />
+                </div>
+              </div>
+              <hr />
+              <div
+                className="col-12"
+                style={{
+                  margin: 20,
+                  justifyContent: "space-between",
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  flexGrow: 1,
+                  width: "110%",
+                }}
+              >
+                <TextField
+                  className="col-12"
+                  id="input-with-icon-textfield"
+                  placeholder="Agrege un comentario público..."
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Avatar
+                          alt="img user"
+                          src={cookies.get("Avatar")}
+                          style={{ width: 25, height: 26 }}
+                        />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </div>
+              <div
+                className="col-12"
+                style={{
+                  justifyContent: "right",
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  flexGrow: 1,
+                }}
+              >
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  style={{
+                    margin: 5,
+                  }}
+                >
+                  CANCELAR
+                </Button>
+                <Button type="submit" variant="contained" color="primary">
+                  COMENTAR
+                </Button>
+              </div>
           </Grid>
         </Grid>
       </>
