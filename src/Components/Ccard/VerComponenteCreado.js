@@ -23,7 +23,7 @@ withStyles(({ transitions }) => ({
     transform: "rotate(180deg)",
   },
 }));
-class CcardInicial extends React.Component {
+class VerComponenteCreaso extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -81,7 +81,7 @@ class CcardInicial extends React.Component {
       <>
         <Paper
           style={{
-            margin: 40,
+            margin: 20,
             justifyContent: "center",
             textAlign: "center",
             display: "flex",
@@ -123,4 +123,4 @@ class CcardInicial extends React.Component {
     );
   }
 }
-export default withStyles(withStyles)(CcardInicial);
+export default withStyles(withStyles)(VerComponenteCreaso);

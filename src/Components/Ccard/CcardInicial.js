@@ -19,6 +19,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import VerComCreado from "./VerComponenteCreado";
+import Encuesta from "./EncuestaGusto";
 
 const cookies = new Cookies();
 
@@ -83,7 +84,7 @@ class CcardInicial extends React.Component {
             <div
               class="row"
               style={{
-                margin: 20,
+                margin: 10,
                 justifyContent: "center",
                 textAlign: "center",
                 display: "flex",
@@ -92,7 +93,22 @@ class CcardInicial extends React.Component {
                 width: "110%",
               }}
             >
-              Aqui poner si le gusta la noticia
+              <Paper
+                style={{
+                  margin: 20,
+                  justifyContent: "center",
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  flexGrow: 1,
+                  width: "110%",
+                }}
+              >
+                {/* <Encuesta
+                  titulo={this.state.contenidos[this.props.cContenido].titulo}
+                /> */}
+              </Paper>
+              <br />
               <VerComCreado />
             </div>
           ) : (
